@@ -1,6 +1,7 @@
 package tn.esprit.entites;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class Destination {
@@ -17,10 +18,11 @@ public class Destination {
     private Boolean accessibilite;
     private String abbrev;
     private Set<User> users = new HashSet<>();
-
+    private List<Tournee> tournees;
     public Set<User> getUsers() {
         return users;
     }
+
 
     public void setUsers(Set<User> users) {
         this.users = users;
@@ -128,6 +130,14 @@ public class Destination {
 
     public void setAbbrev(String abbrev) {
         this.abbrev = abbrev;
+    }
+
+    public List<Tournee> getTournees() {
+        return tournees;
+    }
+
+    public void setTournees(List<Tournee> tournees) {
+        this.tournees = tournees;
     }
 
     @Override

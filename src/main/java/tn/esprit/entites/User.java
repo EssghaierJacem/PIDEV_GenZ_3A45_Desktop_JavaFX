@@ -1,6 +1,7 @@
 package tn.esprit.entites;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class User {
@@ -14,7 +15,40 @@ public class User {
     private String photo;
     private String username;
     private Role role;
+
+    //Relations :
+    private List<Avis> avisList;
+    private List<Hebergement> hebergements;
+    private List<Participation> participations;
+    private List<Reservation> reservations;
+
     private Set<Destination> destinations = new HashSet<>();
+
+    public void setAvisList(List<Avis> avisList) {
+        this.avisList = avisList;
+    }
+    public List<Avis> getAvisList() {
+        return avisList;
+    }
+    public List<Hebergement> getHebergements() {
+        return hebergements;
+    }
+
+    public void setHebergements(List<Hebergement> hebergements) {
+        this.hebergements = hebergements;
+    }
+    public void addAvis(Avis avis) {
+        this.avisList.add(avis);
+    }
+    public void addHebergement(Hebergement hebergement) {
+        this.hebergements.add(hebergement);
+    }
+    public void addParticipation(Participation participation) {
+        this.participations.add(participation);
+    }
+    public void addReservation(Reservation reservation) {
+        this.reservations.add(reservation);
+    }
 
     public Set<Destination> getDestinations() {
         return destinations;
@@ -108,6 +142,22 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public List<Participation> getParticipations() {
+        return participations;
+    }
+
+    public void setParticipations(List<Participation> participations) {
+        this.participations = participations;
+    }
+
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
     }
 
     @Override
