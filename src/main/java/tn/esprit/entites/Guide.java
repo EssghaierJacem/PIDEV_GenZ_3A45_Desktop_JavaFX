@@ -26,6 +26,16 @@ public class Guide {
         this.num_tel = num_tel;
     }
 
+    public Guide(String nom, String prenom, String nationalite, String langues_parlees, String experiences, double tarif_horaire, int num_tel) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.nationalite = nationalite;
+        this.langues_parlees = langues_parlees;
+        this.experiences = experiences;
+        this.tarif_horaire = tarif_horaire;
+        this.num_tel = num_tel;
+    }
+
     public int getId() {
         return id;
     }
