@@ -11,14 +11,14 @@ public class Tournee {
     private String duree;
     private String description;
     private double tarif;
-    private String monumenets;
+    private String monuments;
     private String tranche_age;
     private String moyen_transport;
 
     public Tournee() {
     }
 
-    public Tournee(int id, Destination destination, Guide guide, String nom, Date date_debut, String duree, String description, double tarif, String monumenets, String tranche_age, String moyen_transport) {
+    public Tournee(int id, Destination destination, Guide guide, String nom, Date date_debut, String duree, String description, double tarif, String monuments, String tranche_age, String moyen_transport) {
         this.id = id;
         this.destination = destination;
         this.guide = guide;
@@ -27,7 +27,7 @@ public class Tournee {
         this.duree = duree;
         this.description = description;
         this.tarif = tarif;
-        this.monumenets = monumenets;
+        this.monuments = monuments;
         this.tranche_age = tranche_age;
         this.moyen_transport = moyen_transport;
     }
@@ -96,12 +96,12 @@ public class Tournee {
         this.tarif = tarif;
     }
 
-    public String getMonumenets() {
-        return monumenets;
+    public String getMonuments() {
+        return monuments;
     }
 
-    public void setMonumenets(String monumenets) {
-        this.monumenets = monumenets;
+    public void setMonuments(String monuments) {
+        this.monuments = monuments;
     }
 
     public String getTranche_age() {
@@ -131,7 +131,7 @@ public class Tournee {
                 ", duree='" + duree + '\'' +
                 ", description='" + description + '\'' +
                 ", tarif=" + tarif +
-                ", monumenets='" + monumenets + '\'' +
+                ", monuments='" + monuments + '\'' +
                 ", tranche_age='" + tranche_age + '\'' +
                 ", moyen_transport='" + moyen_transport + '\'' +
                 '}';
