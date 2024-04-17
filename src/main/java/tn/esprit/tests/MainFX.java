@@ -15,7 +15,7 @@ public class MainFX extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/test.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
-        primaryStage.setTitle("3A45");
+        primaryStage.setTitle("Beyond Borders Travel");
         primaryStage.setScene(scene);
         primaryStage.show();
     }

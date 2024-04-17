@@ -143,8 +143,19 @@ public class Destination {
     @Override
     public String toString() {
         return "Destination{" +
-                "pays='" + pays + '\'' +
+                "id=" + id +
+                ", pays='" + pays + '\'' +
                 ", ville='" + ville + '\'' +
+                ", description='" + description + '\'' +
+                ", attractions='" + attractions + '\'' +
+                ", accomodation='" + accomodation + '\'' +
+                ", devise='" + devise + '\'' +
+                ", multimedia='" + multimedia + '\'' +
+                ", cuisine_locale='" + cuisine_locale + '\'' +
+                ", accessibilite=" + accessibilite +
+                ", abbrev='" + abbrev + '\'' +
+                ", users=" + users +
+                ", tournees=" + tournees +
                 '}';
     }
 }
