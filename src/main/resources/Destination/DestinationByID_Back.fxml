@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="568.0" prefWidth="942.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="568.0" prefWidth="942.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.Controllers.Destination.DestinationByID_BackController">
     <children>
         <VBox prefHeight="495.0" prefWidth="155.0">
             <children>
@@ -58,12 +58,12 @@
                                 <Font size="1.0" />
                             </font>
                         </Button>
-                        <Label layoutX="14.0" layoutY="42.0" text="Gestion Vol :">
+                        <Label layoutX="14.0" layoutY="42.0" text="Gestion Destination:">
                             <font>
                                 <Font name="Century Gothic Bold" size="20.0" />
                             </font>
                         </Label>
-                        <Label layoutX="14.0" layoutY="67.0" prefHeight="25.0" prefWidth="323.0" text="Ici vous pouvez visualiser le vol avec plus de détails. ">
+                        <Label layoutX="14.0" layoutY="67.0" prefHeight="25.0" prefWidth="362.0" text="Ici vous pouvez visualiser la destination avec plus de détails. ">
                             <font>
                                 <Font name="Century Gothic" size="12.0" />
                             </font>
@@ -86,131 +86,126 @@
                             <children>
                                 <Pane prefHeight="378.0" prefWidth="474.0">
                                     <children>
-                                        <Label layoutX="269.0" layoutY="12.0" prefHeight="17.0" prefWidth="75.0" text="ID" textFill="#c11717">
+                                        <Label fx:id="destination_Id" layoutX="336.0" layoutY="17.0" prefHeight="17.0" prefWidth="75.0" text="ID" textFill="#c11717">
                                             <font>
                                                 <Font name="Century Gothic Italic" size="12.0" />
                                             </font>
                                         </Label>
-                                        <Text layoutX="14.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vous visualisez les données du vol n° :" wrappingWidth="248.0">
+                                        <Text layoutX="14.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vous visualisez les données de la destination n° :" wrappingWidth="306.20001220703125">
                                             <font>
                                                 <Font name="Century Gothic Bold Italic" size="13.0" />
                                             </font>
                                         </Text>
-                                        <Text layoutX="22.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Compagnie Aérienne :" wrappingWidth="107.199951171875">
+                                        <Text layoutX="22.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pays:" wrappingWidth="107.199951171875">
                                             <font>
-                                                <Font name="Century Gothic" size="12.0" />
+                                                <Font name="Century Gothic" size="13.0" />
                                             </font>
                                         </Text>
-                                        <Text layoutX="22.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Compagnie Aérienne :" wrappingWidth="107.199951171875">
+                                        <Text layoutX="22.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Devise:" wrappingWidth="107.199951171875">
                                             <font>
-                                                <Font name="Century Gothic" size="12.0" />
+                                                <Font name="Century Gothic" size="13.0" />
                                             </font>
                                         </Text>
-                                        <Text layoutX="320.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Compagnie Aérienne :" wrappingWidth="107.199951171875">
+                                        <Text layoutX="320.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Abbréviation:" wrappingWidth="107.199951171875">
                                             <font>
-                                                <Font name="Century Gothic" size="12.0" />
+                                                <Font name="Century Gothic" size="13.0" />
                                             </font>
                                         </Text>
-                                        <Text layoutX="22.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Compagnie Aérienne :" wrappingWidth="107.199951171875">
+                                        <Text layoutX="22.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Attractions:" wrappingWidth="107.199951171875">
                                             <font>
-                                                <Font name="Century Gothic" size="12.0" />
+                                                <Font name="Century Gothic" size="13.0" />
                                             </font>
                                         </Text>
-                                        <Text layoutX="22.0" layoutY="280.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Compagnie Aérienne :" wrappingWidth="107.199951171875">
+                                        <Text layoutX="182.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ville:" wrappingWidth="107.199951171875">
                                             <font>
-                                                <Font name="Century Gothic" size="12.0" />
+                                                <Font name="Century Gothic" size="13.0" />
                                             </font>
                                         </Text>
-                                        <Text layoutX="182.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Compagnie Aérienne :" wrappingWidth="107.199951171875">
+                                        <Text layoutX="182.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cuisine Locale:" wrappingWidth="107.199951171875">
                                             <font>
-                                                <Font name="Century Gothic" size="12.0" />
+                                                <Font name="Century Gothic" size="13.0" />
                                             </font>
                                         </Text>
-                                        <Text layoutX="182.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Compagnie Aérienne :" wrappingWidth="107.199951171875">
+                                        <Text layoutX="175.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Accomodations:" wrappingWidth="107.199951171875">
                                             <font>
-                                                <Font name="Century Gothic" size="12.0" />
+                                                <Font name="Century Gothic" size="13.0" />
                                             </font>
                                         </Text>
-                                        <Text layoutX="182.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Compagnie Aérienne :" wrappingWidth="107.199951171875">
+                                        <Text layoutX="320.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description:" wrappingWidth="107.199951171875">
                                             <font>
-                                                <Font name="Century Gothic" size="12.0" />
+                                                <Font name="Century Gothic" size="13.0" />
                                             </font>
                                         </Text>
-                                        <Text layoutX="182.0" layoutY="280.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Compagnie Aérienne :" wrappingWidth="107.199951171875">
-                                            <font>
-                                                <Font name="Century Gothic" size="12.0" />
-                                            </font>
-                                        </Text>
-                                        <Text layoutX="320.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Compagnie Aérienne :" wrappingWidth="107.199951171875">
-                                            <font>
-                                                <Font name="Century Gothic" size="12.0" />
-                                            </font>
-                                        </Text>
-                                        <Label layoutX="31.0" layoutY="87.0" prefHeight="25.0" prefWidth="107.0" text="Champ example" textFill="#1d44f2">
+                                        <Label fx:id="destination_pays" layoutX="31.0" layoutY="75.0" prefHeight="25.0" prefWidth="107.0" text="Champ example" textFill="#1d44f2">
                                             <font>
                                                 <Font name="Century Gothic Italic" size="12.0" />
                                             </font>
                                         </Label>
-                                        <Label layoutX="31.0" layoutY="164.0" prefHeight="25.0" prefWidth="107.0" text="Champ example" textFill="#1d44f2">
+                                        <Label fx:id="destination_devise" layoutX="31.0" layoutY="140.0" prefHeight="25.0" prefWidth="107.0" text="Champ example" textFill="#1d44f2">
                                             <font>
                                                 <Font name="Century Gothic Italic" size="12.0" />
                                             </font>
                                         </Label>
-                                        <Label layoutX="31.0" layoutY="232.0" prefHeight="25.0" prefWidth="107.0" text="Champ example" textFill="#1d44f2">
+                                        <Label fx:id="destination_attractions" layoutX="31.0" layoutY="206.0" prefHeight="25.0" prefWidth="107.0" text="Champ example" textFill="#1d44f2">
                                             <font>
                                                 <Font name="Century Gothic Italic" size="12.0" />
                                             </font>
                                         </Label>
-                                        <Label layoutX="22.0" layoutY="304.0" prefHeight="25.0" prefWidth="107.0" text="Champ example" textFill="#1d44f2">
+                                        <Label fx:id="destination_ville" layoutX="182.0" layoutY="75.0" prefHeight="25.0" prefWidth="107.0" text="Champ example" textFill="#1d44f2">
                                             <font>
                                                 <Font name="Century Gothic Italic" size="12.0" />
                                             </font>
                                         </Label>
-                                        <Label layoutX="182.0" layoutY="87.0" prefHeight="25.0" prefWidth="107.0" text="Champ example" textFill="#1d44f2">
+                                        <Label fx:id="destination_cuisine" layoutX="183.0" layoutY="140.0" prefHeight="25.0" prefWidth="107.0" text="Champ example" textFill="#1d44f2">
                                             <font>
                                                 <Font name="Century Gothic Italic" size="12.0" />
                                             </font>
                                         </Label>
-                                        <Label layoutX="183.0" layoutY="164.0" prefHeight="25.0" prefWidth="107.0" text="Champ example" textFill="#1d44f2">
+                                        <Label fx:id="destination_accomodations" layoutX="182.0" layoutY="206.0" prefHeight="25.0" prefWidth="107.0" text="Champ example" textFill="#1d44f2">
                                             <font>
                                                 <Font name="Century Gothic Italic" size="12.0" />
                                             </font>
                                         </Label>
-                                        <Label layoutX="183.0" layoutY="232.0" prefHeight="25.0" prefWidth="107.0" text="Champ example" textFill="#1d44f2">
+                                        <Label fx:id="destination_abbrev" layoutX="320.0" layoutY="75.0" prefHeight="25.0" prefWidth="107.0" text="Champ example" textFill="#1d44f2">
                                             <font>
                                                 <Font name="Century Gothic Italic" size="12.0" />
                                             </font>
                                         </Label>
-                                        <Label layoutX="183.0" layoutY="304.0" prefHeight="25.0" prefWidth="107.0" text="Champ example" textFill="#1d44f2">
+                                        <Label fx:id="destination_description" layoutX="320.0" layoutY="140.0" prefHeight="25.0" prefWidth="107.0" text="Champ example" textFill="#1d44f2">
                                             <font>
                                                 <Font name="Century Gothic Italic" size="12.0" />
                                             </font>
                                         </Label>
-                                        <Label layoutX="320.0" layoutY="87.0" prefHeight="25.0" prefWidth="107.0" text="Champ example" textFill="#1d44f2">
-                                            <font>
-                                                <Font name="Century Gothic Italic" size="12.0" />
-                                            </font>
-                                        </Label>
-                                        <Label layoutX="320.0" layoutY="164.0" prefHeight="25.0" prefWidth="107.0" text="Champ example" textFill="#1d44f2">
-                                            <font>
-                                                <Font name="Century Gothic Italic" size="12.0" />
-                                            </font>
-                                        </Label>
+                              <Text layoutX="317.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Accessibilité" wrappingWidth="107.199951171875">
+                                 <font>
+                                    <Font name="Century Gothic" size="13.0" />
+                                 </font>
+                              </Text>
+                              <Label fx:id="destination_access" layoutX="324.0" layoutY="206.0" prefHeight="25.0" prefWidth="107.0" text="Champ example" textFill="#1d44f2">
+                                 <font>
+                                    <Font name="Century Gothic Italic" size="12.0" />
+                                 </font>
+                              </Label>
                                     </children>
                                 </Pane>
                                 <Pane prefHeight="378.0" prefWidth="295.0">
                                     <children>
-                                        <Pane layoutX="14.0" layoutY="22.0" prefHeight="334.0" prefWidth="267.0" styleClass="most_inner_pane" stylesheets="@../css/JStyle.css">
+                                        <Pane layoutX="14.0" layoutY="20.0" prefHeight="302.0" prefWidth="267.0" styleClass="most_inner_pane" stylesheets="@../css/JStyle.css">
                                             <children>
-                                                <Pane layoutX="10.0" layoutY="7.0" prefHeight="320.0" prefWidth="248.0" styleClass="progress" stylesheets="@../css/JStyle.css">
+                                                <Pane layoutX="10.0" layoutY="7.0" prefHeight="265.0" prefWidth="248.0" styleClass="progress" stylesheets="@../css/JStyle.css">
                                                     <children>
-                                                        <ImageView fitHeight="271.0" fitWidth="237.0" layoutX="6.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" styleClass="root">
+                                                        <ImageView fx:id="destinationMultimedia" fitHeight="271.0" fitWidth="237.0" layoutX="6.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" styleClass="root">
                                                             <image>
                                                                 <Image url="@../JImages/2096583.png" />
                                                             </image>
                                                         </ImageView>
                                                     </children>
                                                 </Pane>
+                                    <Text layoutX="49.0" layoutY="294.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Multimédia" textAlignment="CENTER" wrappingWidth="169.60000000000002">
+                                       <font>
+                                          <Font name="Century Gothic Bold Italic" size="18.0" />
+                                       </font>
+                                    </Text>
                                             </children>
                                         </Pane>
                                     </children>
@@ -221,11 +216,11 @@
                 </AnchorPane>
                 <Pane prefHeight="98.0" prefWidth="765.0">
                     <children>
-                        <JFXButton layoutX="233.0" layoutY="30.0" prefHeight="33.0" prefWidth="89.0" styleClass="pane_update" stylesheets="@../css/JStyle.css" text="Modifier">
+                        <JFXButton fx:id="Update" layoutX="215.0" layoutY="20.0" onAction="#handleUpdateButtonAction" prefHeight="51.0" prefWidth="107.0" styleClass="pane_update" stylesheets="@../css/JStyle.css" text="Modifier">
                             <font>
                                 <Font name="Century Gothic Bold" size="12.0" />
                             </font></JFXButton>
-                        <JFXButton layoutX="355.0" layoutY="30.0" prefHeight="33.0" prefWidth="89.0" styleClass="pane_111" stylesheets="@../css/JStyle.css" text="Supprimer">
+                        <JFXButton fx:id="Delete" layoutX="355.0" layoutY="20.0" onAction="#handleDeleteButtonAction" prefHeight="51.0" prefWidth="107.0" styleClass="pane_111" stylesheets="@../css/JStyle.css" text="Supprimer">
                             <font>
                                 <Font name="Century Gothic Bold" size="12.0" />
                             </font>

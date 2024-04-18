@@ -14,6 +14,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import com.jfoenix.controls.JFXButton;
 
 import javafx.stage.Stage;
+import tn.esprit.Controllers.Vol.VolByID_BackController;
+import tn.esprit.entites.Vol;
 import tn.esprit.services.DestinationServices;
 import tn.esprit.entites.Destination;
 
@@ -145,6 +147,32 @@ public class DestinationController_Back implements Initializable {
         Parent root = fxmlLoader.load();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
+        stage.show();
+    }
+    @FXML
+    private void handleVoirPlusButtonAction(ActionEvent event) throws IOException {
+        Destination selectedDestination = destinationTableView.getSelectionModel().getSelectedItem();
+
+        if (selectedDestination == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Aucune destination sélectionné");
+            alert.setContentText("Veuillez choisir une destination à afficher.");
+            alert.showAndWait();
+            return;
+        }
+
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Destination/DestinationByID_Back.fxml"));
+        Parent root = loader.load();
+
+        DestinationByID_BackController destinationByIDBackController = loader.getController();
+
+        destinationByIDBackController.setDestinationData(selectedDestination);
+
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
         stage.show();
     }
 

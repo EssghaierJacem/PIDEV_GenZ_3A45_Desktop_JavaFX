@@ -64,6 +64,8 @@ public class VolByID_BackController implements Initializable {
 
     @FXML
     private Label tarif;
+    @FXML
+    private Label vol_id;
     private Vol currentVol;
 
     private SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
@@ -75,6 +77,7 @@ public class VolByID_BackController implements Initializable {
 
     public void setVolData(Vol vol) {
         this.currentVol = vol;
+        vol_id.setText(String.valueOf(vol.getId()));
         num_vol.setText(String.valueOf(vol.getNum_vol()));
         aeroport_depart.setText(vol.getAeroport_depart());
         aeroport_arrivee.setText(vol.getAeroport_arrivee());

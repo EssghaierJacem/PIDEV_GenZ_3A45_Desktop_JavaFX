@@ -87,7 +87,7 @@
                      <children>
                         <Pane prefHeight="378.0" prefWidth="474.0">
                            <children>
-                              <Label layoutX="269.0" layoutY="12.0" prefHeight="17.0" prefWidth="75.0" text="ID" textFill="#c11717">
+                              <Label fx:id="vol_id" layoutX="269.0" layoutY="12.0" prefHeight="17.0" prefWidth="75.0" text="ID" textFill="#c11717">
                                  <font>
                                     <Font name="Century Gothic Italic" size="12.0" />
                                  </font>
