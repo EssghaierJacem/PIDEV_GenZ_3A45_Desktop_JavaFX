@@ -84,3 +84,28 @@
     -fx-border-style: solid;
     -fx-border-color: #353A56;
 }
+.pane_add{
+    -fx-background-color:#00C18B;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 16px;
+    -fx-background-radius: 16px;
+    -fx-border-style: solid;
+    -fx-border-color: #00C18B;
+}
+.pane_maybe{
+    -fx-background-color:#E1EEF2;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 16px;
+    -fx-background-radius: 16px;
+    -fx-border-style: solid;
+    -fx-border-color: #E1EEF2;
+}
+
+.pane_update{
+    -fx-background-color:#E98D00;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 16px;
+    -fx-background-radius: 16px;
+    -fx-border-style: solid;
+    -fx-border-color: #E98D00;
+}

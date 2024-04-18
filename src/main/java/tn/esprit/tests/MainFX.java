@@ -15,7 +15,7 @@ public class MainFX extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/test.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/Destination/ListDestination_Back.fxml"));
 
         Scene scene = new Scene(root);
 
@@ -36,7 +36,6 @@ public class MainFX extends Application {
         });
 
         stage.initStyle(StageStyle.TRANSPARENT);
-
         stage.setScene(scene);
         stage.show();
     }
