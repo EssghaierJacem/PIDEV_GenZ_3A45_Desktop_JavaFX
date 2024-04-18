@@ -80,7 +80,7 @@ public class VolController_Back implements Initializable {
 
         vol_cell_id.setCellValueFactory(new PropertyValueFactory<>("id"));
         vol_cell_destination.setCellValueFactory(cellData -> {
-            String destinationName = cellData.getValue().getDestination().getPays(); // Replace with appropriate destination attribute
+            String destinationName = cellData.getValue().getDestination().getPays();
             return new SimpleStringProperty(destinationName);
         });
         vol_cell_compagnie.setCellValueFactory(new PropertyValueFactory<>("compagnie_a"));
@@ -156,4 +156,31 @@ public class VolController_Back implements Initializable {
         stage.setScene(new Scene(root));
         stage.show();
     }
+    @FXML
+    private void handleVoirPlusButtonAction(ActionEvent event) throws IOException {
+        Vol selectedVol = volTableView.getSelectionModel().getSelectedItem();
+
+        if (selectedVol == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Aucun vol sélectionné");
+            alert.setContentText("Veuillez choisir un vol à afficher.");
+            alert.showAndWait();
+            return;
+        }
+
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vol/VolByID_Back.fxml"));
+        Parent root = loader.load();
+
+        VolByID_BackController volByIDBackController = loader.getController();
+
+        volByIDBackController.setVolData(selectedVol);
+
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
+    }
+
 }
