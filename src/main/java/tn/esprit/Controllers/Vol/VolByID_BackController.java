@@ -90,7 +90,6 @@ public class VolByID_BackController implements Initializable {
         classe.setText(vol.getClasse().toString());
         destination.setText(vol.getDestination().toString());
 
-
         if (vol.getImage() != null) {
             imageVol.setImage(new Image(vol.getImage()));
         }
