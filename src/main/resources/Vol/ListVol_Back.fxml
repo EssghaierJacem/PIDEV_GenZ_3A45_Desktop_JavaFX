@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="568.0" prefWidth="942.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.Controllers.Vol.VolController_Back">
+    <children>
+        <VBox prefHeight="495.0" prefWidth="155.0">
+            <children>
+                <AnchorPane prefHeight="606.0" prefWidth="178.0" styleClass="side_ankerpane" stylesheets="@../css/JStyle.css">
+                    <children>
+                        <Pane layoutX="3.0" layoutY="24.0" prefHeight="62.0" prefWidth="169.0" styleClass="inner_pane" stylesheets="@../css/JStyle.css">
+                            <children>
+                                <Label layoutX="53.0" layoutY="15.0" prefHeight="18.0" prefWidth="54.0" text="Bonjour," />
+                                <Label layoutX="61.0" layoutY="31.0" text="Username">
+                                    <font>
+                                        <Font name="Century Gothic Bold" size="14.0" />
+                                    </font>
+                                </Label>
+                                <ImageView fitHeight="35.0" fitWidth="33.0" layoutX="14.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../JImages/2096583.png" />
+                                    </image>
+                                </ImageView>
+                                <Pane layoutX="139.0" layoutY="7.0" prefHeight="51.0" prefWidth="25.0" styleClass="most_inner_pane" stylesheets="@../css/JStyle.css">
+                                    <children>
+                                        <ImageView fitHeight="62.0" fitWidth="33.0" layoutX="-4.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@../JImages/Dots.png" />
+                                            </image>
+                                        </ImageView>
+                                    </children>
+                                </Pane>
+                            </children>
+                        </Pane>
+                    </children>
+                </AnchorPane>
+            </children>
+        </VBox>
+        <VBox prefHeight="568.0" prefWidth="833.0" styleClass="root" stylesheets="@../css/JStyle.css">
+            <children>
+                <Pane prefHeight="99.0" prefWidth="582.0">
+                    <children>
+                        <Line endX="649.800048828125" endY="0.20000267028808594" layoutX="115.0" layoutY="31.0" startX="-115.00000762939453" startY="0.20000076293945312" />
+                        <Button layoutX="703.0" layoutY="2.0" minHeight="18.0" minWidth="53.0" mnemonicParsing="false" opacity="0.8" prefHeight="25.0" prefWidth="53.0" text="X">
+                            <font>
+                                <Font size="1.0" />
+                            </font>
+                        </Button>
+                        <Label layoutX="14.0" layoutY="42.0" text="Liste des Vols:">
+                            <font>
+                                <Font name="Century Gothic Bold" size="20.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="14.0" layoutY="67.0" prefHeight="25.0" prefWidth="284.0" text="Text Sample illustration for the ressources idk yet.">
+                            <font>
+                                <Font name="Century Gothic" size="12.0" />
+                            </font>
+                        </Label>
+                        <ImageView fitHeight="51.0" fitWidth="75.0" layoutX="704.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../JImages/planeee.png" />
+                            </image>
+                        </ImageView>
+                    </children>
+                </Pane>
+                <Pane opacity="0.17" prefHeight="1.0" prefWidth="582.0" styleClass="pane_1111" stylesheets="@../css/JStyle.css">
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                </Pane>
+                <AnchorPane prefHeight="290.0" prefWidth="582.0">
+                    <children>
+                        <TableView fx:id="volTableView" layoutX="14.0" layoutY="64.0" prefHeight="253.0" prefWidth="735.0">
+                            <columns>
+                                <TableColumn fx:id="vol_cell_id" prefWidth="25.599977493286133" text="ID" />
+                                <TableColumn fx:id="vol_cell_destination" prefWidth="76.0" text="Destination" />
+                                <TableColumn fx:id="vol_cell_compagnie" prefWidth="79.19994354248047" text="Compagnie" />
+                                <TableColumn fx:id="vol_cell_dateD" prefWidth="52.79998779296875" text="DateD" />
+                                <TableColumn fx:id="vol_cell_dateA" prefWidth="52.0" text="DateA" />
+                                <TableColumn fx:id="vol_cell_AD" prefWidth="104.0" text="Aeroport Départ" />
+                                <TableColumn fx:id="vol_cell_AA" prefWidth="101.60003662109375" text="Aeroport Arrivé" />
+                                <TableColumn fx:id="vol_cell_duree" minWidth="0.0" prefWidth="50.400115966796875" text="Durée" />
+                                <TableColumn fx:id="vol_cell_tarif" minWidth="0.0" prefWidth="60.800048828125" text="Tarif" />
+                        <TableColumn fx:id="vol_cell_classe" minWidth="0.0" prefWidth="71.199951171875" text="Classe" />
+                        <TableColumn fx:id="vol_cell_escale" minWidth="0.0" prefWidth="59.199938964843795" text="Escale" />
+                            </columns>
+                        </TableView>
+                        <Pane layoutX="564.0" layoutY="14.0" prefHeight="33.0" prefWidth="170.0">
+                            <children>
+                                <TextField fx:id="Search" layoutY="4.0" prefHeight="26.0" prefWidth="170.0" styleClass="progress" stylesheets="@../css/JStyle.css" text="Search...">
+                                    <font>
+                                        <Font name="Century Gothic Italic" size="10.0" />
+                                    </font>
+                                </TextField>
+                                <ImageView fitHeight="25.0" fitWidth="33.0" layoutX="131.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../JImages/icons8_Search_52px.png" />
+                                    </image>
+                                </ImageView>
+                            </children>
+                        </Pane>
+
+
+                    </children>
+                </AnchorPane>
+                <AnchorPane prefHeight="134.0" prefWidth="765.0">
+                    <children>
+                        <JFXButton fx:id="GetVol" layoutX="409.0" layoutY="24.0" onAction="#handleVoirPlusButtonAction" prefHeight="42.0" prefWidth="100.0" styleClass="inner_pane" stylesheets="@../css/JStyle.css" text="Voir plus">
+                            <font>
+                                <Font name="Century Gothic Bold" size="12.0" />
+                            </font>
+                        </JFXButton>
+                        <JFXButton fx:id="Update" layoutX="267.0" layoutY="77.0" onAction="#handleUpdateButtonAction" prefHeight="42.0" prefWidth="100.0" styleClass="pane_update" stylesheets="@../css/JStyle.css" text="Modifier">
+                            <font>
+                                <Font name="Century Gothic Bold" size="12.0" />
+                            </font>
+                        </JFXButton>
+                        <JFXButton fx:id="Delete" layoutX="409.0" layoutY="77.0" onAction="#handleDeleteButtonAction" prefHeight="42.0" prefWidth="100.0" styleClass="pane_111" stylesheets="@../css/JStyle.css" text="Supprimer">
+                            <font>
+                                <Font name="Century Gothic Bold" size="12.0" />
+                            </font>
+                        </JFXButton>
+                        <JFXButton fx:id="AjouterVol" layoutX="267.0" layoutY="24.0" onAction="#handleAjouterVolButtonAction" prefHeight="42.0" prefWidth="100.0" styleClass="pane_add" stylesheets="@../css/JStyle.css" text="Ajouter!">
+                            <font>
+                                <Font name="Century Gothic Bold" size="12.0" />
+                            </font>
+                        </JFXButton>
+                    </children>
+                </AnchorPane>
+            </children>
+        </VBox>
+    </children>
+</HBox>
