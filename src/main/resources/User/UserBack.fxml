@@ -17,7 +17,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1005.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.Controllers.Destination.UpdateDestinationController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1005.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.Controllers.User.UserController">
     <children>
         <VBox prefHeight="495.0" prefWidth="155.0">
             <children>
@@ -85,16 +85,16 @@
                 </Pane>
                 <AnchorPane prefHeight="461.0" prefWidth="765.0">
                     <children>
-                        <TableView fx:id="destinationTableView" layoutX="339.0" layoutY="14.0" prefHeight="375.0" prefWidth="466.0">
+                        <TableView fx:id="UserTableView" layoutX="339.0" layoutY="14.0" prefHeight="375.0" prefWidth="466.0">
                             <columns>
-                                <TableColumn fx:id="destination_cell_id" prefWidth="44.0" text="ID" />
-                                <TableColumn fx:id="destination_cell_pays" prefWidth="43.20001220703125" text="Nom" />
-                                <TableColumn fx:id="destination_cell_ville" prefWidth="67.20001220703125" text="Prénom" />
-                                <TableColumn fx:id="destination_cell_devise" prefWidth="51.20001220703125" text="CIN" />
-                                <TableColumn fx:id="destination_cell_cuisinelocale" prefWidth="70.39999389648438" text="Email" />
-                        <TableColumn fx:id="destination_cell_cuisinelocale1" prefWidth="65.60009765625" text="Username" />
-                        <TableColumn fx:id="destination_cell_cuisinelocale11" prefWidth="62.4000244140625" text="Password" />
-                        <TableColumn fx:id="destination_cell_cuisinelocale111" prefWidth="62.4000244140625" text="Role" />
+                                <TableColumn fx:id="user_cell_id" prefWidth="44.0" text="ID" />
+                                <TableColumn fx:id="user_cell_nom" prefWidth="43.20001220703125" text="Nom" />
+                                <TableColumn fx:id="user_cell_prenom" prefWidth="67.20001220703125" text="Prénom" />
+                                <TableColumn fx:id="user_cell_cin" prefWidth="51.20001220703125" text="CIN" />
+                                <TableColumn fx:id="user_cell_email" prefWidth="70.39999389648438" text="Email" />
+                        <TableColumn fx:id="user_cell_username" prefWidth="65.60009765625" text="Username" />
+                        <TableColumn fx:id="user_cell_password" prefWidth="62.4000244140625" text="Password" />
+                        <TableColumn fx:id="user_cell_role" prefWidth="62.4000244140625" text="Role" />
                             </columns>
                         </TableView>
                         <Pane layoutX="21.0" layoutY="14.0" prefHeight="430.0" prefWidth="313.0" styleClass="pane_maybe" stylesheets="@../css/JStyle.css">
@@ -104,7 +104,7 @@
                                         <Font name="Century Gothic" size="14.0" />
                                     </font>
                                 </Label>
-                                <TextField fx:id="updatePays" layoutX="114.0" layoutY="19.0" prefHeight="29.0" prefWidth="128.0" styleClass="progress" stylesheets="@../css/JStyle.css">
+                                <TextField fx:id="updateNom" layoutX="114.0" layoutY="19.0" prefHeight="29.0" prefWidth="128.0" styleClass="progress" stylesheets="@../css/JStyle.css">
                            <font>
                               <Font name="Century Schoolbook" size="12.0" />
                            </font></TextField>
@@ -113,7 +113,7 @@
                               <Font name="Century Gothic" size="14.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="updatePays1" layoutX="114.0" layoutY="59.0" prefHeight="29.0" prefWidth="128.0" styleClass="progress" stylesheets="@../css/JStyle.css">
+                        <TextField fx:id="updatePrenom" layoutX="114.0" layoutY="59.0" prefHeight="29.0" prefWidth="128.0" styleClass="progress" stylesheets="@../css/JStyle.css">
                            <font>
                               <Font name="Century Schoolbook" size="12.0" />
                            </font>
@@ -123,7 +123,7 @@
                               <Font name="Century Gothic" size="14.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="updatePays11" layoutX="114.0" layoutY="101.0" prefHeight="29.0" prefWidth="128.0" styleClass="progress" stylesheets="@../css/JStyle.css">
+                        <TextField fx:id="updateEmail" layoutX="114.0" layoutY="101.0" prefHeight="29.0" prefWidth="128.0" styleClass="progress" stylesheets="@../css/JStyle.css">
                            <font>
                               <Font name="Century Schoolbook" size="12.0" />
                            </font>
@@ -133,7 +133,7 @@
                               <Font name="Century Gothic" size="14.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="updatePays111" layoutX="114.0" layoutY="142.0" prefHeight="29.0" prefWidth="128.0" styleClass="progress" stylesheets="@../css/JStyle.css">
+                        <TextField fx:id="updateUsername" layoutX="114.0" layoutY="142.0" prefHeight="29.0" prefWidth="128.0" styleClass="progress" stylesheets="@../css/JStyle.css">
                            <font>
                               <Font name="Century Schoolbook" size="12.0" />
                            </font>
@@ -143,7 +143,7 @@
                               <Font name="Century Gothic" size="14.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="updatePays1111" layoutX="114.0" layoutY="186.0" prefHeight="29.0" prefWidth="128.0" styleClass="progress" stylesheets="@../css/JStyle.css">
+                        <TextField fx:id="updatePassword" layoutX="114.0" layoutY="186.0" prefHeight="29.0" prefWidth="128.0" styleClass="progress" stylesheets="@../css/JStyle.css">
                            <font>
                               <Font name="Century Schoolbook" size="12.0" />
                            </font>
@@ -153,7 +153,7 @@
                               <Font name="Century Gothic" size="14.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="updatePays11111" layoutX="114.0" layoutY="228.0" prefHeight="29.0" prefWidth="128.0" styleClass="progress" stylesheets="@../css/JStyle.css">
+                        <TextField fx:id="updateCin" layoutX="114.0" layoutY="228.0" prefHeight="29.0" prefWidth="128.0" styleClass="progress" stylesheets="@../css/JStyle.css">
                            <font>
                               <Font name="Century Schoolbook" size="12.0" />
                            </font>
@@ -163,7 +163,7 @@
                               <Font name="Century Gothic" size="14.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="updatePays111111" layoutX="114.0" layoutY="271.0" prefHeight="29.0" prefWidth="128.0" styleClass="progress" stylesheets="@../css/JStyle.css">
+                        <TextField fx:id="updateImage" layoutX="114.0" layoutY="271.0" prefHeight="29.0" prefWidth="128.0" styleClass="progress" stylesheets="@../css/JStyle.css">
                            <font>
                               <Font name="Century Schoolbook" size="12.0" />
                            </font>
@@ -173,25 +173,20 @@
                               <Font name="Century Gothic" size="14.0" />
                            </font>
                         </Label>
-                        <ComboBox layoutX="114.0" layoutY="321.0" prefHeight="25.0" prefWidth="128.0" styleClass="progress" stylesheets="@../css/JStyle.css" />
+                        <ComboBox fx:id="updateRole" layoutX="114.0" layoutY="321.0" prefHeight="25.0" prefWidth="128.0" styleClass="progress" stylesheets="@../css/JStyle.css" />
 
                             </children>
                         </Pane>
-                          <JFXButton fx:id="Clear" layoutX="653.0" layoutY="427.0" prefHeight="33.0" prefWidth="85.0" styleClass="pane_111" stylesheets="@../css/JStyle.css" text="Supprimer">
+                          <JFXButton fx:id="DeleteUser" layoutX="596.0" layoutY="427.0" onAction="#handleDeleteButtonAction" prefHeight="33.0" prefWidth="85.0" styleClass="pane_111" stylesheets="@../css/JStyle.css" text="Supprimer">
                               <font>
                                   <Font name="Century Gothic Bold Italic" size="12.0" />
                               </font>
                           </JFXButton>
-                          <JFXButton fx:id="UpdateDestination" layoutX="550.0" layoutY="427.0" prefHeight="33.0" prefWidth="85.0" styleClass="pane_update" stylesheets="@../css/JStyle.css" text="Modifier">
+                          <JFXButton fx:id="UpdateUser" layoutX="486.0" layoutY="427.0" onAction="#handleUpdateUserButtonAction" prefHeight="33.0" prefWidth="85.0" styleClass="pane_update" stylesheets="@../css/JStyle.css" text="Modifier">
                               <font>
                                   <Font name="Century Gothic Bold Italic" size="12.0" />
                               </font>
                           </JFXButton>
-                  <JFXButton fx:id="Clear1" layoutX="437.0" layoutY="427.0" prefHeight="33.0" prefWidth="85.0" styleClass="pane_1" stylesheets="@../css/JStyle.css" text="Voir plus">
-                     <font>
-                        <Font name="Century Gothic Bold Italic" size="12.0" />
-                     </font>
-                  </JFXButton>
                     </children>
                 </AnchorPane>
             </children>

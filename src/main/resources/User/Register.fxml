@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="715.0" prefWidth="872.0" stylesheets="@../css/frontStyles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="701.0" prefWidth="902.0" stylesheets="@../css/frontStyles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.Controllers.User.RegisterController">
     <left>
         <HBox prefHeight="558.0" prefWidth="346.0" BorderPane.alignment="CENTER">
          <children>
@@ -67,7 +67,7 @@
                                         <Font name="Century Gothic Bold" size="16.0" />
                                     </font>
                                 </Label>
-                                <TextField prefHeight="31.0" prefWidth="375.0" stylesheets="@../css/frontStyles.css" text="John">
+                                <TextField fx:id="addNom" prefHeight="31.0" prefWidth="375.0" stylesheets="@../css/frontStyles.css" text="John">
                                     <VBox.margin>
                                         <Insets left="20.0" right="20.0" top="10.0" />
                                     </VBox.margin>
@@ -87,7 +87,7 @@
                                         <Insets left="20.0" top="10.0" />
                                     </VBox.margin>
                                 </Label>
-                                <TextField layoutX="32.0" layoutY="217.0" prefHeight="31.0" prefWidth="359.0" stylesheets="@../css/frontStyles.css" text="Doe">
+                                <TextField fx:id="addPrenom" layoutX="32.0" layoutY="217.0" prefHeight="31.0" prefWidth="359.0" stylesheets="@../css/frontStyles.css" text="Doe">
                                     <font>
                                         <Font name="Century Gothic" size="15.0" />
                                     </font>
@@ -107,7 +107,7 @@
                               <Insets left="20.0" top="10.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField layoutX="32.0" layoutY="255.0" prefHeight="29.0" prefWidth="386.0" stylesheets="@../css/frontStyles.css" text="********">
+                        <TextField fx:id="addUsername" layoutX="32.0" layoutY="255.0" prefHeight="29.0" prefWidth="386.0" stylesheets="@../css/frontStyles.css" text="********">
                            <font>
                               <Font name="Century Gothic" size="15.0" />
                            </font>
@@ -127,7 +127,7 @@
                               <Insets left="20.0" top="10.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField layoutX="12.0" layoutY="316.0" prefHeight="31.0" prefWidth="359.0" stylesheets="@../css/frontStyles.css" text="Example@domain.com">
+                        <TextField fx:id="addEmail" layoutX="12.0" layoutY="316.0" prefHeight="31.0" prefWidth="359.0" stylesheets="@../css/frontStyles.css" text="Example@domain.com">
                            <font>
                               <Font name="Century Gothic" size="15.0" />
                            </font>
@@ -147,7 +147,7 @@
                               <Insets left="20.0" top="10.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField layoutX="12.0" layoutY="377.0" prefHeight="31.0" prefWidth="359.0" stylesheets="@../css/frontStyles.css" text="14687982">
+                        <TextField fx:id="addCin" layoutX="12.0" layoutY="377.0" prefHeight="31.0" prefWidth="359.0" stylesheets="@../css/frontStyles.css" text="14687982">
                            <font>
                               <Font name="Century Gothic" size="15.0" />
                            </font>
@@ -167,7 +167,7 @@
                               <Insets left="20.0" top="10.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField layoutX="12.0" layoutY="391.0" prefHeight="31.0" prefWidth="359.0" stylesheets="@../css/frontStyles.css" text="********">
+                        <TextField fx:id="addPassword" layoutX="12.0" layoutY="391.0" prefHeight="31.0" prefWidth="359.0" stylesheets="@../css/frontStyles.css" text="********">
                            <font>
                               <Font name="Century Gothic" size="15.0" />
                            </font>
@@ -187,7 +187,7 @@
                               <Insets left="20.0" top="10.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField layoutX="12.0" layoutY="499.0" prefHeight="31.0" prefWidth="359.0" stylesheets="@../css/frontStyles.css" text="www.ImageLink.com">
+                        <TextField fx:id="addPhoto" layoutX="12.0" layoutY="499.0" prefHeight="31.0" prefWidth="359.0" stylesheets="@../css/frontStyles.css" text="www.ImageLink.com">
                            <font>
                               <Font name="Century Gothic" size="15.0" />
                            </font>
@@ -199,7 +199,7 @@
                               <Insets left="20.0" right="20.0" top="10.0" />
                            </VBox.margin>
                         </TextField>
-                                <JFXButton prefHeight="39.0" prefWidth="248.0" styleClass="progress_button" stylesheets="@../css/JStyle.css" text="Créer un compte !" textFill="WHITE">
+                                <JFXButton fx:id="Register" onAction="#handleRegisterButtonAction" prefHeight="39.0" prefWidth="248.0" styleClass="progress_button" stylesheets="@../css/JStyle.css" text="Créer un compte !" textFill="WHITE">
                                     <VBox.margin>
                                         <Insets left="100.0" right="100.0" top="30.0" />
                                     </VBox.margin>
@@ -207,7 +207,7 @@
                                         <Font name="Century Gothic Bold" size="14.0" />
                                     </font>
                                 </JFXButton>
-                                <JFXButton layoutX="112.0" layoutY="361.0" prefHeight="39.0" prefWidth="248.0" styleClass="transparent" text="Vous avez déja un compte? " textFill="#225d85">
+                                <JFXButton fx:id="Login" layoutX="112.0" layoutY="361.0" onAction="#handleLoginActionButton" prefHeight="39.0" prefWidth="248.0" styleClass="transparent" text="Vous avez déja un compte? " textFill="#225d85">
                                     <font>
                                         <Font name="Century Gothic Bold" size="14.0" />
                                     </font>

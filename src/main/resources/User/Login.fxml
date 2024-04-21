@@ -13,8 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="557.0" prefWidth="813.0" stylesheets="@../css/frontStyles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="557.0" prefWidth="813.0" stylesheets="@../css/frontStyles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.Controllers.User.LoginController">
    <left>
       <HBox prefHeight="558.0" prefWidth="346.0" BorderPane.alignment="CENTER">
          <children>
@@ -68,7 +67,7 @@
                               <Font name="Century Gothic Bold" size="16.0" />
                            </font>
                         </Label>
-                        <TextField prefHeight="31.0" prefWidth="375.0" stylesheets="@../css/frontStyles.css" text="Example@domain.com">
+                        <TextField fx:id="LoginEmail" prefHeight="31.0" prefWidth="375.0" stylesheets="@../css/frontStyles.css" text="Example@domain.com">
                            <VBox.margin>
                               <Insets left="20.0" right="20.0" top="10.0" />
                            </VBox.margin>
@@ -88,7 +87,7 @@
                               <Insets left="20.0" top="10.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField layoutX="32.0" layoutY="217.0" prefHeight="31.0" prefWidth="359.0" stylesheets="@../css/frontStyles.css" text="********">
+                        <TextField fx:id="LoginPassword" layoutX="32.0" layoutY="217.0" prefHeight="31.0" prefWidth="359.0" stylesheets="@../css/frontStyles.css" text="********">
                            <font>
                               <Font name="Century Gothic" size="15.0" />
                            </font>
@@ -100,7 +99,7 @@
                               <Insets left="20.0" right="20.0" top="10.0" />
                            </VBox.margin>
                         </TextField>
-                        <JFXButton prefHeight="39.0" prefWidth="248.0" styleClass="progress_button" stylesheets="@../css/JStyle.css" text="Se connecter" textFill="WHITE">
+                        <JFXButton fx:id="Connect" onAction="#handleConnectButtonAction" prefHeight="39.0" prefWidth="248.0" styleClass="progress_button" stylesheets="@../css/JStyle.css" text="Se connecter" textFill="WHITE">
                            <VBox.margin>
                               <Insets left="100.0" right="100.0" top="30.0" />
                            </VBox.margin>
@@ -108,9 +107,9 @@
                               <Font name="Century Gothic Bold" size="14.0" />
                            </font>
                         </JFXButton>
-                        <JFXButton layoutX="112.0" layoutY="361.0" prefHeight="39.0" prefWidth="248.0" styleClass="transparent" text="Créer un compte ?" textFill="#225d85">
+                        <JFXButton fx:id="Register" layoutX="112.0" layoutY="361.0" onAction="#handleRegisterButtonAction" prefHeight="39.0" prefWidth="248.0" styleClass="transparent" text="Créer un compte ?" textFill="#225d85">
                            <font>
-                              <Font name="Century Gothic Bold" size="14.0" />
+                              <Font name="Century Gothic Bold" size="16.0" />
                            </font>
                            <VBox.margin>
                               <Insets left="100.0" right="100.0" top="10.0" />
@@ -119,6 +118,18 @@
                               <URL value="@../css/JStyle.css" />
                               <URL value="@../css/frontStyles.css" />
                            </stylesheets>
+                        </JFXButton>
+                        <JFXButton fx:id="mdpOublié" layoutX="112.0" layoutY="411.0" onAction="#handlePasswordButtonAction" prefHeight="30.0" prefWidth="276.0" styleClass="transparent" text="Mot de passe oublié?" textFill="#032033">
+                           <font>
+                              <Font name="Century Gothic" size="11.0" />
+                           </font>
+                           <stylesheets>
+                              <URL value="@../css/JStyle.css" />
+                              <URL value="@../css/frontStyles.css" />
+                           </stylesheets>
+                           <VBox.margin>
+                              <Insets left="100.0" right="100.0" />
+                           </VBox.margin>
                         </JFXButton>
                      </children>
                   </VBox>
