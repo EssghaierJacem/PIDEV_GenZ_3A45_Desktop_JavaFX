@@ -109,3 +109,19 @@
     -fx-border-style: solid;
     -fx-border-color: #E98D00;
 }
+.progress_login{
+    -fx-background-color:#D4E1E2;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 16px;
+    -fx-background-radius: 16px;
+    -fx-border-style: solid;
+    -fx-border-color: #D4E1E2;
+}
+.progress_button{
+    -fx-background-color:#97D6E7;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 16px;
+    -fx-background-radius: 16px;
+    -fx-border-style: solid;
+    -fx-border-color: #97D6E7;
+}

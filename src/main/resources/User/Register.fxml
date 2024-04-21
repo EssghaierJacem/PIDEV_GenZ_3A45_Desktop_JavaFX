@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="715.0" prefWidth="872.0" stylesheets="@../css/frontStyles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+    <left>
+        <HBox prefHeight="558.0" prefWidth="346.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="715.0" fitWidth="357.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../JImages/world-map-continent-global-support-graphic.jpg" />
+               </image>
+            </ImageView>
+         </children>
+        </HBox>
+    </left>
+    <center>
+        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="progress_login" BorderPane.alignment="CENTER">
+            <stylesheets>
+                <URL value="@../css/frontStyles.css" />
+                <URL value="@../css/JStyle.css" />
+            </stylesheets>
+            <children>
+                <VBox prefHeight="540.0" prefWidth="446.0" styleClass="side_ankerpane" stylesheets="@../css/JStyle.css">
+                    <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </VBox.margin>
+                    <children>
+                        <VBox prefHeight="530.0" prefWidth="425.0" styleClass="progress">
+                            <VBox.margin>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                            </VBox.margin>
+                            <stylesheets>
+                                <URL value="@../css/frontStyles.css" />
+                                <URL value="@../css/frontStyles.css" />
+                            </stylesheets>
+                            <children>
+                                <Label alignment="CENTER" prefHeight="47.0" prefWidth="420.0" text="Beyond Borders Travel" textFill="#28648d">
+                                    <VBox.margin>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </VBox.margin>
+                                    <font>
+                                        <Font name="Century Gothic Bold" size="22.0" />
+                                    </font>
+                                </Label>
+                                <Label alignment="CENTER" layoutX="17.0" layoutY="17.0" prefHeight="47.0" prefWidth="420.0" stylesheets="@../css/frontStyles.css" text="Découvrez le monde avec nous" textFill="#465642">
+                                    <font>
+                                        <Font name="Century Gothic Italic" size="18.0" />
+                                    </font>
+                                </Label>
+                                <Label prefHeight="30.0" prefWidth="108.0" stylesheets="@../css/frontStyles.css" text="Nom :" textFill="#225d85">
+                                    <VBox.margin>
+                                        <Insets left="20.0" top="15.0" />
+                                    </VBox.margin>
+                                    <font>
+                                        <Font name="Century Gothic Bold" size="16.0" />
+                                    </font>
+                                </Label>
+                                <TextField prefHeight="31.0" prefWidth="375.0" stylesheets="@../css/frontStyles.css" text="John">
+                                    <VBox.margin>
+                                        <Insets left="20.0" right="20.0" top="10.0" />
+                                    </VBox.margin>
+                                    <font>
+                                        <Font name="Century Gothic" size="15.0" />
+                                    </font>
+                                    <styleClass>
+                                        <String fx:value="transparent" />
+                                        <String fx:value="selected" />
+                                    </styleClass>
+                                </TextField>
+                                <Label layoutX="32.0" layoutY="176.0" prefHeight="30.0" prefWidth="126.0" stylesheets="@../css/frontStyles.css" text="Prenom :" textFill="#225d85">
+                                    <font>
+                                        <Font name="Century Gothic Bold" size="16.0" />
+                                    </font>
+                                    <VBox.margin>
+                                        <Insets left="20.0" top="10.0" />
+                                    </VBox.margin>
+                                </Label>
+                                <TextField layoutX="32.0" layoutY="217.0" prefHeight="31.0" prefWidth="359.0" stylesheets="@../css/frontStyles.css" text="Doe">
+                                    <font>
+                                        <Font name="Century Gothic" size="15.0" />
+                                    </font>
+                                    <styleClass>
+                                        <String fx:value="transparent" />
+                                        <String fx:value="selected" />
+                                    </styleClass>
+                                    <VBox.margin>
+                                        <Insets left="20.0" right="20.0" top="10.0" />
+                                    </VBox.margin>
+                                </TextField>
+                        <Label layoutX="32.0" layoutY="214.0" prefHeight="30.0" prefWidth="126.0" stylesheets="@../css/frontStyles.css" text="Pseudo :" textFill="#225d85">
+                           <font>
+                              <Font name="Century Gothic Bold" size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="20.0" top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField layoutX="32.0" layoutY="255.0" prefHeight="29.0" prefWidth="386.0" stylesheets="@../css/frontStyles.css" text="********">
+                           <font>
+                              <Font name="Century Gothic" size="15.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="transparent" />
+                              <String fx:value="selected" />
+                           </styleClass>
+                           <VBox.margin>
+                              <Insets left="20.0" right="20.0" top="10.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <Label layoutX="12.0" layoutY="286.0" prefHeight="30.0" prefWidth="126.0" stylesheets="@../css/frontStyles.css" text="Email :" textFill="#225d85">
+                           <font>
+                              <Font name="Century Gothic Bold" size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="20.0" top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField layoutX="12.0" layoutY="316.0" prefHeight="31.0" prefWidth="359.0" stylesheets="@../css/frontStyles.css" text="Example@domain.com">
+                           <font>
+                              <Font name="Century Gothic" size="15.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="transparent" />
+                              <String fx:value="selected" />
+                           </styleClass>
+                           <VBox.margin>
+                              <Insets left="20.0" right="20.0" top="10.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <Label layoutX="12.0" layoutY="347.0" prefHeight="30.0" prefWidth="126.0" stylesheets="@../css/frontStyles.css" text="CIN : " textFill="#225d85">
+                           <font>
+                              <Font name="Century Gothic Bold" size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="20.0" top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField layoutX="12.0" layoutY="377.0" prefHeight="31.0" prefWidth="359.0" stylesheets="@../css/frontStyles.css" text="14687982">
+                           <font>
+                              <Font name="Century Gothic" size="15.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="transparent" />
+                              <String fx:value="selected" />
+                           </styleClass>
+                           <VBox.margin>
+                              <Insets left="20.0" right="20.0" top="10.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <Label layoutX="12.0" layoutY="366.0" prefHeight="30.0" prefWidth="126.0" stylesheets="@../css/frontStyles.css" text="Mot de passe:" textFill="#225d85">
+                           <font>
+                              <Font name="Century Gothic Bold" size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="20.0" top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField layoutX="12.0" layoutY="391.0" prefHeight="31.0" prefWidth="359.0" stylesheets="@../css/frontStyles.css" text="********">
+                           <font>
+                              <Font name="Century Gothic" size="15.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="transparent" />
+                              <String fx:value="selected" />
+                           </styleClass>
+                           <VBox.margin>
+                              <Insets left="20.0" right="20.0" top="10.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <Label layoutX="12.0" layoutY="479.0" prefHeight="20.0" prefWidth="259.0" stylesheets="@../css/frontStyles.css" text="Image ( Insérer un URL valide ) :" textFill="#225d85">
+                           <font>
+                              <Font name="Century Gothic Bold" size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="20.0" top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField layoutX="12.0" layoutY="499.0" prefHeight="31.0" prefWidth="359.0" stylesheets="@../css/frontStyles.css" text="www.ImageLink.com">
+                           <font>
+                              <Font name="Century Gothic" size="15.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="transparent" />
+                              <String fx:value="selected" />
+                           </styleClass>
+                           <VBox.margin>
+                              <Insets left="20.0" right="20.0" top="10.0" />
+                           </VBox.margin>
+                        </TextField>
+                                <JFXButton prefHeight="39.0" prefWidth="248.0" styleClass="progress_button" stylesheets="@../css/JStyle.css" text="Créer un compte !" textFill="WHITE">
+                                    <VBox.margin>
+                                        <Insets left="100.0" right="100.0" top="30.0" />
+                                    </VBox.margin>
+                                    <font>
+                                        <Font name="Century Gothic Bold" size="14.0" />
+                                    </font>
+                                </JFXButton>
+                                <JFXButton layoutX="112.0" layoutY="361.0" prefHeight="39.0" prefWidth="248.0" styleClass="transparent" text="Vous avez déja un compte? " textFill="#225d85">
+                                    <font>
+                                        <Font name="Century Gothic Bold" size="14.0" />
+                                    </font>
+                                    <VBox.margin>
+                                        <Insets left="100.0" right="100.0" top="10.0" />
+                                    </VBox.margin>
+                                    <stylesheets>
+                                        <URL value="@../css/JStyle.css" />
+                                        <URL value="@../css/frontStyles.css" />
+                                    </stylesheets>
+                                </JFXButton>
+                            </children>
+                        </VBox>
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+    </center>
+</BorderPane>
