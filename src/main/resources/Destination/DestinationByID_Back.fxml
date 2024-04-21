@@ -194,7 +194,7 @@
                                             <children>
                                                 <Pane layoutX="10.0" layoutY="7.0" prefHeight="265.0" prefWidth="248.0" styleClass="progress" stylesheets="@../css/JStyle.css">
                                                     <children>
-                                                        <ImageView fx:id="destinationMultimedia" fitHeight="271.0" fitWidth="237.0" layoutX="6.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" styleClass="root">
+                                                        <ImageView fx:id="destinationMultimedia" fitHeight="221.0" fitWidth="217.0" layoutX="16.0" layoutY="20.0" pickOnBounds="true" styleClass="root">
                                                             <image>
                                                                 <Image url="@../JImages/2096583.png" />
                                                             </image>
