@@ -73,7 +73,7 @@
                      <children>
                         <ImageView fitHeight="29.0" fitWidth="33.0" layoutX="7.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../JImages/icons8-home-50.png" />
+                              <Image url="@../JImages/icons8-map-50.png" />
                            </image>
                         </ImageView>
                         <JFXButton fx:id="destinationButton" layoutX="46.0" layoutY="3.0" onAction="#goToDestination" prefHeight="25.0" prefWidth="89.0" text="Destination" textFill="WHITE">
@@ -95,7 +95,7 @@
                      <children>
                         <ImageView fitHeight="29.0" fitWidth="33.0" layoutX="7.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../JImages/icons8-home-50.png" />
+                              <Image url="@../JImages/icons8-plane-50.png" />
                            </image>
                         </ImageView>
                         <JFXButton fx:id="volButton" layoutX="46.0" layoutY="3.0" onAction="#goToVol" prefHeight="25.0" prefWidth="89.0" text="Vol" textFill="WHITE">
@@ -117,7 +117,7 @@
                      <children>
                         <ImageView fitHeight="29.0" fitWidth="33.0" layoutX="7.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../JImages/icons8-home-50.png" />
+                              <Image url="@../JImages/icons8-guide-50.png" />
                            </image>
                         </ImageView>
                         <JFXButton layoutX="46.0" layoutY="3.0" prefHeight="25.0" prefWidth="89.0" text="Guide" textFill="WHITE">
@@ -139,7 +139,7 @@
                      <children>
                         <ImageView fitHeight="29.0" fitWidth="33.0" layoutX="7.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../JImages/icons8-home-50.png" />
+                              <Image url="@../JImages/icons8-tour-50.png" />
                            </image>
                         </ImageView>
                         <JFXButton layoutX="46.0" layoutY="3.0" prefHeight="25.0" prefWidth="89.0" text="Tournee" textFill="WHITE">
@@ -161,7 +161,7 @@
                      <children>
                         <ImageView fitHeight="29.0" fitWidth="33.0" layoutX="7.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../JImages/icons8-home-50.png" />
+                              <Image url="@../JImages/icons8-command-50.png" />
                            </image>
                         </ImageView>
                         <JFXButton layoutX="36.0" layoutY="3.0" prefHeight="25.0" prefWidth="99.0" text="Commandes" textFill="WHITE">
@@ -183,7 +183,7 @@
                      <children>
                         <ImageView fitHeight="29.0" fitWidth="33.0" layoutX="7.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../JImages/icons8-home-50.png" />
+                              <Image url="@../JImages/icons8-reservation-50.png" />
                            </image>
                         </ImageView>
                         <JFXButton layoutX="46.0" layoutY="3.0" prefHeight="25.0" prefWidth="89.0" text="Reservations" textFill="WHITE">
@@ -205,7 +205,7 @@
                      <children>
                         <ImageView fitHeight="29.0" fitWidth="33.0" layoutX="7.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../JImages/icons8-home-50.png" />
+                              <Image url="@../JImages/icons8-events-64.png" />
                            </image>
                         </ImageView>
                         <JFXButton layoutX="46.0" layoutY="3.0" prefHeight="25.0" prefWidth="89.0" text="Evenements" textFill="WHITE">
@@ -227,7 +227,7 @@
                      <children>
                         <ImageView fitHeight="29.0" fitWidth="33.0" layoutX="7.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../JImages/icons8-home-50.png" />
+                              <Image url="@../JImages/icons8-volunteering-50.png" />
                            </image>
                         </ImageView>
                         <JFXButton layoutX="36.0" layoutY="3.0" prefHeight="25.0" prefWidth="99.0" text="Participations" textFill="WHITE">
@@ -249,7 +249,7 @@
                      <children>
                         <ImageView fitHeight="29.0" fitWidth="33.0" layoutX="7.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../JImages/icons8-home-50.png" />
+                              <Image url="@../JImages/icons8-user-50.png" />
                            </image>
                         </ImageView>
                         <JFXButton layoutX="46.0" layoutY="3.0" prefHeight="25.0" prefWidth="89.0" text="Users" textFill="WHITE">
