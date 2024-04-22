@@ -74,7 +74,7 @@
                      <children>
                         <ImageView fitHeight="31.0" fitWidth="33.0" layoutX="7.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../JImages/icons8-home-50.png" />
+                              <Image url="@../JImages/icons8-map-50.png" />
                            </image>
                         </ImageView>
                         <JFXButton fx:id="destinationButton" layoutX="47.0" layoutY="2.0" onAction="#goToDestination" prefHeight="30.0" prefWidth="92.0" text="Destination" textFill="WHITE">
@@ -96,7 +96,7 @@
                      <children>
                         <ImageView fitHeight="31.0" fitWidth="33.0" layoutX="7.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../JImages/icons8-home-50.png" />
+                              <Image url="@../JImages/icons8-plane-50.png" />
                            </image>
                         </ImageView>
                         <JFXButton fx:id="volButton" layoutX="47.0" layoutY="2.0" onAction="#goToVol" prefHeight="30.0" prefWidth="92.0" text="Vol" textFill="WHITE">
