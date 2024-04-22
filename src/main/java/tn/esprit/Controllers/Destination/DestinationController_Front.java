@@ -34,6 +34,8 @@ public class DestinationController_Front implements Initializable {
     @FXML
     private Label connectedUser_Username;
     @FXML
+    private JFXButton volButton;
+    @FXML
     private GridPane destinationContainer;
 
     @Override
@@ -90,7 +92,7 @@ public class DestinationController_Front implements Initializable {
         }
     }
     @FXML
-    void handleLogoutAction(ActionEvent event) {
+    void Logout(ActionEvent event) {
         String currentSessionId = SessionManager.getCurrentSessionId();
 
         if (currentSessionId != null) {
@@ -107,6 +109,22 @@ public class DestinationController_Front implements Initializable {
             currentStage.setScene(loginScene);
 
             currentStage.setTitle("Login");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    private void goToVol(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vol/ListVol_Back.fxml"));
+            Parent root = loader.load();
+
+            Stage currentStage = (Stage) volButton.getScene().getWindow();
+            Scene newScene = new Scene(root);
+            currentStage.setScene(newScene);
+
+            currentStage.setTitle("List of Vols");
 
         } catch (IOException e) {
             e.printStackTrace();

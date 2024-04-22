@@ -155,7 +155,7 @@
                                         <Image url="@../JImages/stocks.png" />
                                     </image>
                                 </ImageView>
-                                <JFXButton prefHeight="38.0" prefWidth="132.0" text="Meilleurs choix">
+                                <JFXButton fx:id="destinationButton" onAction="#goToDestination" prefHeight="38.0" prefWidth="132.0" text="Meilleurs choix">
                                     <font>
                                         <Font name="Century Gothic" size="13.0" />
                                     </font></JFXButton>
@@ -225,7 +225,7 @@
                                 </JFXButton>
                             </children>
                         </HBox>
-                        <JFXButton prefHeight="30.0" prefWidth="126.0" styleClass="pane_maybe" stylesheets="@../css/JStyle.css" text="Logout">
+                        <JFXButton fx:id="Logout" onAction="#Logout" prefHeight="30.0" prefWidth="126.0" styleClass="pane_maybe" stylesheets="@../css/JStyle.css" text="Logout">
                             <VBox.margin>
                                 <Insets left="50.0" right="40.0" top="10.0" />
                             </VBox.margin>

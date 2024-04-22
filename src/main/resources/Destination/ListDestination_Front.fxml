@@ -166,7 +166,7 @@
                               <Image url="@../JImages/planeee.png" />
                            </image>
                         </ImageView>
-                        <JFXButton prefHeight="38.0" prefWidth="132.0" text="Meilleurs choix">
+                        <JFXButton fx:id="volButton" onAction="#goToVol" prefHeight="38.0" prefWidth="132.0" text="Meilleurs choix">
                            <font>
                               <Font name="Century Gothic" size="13.0" />
                            </font>
@@ -237,7 +237,7 @@
                         </JFXButton>
                      </children>
                   </HBox>
-                  <JFXButton fx:id="Logout" onAction="#handleLogoutAction" prefHeight="30.0" prefWidth="126.0" styleClass="pane_maybe" stylesheets="@../css/JStyle.css" text="Logout">
+                  <JFXButton fx:id="Logout" onAction="#Logout" prefHeight="30.0" prefWidth="126.0" styleClass="pane_maybe" stylesheets="@../css/JStyle.css" text="Logout">
                      <VBox.margin>
                         <Insets left="50.0" right="40.0" top="10.0" />
                      </VBox.margin>
