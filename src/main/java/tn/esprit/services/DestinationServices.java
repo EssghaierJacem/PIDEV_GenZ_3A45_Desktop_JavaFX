@@ -125,4 +125,32 @@ public class DestinationServices implements IDestinationService<Destination> {
         }
         return destinationList;
     }
+    public List<Destination> getRecentlyAddedDestinations(int limit) {
+        List<Destination> recentlyAddedList = new ArrayList<>();
+        String query = "SELECT * FROM destination ORDER BY id DESC LIMIT ?";
+        try (PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(query)) {
+            pst.setInt(1, limit);
+            try (ResultSet rs = pst.executeQuery()) {
+                while (rs.next()) {
+                    Destination destination = new Destination();
+                    destination.setId(rs.getInt("id"));
+                    destination.setPays(rs.getString("pays"));
+                    destination.setVille(rs.getString("ville"));
+                    destination.setDescription(rs.getString("description"));
+                    destination.setAttractions(rs.getString("attractions"));
+                    destination.setAccomodation(rs.getString("accomodation"));
+                    destination.setDevise(rs.getString("devise"));
+                    destination.setMultimedia(rs.getString("multimedia"));
+                    destination.setCuisine_locale(rs.getString("cuisine_locale"));
+                    destination.setAccessibilite(rs.getBoolean("accessibilite"));
+                    destination.setAbbrev(rs.getString("abbrev"));
+                    recentlyAddedList.add(destination);
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Erreur lors de la récupération des destinations récemment ajoutées: " + e.getMessage());
+        }
+        return recentlyAddedList;
+    }
+
 }

@@ -140,6 +140,38 @@ public class VolServices implements IVolService<Vol> {
         }
         return volList;
     }
+    public List<Vol> getRecentlyAddedVols(int limit) {
+        List<Vol> recentlyAddedList = new ArrayList<>();
+        String query = "SELECT * FROM vol ORDER BY id DESC LIMIT ?";
+        try (PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(query)) {
+            pst.setInt(1, limit);
+            try (ResultSet rs = pst.executeQuery()) {
+                while (rs.next()) {
+                    Vol vol = new Vol();
+                    vol.setId(rs.getInt("id"));
+                    IDestinationService<Destination> destinationService = new DestinationServices();
+                    Destination destination = destinationService.getDestinationById(rs.getInt("destination_id"));
+                    vol.setDestination(destination);
+                    vol.setCompagnie_a(rs.getString("compagnie_a"));
+                    vol.setNum_vol(rs.getInt("num_vol"));
+                    vol.setAeroport_depart(rs.getString("aeroport_depart"));
+                    vol.setAeroport_arrivee(rs.getString("aeroport_arrivee"));
+                    vol.setDate_depart(rs.getDate("date_depart"));
+                    vol.setDate_arrivee(rs.getDate("date_arrivee"));
+                    vol.setDuree_vol(rs.getInt("duree_vol"));
+                    vol.setTarif(rs.getFloat("tarif"));
+                    vol.setEscale(rs.getString("escale"));
+                    vol.setImage(rs.getString("image"));
+                    vol.setClasse(Classe.valueOf(rs.getString("classe")));
+                    recentlyAddedList.add(vol);
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Erreur lors de la récupération des vols: " + e.getMessage());
+        }
+        return recentlyAddedList;
+    }
+
 
 
 }

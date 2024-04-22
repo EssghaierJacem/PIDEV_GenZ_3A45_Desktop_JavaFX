@@ -142,9 +142,7 @@ public class Destination {
 
     @Override
     public String toString() {
-        return "Destination{" +
-                "pays='" + pays + '\'' +
-                ", ville='" + ville + '\'' +
-                '}';
+        return ""+ pays +"," + ville +".";
+
     }
 }
