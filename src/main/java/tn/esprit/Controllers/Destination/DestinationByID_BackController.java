@@ -14,6 +14,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import tn.esprit.entites.Destination;
+import tn.esprit.entites.SessionManager;
 import tn.esprit.services.DestinationServices;
 
 import java.io.IOException;
@@ -24,6 +25,13 @@ public class DestinationByID_BackController implements Initializable {
 
     @FXML
     private JFXButton Delete;
+    @FXML
+    private JFXButton destinationButton;
+    @FXML
+    private JFXButton Logout;
+
+    @FXML
+    private JFXButton volButton;
 
     @FXML
     private JFXButton Update;
@@ -114,5 +122,63 @@ public class DestinationByID_BackController implements Initializable {
                 stage.close();
             }
         });
+    }
+    @FXML
+    void Logout(ActionEvent event) {
+        String currentSessionId = SessionManager.getCurrentSessionId();
+
+        if (currentSessionId != null) {
+            SessionManager.terminateSession(currentSessionId);
+        }
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/User/Login.fxml"));
+            Parent loginRoot = loader.load();
+
+            Stage currentStage = (Stage) Logout.getScene().getWindow();
+
+            Scene loginScene = new Scene(loginRoot);
+            currentStage.setScene(loginScene);
+
+            currentStage.setTitle("Login");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void goToVol(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vol/ListVol_Back.fxml"));
+            Parent root = loader.load();
+
+            Stage currentStage = (Stage) volButton.getScene().getWindow();
+            Scene newScene = new Scene(root);
+            currentStage.setScene(newScene);
+
+            currentStage.setTitle("List of Vols");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void goToDestination(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Destination/ListDestination_Back.fxml"));
+            Parent root = loader.load();
+
+            Stage currentStage = (Stage) destinationButton.getScene().getWindow();
+            Scene newScene = new Scene(root);
+
+            currentStage.setScene(newScene);
+
+            currentStage.setTitle("List of Destinations");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
