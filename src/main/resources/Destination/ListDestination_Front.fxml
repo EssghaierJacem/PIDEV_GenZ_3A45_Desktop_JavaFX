@@ -41,13 +41,28 @@
                </children>
             </HBox>
             <Pane prefHeight="74.0" prefWidth="299.0" />
-            <HBox prefHeight="78.0" prefWidth="195.0">
+            <HBox prefHeight="74.0" prefWidth="205.0">
                <children>
-                  <Label alignment="CENTER" prefHeight="74.0" prefWidth="114.0" text="Bonjour, Mr" textAlignment="CENTER" textFill="#0a0c2b">
-                     <font>
-                        <Font name="Century Gothic Bold Italic" size="12.5" />
-                     </font>
-                  </Label>
+                  <VBox prefHeight="74.0" prefWidth="97.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="20.0" prefWidth="86.0" text="Bienvenue">
+                           <VBox.margin>
+                              <Insets left="5.0" right="5.0" top="10.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Century Gothic Italic" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="connectedUser_Username" alignment="CENTER" layoutX="15.0" layoutY="20.0" prefHeight="20.0" prefWidth="81.0" text="Username" textAlignment="CENTER">
+                           <font>
+                              <Font name="Century Gothic Bold" size="13.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="5.0" right="5.0" top="5.0" />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                  </VBox>
                   <ImageView fitHeight="62.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../JImages/2096583.png" />
@@ -151,7 +166,7 @@
                               <Image url="@../JImages/planeee.png" />
                            </image>
                         </ImageView>
-                        <JFXButton prefHeight="38.0" prefWidth="132.0" text="Meilleurs choix">
+                        <JFXButton fx:id="volButton" onAction="#goToVol" prefHeight="38.0" prefWidth="132.0" text="Meilleurs choix">
                            <font>
                               <Font name="Century Gothic" size="13.0" />
                            </font>
@@ -222,7 +237,7 @@
                         </JFXButton>
                      </children>
                   </HBox>
-                  <JFXButton prefHeight="30.0" prefWidth="126.0" styleClass="pane_maybe" stylesheets="@../css/JStyle.css" text="Logout">
+                  <JFXButton fx:id="Logout" onAction="#Logout" prefHeight="30.0" prefWidth="126.0" styleClass="pane_maybe" stylesheets="@../css/JStyle.css" text="Logout">
                      <VBox.margin>
                         <Insets left="50.0" right="40.0" top="10.0" />
                      </VBox.margin>
