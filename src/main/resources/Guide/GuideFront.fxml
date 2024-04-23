@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="641.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.Controllers.Guide.GuideFrontController">
+    <top>
+        <HBox alignment="CENTER_LEFT" prefHeight="74.0" prefWidth="950.0" styleClass="white-background" stylesheets="@../css/frontStyles.css" BorderPane.alignment="CENTER">
+            <children>
+                <Label alignment="CENTER" prefHeight="78.0" prefWidth="195.0" text="Beyond Borders Travel" textAlignment="CENTER" textFill="#2b0dc1">
+                    <font>
+                        <Font name="Century Gothic Bold" size="15.0" />
+                    </font>
+                </Label>
+                <Separator maxHeight="-Infinity" orientation="VERTICAL" prefHeight="56.0" prefWidth="30.0" />
+                <HBox maxHeight="-Infinity" prefHeight="27.0" prefWidth="237.0" spacing="5.0" styleClass="round-layout" stylesheets="@../css/frontStyles.css">
+                    <children>
+                        <TextField prefHeight="26.0" prefWidth="202.0" styleClass="transparent" stylesheets="@../css/frontStyles.css" text="Search...">
+                            <font>
+                                <Font name="Century Gothic Italic" size="12.0" />
+                            </font></TextField>
+                        <ImageView fitHeight="35.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../JImages/icons8_Search_52px.png" />
+                            </image>
+                        </ImageView>
+                    </children>
+                </HBox>
+                <Pane prefHeight="74.0" prefWidth="299.0" />
+                <HBox prefHeight="78.0" prefWidth="195.0">
+                    <children>
+                        <Label alignment="CENTER" prefHeight="74.0" prefWidth="114.0" text="Bonjour, Mr" textAlignment="CENTER" textFill="#0a0c2b">
+                            <font>
+                                <Font name="Century Gothic Bold Italic" size="12.5" />
+                            </font>
+                        </Label>
+                        <ImageView fitHeight="62.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../JImages/2096583.png" />
+                            </image>
+                        </ImageView>
+                    </children>
+                    <padding>
+                        <Insets left="20.0" right="20.0" />
+                    </padding>
+                </HBox>
+            </children>
+        </HBox>
+    </top>
+    <left>
+        <VBox prefHeight="526.0" prefWidth="206.0" styleClass="white-background" stylesheets="@../css/frontStyles.css" BorderPane.alignment="CENTER">
+            <children>
+                <VBox prefHeight="153.0" prefWidth="206.0" spacing="7.0">
+                    <children>
+                        <Label prefHeight="25.0" prefWidth="119.0" text="Guide">
+                            <font>
+                                <Font name="Century Gothic Bold" size="19.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets left="15.0" />
+                            </VBox.margin>
+                        </Label>
+                        <HBox layoutX="10.0" layoutY="40.0" prefHeight="34.0" prefWidth="206.0" stylesheets="@../css/frontStyles.css">
+                            <children>
+                                <ImageView fitHeight="44.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                                    <HBox.margin>
+                                        <Insets left="40.0" />
+                                    </HBox.margin>
+                                    <image>
+                                        <Image url="@../JImages/stocks.png" />
+                                    </image>
+                                </ImageView>
+                                <JFXButton prefHeight="38.0" prefWidth="132.0" text="Meilleurs choix">
+                                    <font>
+                                        <Font name="Century Gothic" size="13.0" />
+                                    </font></JFXButton>
+                            </children>
+                            <styleClass>
+                                <String fx:value="selected" />
+                                <String fx:value="mouse-moved" />
+                            </styleClass>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="48.0" prefHeight="34.0" prefWidth="206.0" styleClass="mouse-moved" stylesheets="@../css/frontStyles.css">
+                            <children>
+                                <ImageView fitHeight="44.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                                    <HBox.margin>
+                                        <Insets left="40.0" />
+                                    </HBox.margin>
+                                    <image>
+                                        <Image url="@../JImages/Map.png" />
+                                    </image>
+                                </ImageView>
+                                <JFXButton prefHeight="38.0" prefWidth="132.0" text="Navigation">
+                                    <font>
+                                        <Font name="Century Gothic" size="13.0" />
+                                    </font>
+                                </JFXButton>
+                            </children>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="93.0" prefHeight="34.0" prefWidth="206.0" styleClass="mouse-moved" stylesheets="@../css/frontStyles.css">
+                            <children>
+                                <ImageView fitHeight="44.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                                    <HBox.margin>
+                                        <Insets left="40.0" />
+                                    </HBox.margin>
+                                    <image>
+                                        <Image url="@../JImages/Categories.png" />
+                                    </image>
+                                </ImageView>
+                                <JFXButton prefHeight="38.0" prefWidth="132.0" text="Catégories">
+                                    <font>
+                                        <Font name="Century Gothic" size="13.0" />
+                                    </font>
+                                </JFXButton>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+                <Separator prefHeight="18.0" prefWidth="206.0" />
+                <VBox layoutX="10.0" layoutY="10.0" prefHeight="153.0" prefWidth="206.0" spacing="7.0">
+                    <children>
+                        <Label prefHeight="30.0" prefWidth="104.0" text="Tournee">
+                            <VBox.margin>
+                                <Insets left="15.0" />
+                            </VBox.margin>
+                            <font>
+                                <Font name="Century Gothic Bold" size="19.0" />
+                            </font>
+                        </Label>
+                        <HBox layoutX="10.0" layoutY="40.0" prefHeight="34.0" prefWidth="206.0" styleClass="mouse-moved" stylesheets="@../css/frontStyles.css">
+                            <children>
+                                <ImageView fitHeight="44.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                                    <HBox.margin>
+                                        <Insets left="40.0" />
+                                    </HBox.margin>
+                                    <image>
+                                        <Image url="@../JImages/planeee.png" />
+                                    </image>
+                                </ImageView>
+                                <JFXButton prefHeight="38.0" prefWidth="132.0" text="Meilleurs choix">
+                                    <font>
+                                        <Font name="Century Gothic" size="13.0" />
+                                    </font>
+                                </JFXButton>
+                            </children>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="48.0" prefHeight="34.0" prefWidth="206.0" styleClass="mouse-moved" stylesheets="@../css/frontStyles.css">
+                            <children>
+                                <ImageView fitHeight="44.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                                    <HBox.margin>
+                                        <Insets left="40.0" />
+                                    </HBox.margin>
+                                    <image>
+                                        <Image url="@../JImages/flaticon_comfort.png" />
+                                    </image>
+                                </ImageView>
+                                <JFXButton prefHeight="38.0" prefWidth="132.0" text="Map Escale">
+                                    <font>
+                                        <Font name="Century Gothic" size="13.0" />
+                                    </font>
+                                </JFXButton>
+                            </children>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="93.0" prefHeight="34.0" prefWidth="206.0" styleClass="mouse-moved" stylesheets="@../css/frontStyles.css">
+                            <children>
+                                <ImageView fitHeight="44.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                                    <HBox.margin>
+                                        <Insets left="40.0" />
+                                    </HBox.margin>
+                                    <image>
+                                        <Image url="@../JImages/Gestion.png" />
+                                    </image>
+                                </ImageView>
+                                <JFXButton prefHeight="38.0" prefWidth="132.0" text="Utilités">
+                                    <font>
+                                        <Font name="Century Gothic" size="13.0" />
+                                    </font>
+                                </JFXButton>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+                <Separator layoutX="10.0" layoutY="164.0" prefHeight="18.0" prefWidth="206.0" />
+                <VBox layoutX="10.0" layoutY="184.0" prefHeight="153.0" prefWidth="206.0" spacing="7.0">
+                    <children>
+                        <Label prefHeight="30.0" prefWidth="126.0" text="Retour">
+                            <font>
+                                <Font name="Century Gothic Bold" size="19.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets left="15.0" />
+                            </VBox.margin>
+                        </Label>
+                        <HBox prefHeight="34.0" prefWidth="206.0" styleClass="mouse-moved" stylesheets="@../css/frontStyles.css">
+                            <children>
+                                <ImageView fitHeight="44.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                                    <HBox.margin>
+                                        <Insets left="40.0" />
+                                    </HBox.margin>
+                                    <image>
+                                        <Image url="@../JImages/Home.png" />
+                                    </image>
+                                </ImageView>
+                                <JFXButton prefHeight="38.0" prefWidth="132.0" text="Page d'acceuil">
+                                    <font>
+                                        <Font name="Century Gothic" size="13.0" />
+                                    </font>
+                                </JFXButton>
+                            </children>
+                        </HBox>
+                        <JFXButton prefHeight="30.0" prefWidth="126.0" styleClass="pane_maybe" stylesheets="@../css/JStyle.css" text="Logout">
+                            <VBox.margin>
+                                <Insets left="50.0" right="40.0" top="10.0" />
+                            </VBox.margin>
+                        </JFXButton>
+                    </children>
+                </VBox>
+                <Separator layoutX="10.0" layoutY="340.0" prefHeight="18.0" prefWidth="206.0" />
+            </children>
+        </VBox>
+    </left>
+    <center>
+        <VBox prefHeight="200.0" prefWidth="100.0" spacing="7.5" BorderPane.alignment="CENTER">
+            <children>
+                <Label prefHeight="39.0" prefWidth="274.0" text="Récemment ajouté">
+                    <font>
+                        <Font name="Century Gothic Bold" size="15.0" />
+                    </font>
+                </Label>
+            <TableView fx:id="guideTableView" prefHeight="366.0" prefWidth="704.0">
+              <columns>
+                <TableColumn fx:id="Guide_Id" prefWidth="75.0" text="Id" />
+                <TableColumn fx:id="Guide_Nom" prefWidth="75.0" text="Nom" />
+                  <TableColumn fx:id="Guide_Prenom" prefWidth="75.0" text="Prenom" />
+                  <TableColumn fx:id="Guide_Langues" prefWidth="108.0" text="Langues Parlées" />
+                  <TableColumn fx:id="Guide_Experience" prefWidth="76.00006103515625" text="Experiences" />
+                  <TableColumn fx:id="Guide_Tarif" prefWidth="97.59994506835938" text="Tarif Horaire" />
+                  <TableColumn fx:id="Guide_Tel" prefWidth="79.20001220703125" text="Num Tel" />
+                  <TableColumn fx:id="Guide_Nationalite" prefWidth="116.800048828125" text="Nationalité" />
+              </columns>
+            </TableView>
+            </children>
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </padding>
+        </VBox>
+    </center>
+</BorderPane>
