@@ -2,7 +2,7 @@
  ## Projet développement Web Java Desktop
  ## 🧰 Présentation du PIDEV
   ## Important - To Run this project you'll need to set these following libraries ##
-        jfoenix-9.0.10
+        jfoenix-9.0.10 -->  https://github.com/sshahine/JFoenix 
   ## VM Options - Application Configuration ##  
         --module-path "path\to\yourJavaFX_SDK\lib" --add-modules javafx.controls,javafx.fxml,javafx.web
   
