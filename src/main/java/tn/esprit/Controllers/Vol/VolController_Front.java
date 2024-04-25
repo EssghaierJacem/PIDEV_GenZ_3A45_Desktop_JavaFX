@@ -81,7 +81,7 @@ public class VolController_Front implements Initializable {
     @FXML
     private void goToDestination(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Destination/ListDestination_Back.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Destination/ListDestination_Front.fxml"));
             Parent root = loader.load();
 
             Stage currentStage = (Stage) destinationButton.getScene().getWindow();
