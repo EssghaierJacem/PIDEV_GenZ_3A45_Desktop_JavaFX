@@ -62,7 +62,7 @@ public class LoginController implements Initializable {
             String sessionId = SessionManager.createSession(authenticatedUser);
 
             if (authenticatedUser.getRole() == Role.ADMIN) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Destination/ListDestination_Back.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/User/UserBack.fxml"));
                 Parent adminDashboardRoot = loader.load();
 
                 Stage currentStage = (Stage) Connect.getScene().getWindow();
@@ -89,7 +89,6 @@ public class LoginController implements Initializable {
     @FXML
     void handleRegisterButtonAction(ActionEvent event) {
         try {
-            // Load the register FXML
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/User/Register.fxml"));
             Parent root = loader.load();
 
