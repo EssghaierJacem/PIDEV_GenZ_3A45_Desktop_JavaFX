@@ -185,7 +185,7 @@
                   </TableView>
                   <Pane layoutX="564.0" layoutY="14.0" prefHeight="33.0" prefWidth="170.0">
                      <children>
-                        <TextField layoutY="4.0" prefHeight="26.0" prefWidth="170.0" styleClass="progress" stylesheets="@../css/JStyle.css" text="Search...">
+                        <TextField fx:id="keywordSearch" layoutY="4.0" prefHeight="26.0" prefWidth="170.0" styleClass="progress" stylesheets="@../css/JStyle.css" text="Search...">
                            <font>
                               <Font name="Century Gothic Italic" size="10.0" />
                            </font>
