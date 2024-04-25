@@ -1,29 +1,29 @@
 package tn.esprit.Controllers.Destination;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import com.jfoenix.controls.JFXButton;
 
 import javafx.stage.Stage;
-import tn.esprit.Controllers.Vol.VolByID_BackController;
+import tn.esprit.Controllers.Destination.DestinationByID_BackController;
 import tn.esprit.entites.SessionManager;
-import tn.esprit.entites.Vol;
-import tn.esprit.services.DestinationServices;
 import tn.esprit.entites.Destination;
+import tn.esprit.services.DestinationServices;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ResourceBundle;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class DestinationController_Back implements Initializable {
 
@@ -75,15 +75,31 @@ public class DestinationController_Back implements Initializable {
 
     @FXML
     private TableView<Destination> destinationTableView;
-
     @FXML
+    private TextField keywordSearch;
+    private List<Destination> originalDestinationList;
+
+    private Timer searchTimer = new Timer();
+
+    @Override
     public void initialize(URL location, ResourceBundle resources) {
-        addDestinationShowListData();
+        populateDestinationTableView();
+
+        keywordSearch.textProperty().addListener((observable, oldValue, newValue) -> {
+            searchTimer.cancel();
+            searchTimer = new Timer();
+            searchTimer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    filterAndUpdateDestinationTable(newValue);
+                }
+            }, 100);
+        });
     }
 
-    private void addDestinationShowListData() {
+    private void populateDestinationTableView() {
         DestinationServices destinationServices = new DestinationServices();
-        List<Destination> destinationList = destinationServices.getAllDestinations();
+        originalDestinationList = destinationServices.getAllDestinations();
 
         destination_cell_id.setCellValueFactory(new PropertyValueFactory<>("id"));
         destination_cell_pays.setCellValueFactory(new PropertyValueFactory<>("pays"));
@@ -96,7 +112,27 @@ public class DestinationController_Back implements Initializable {
         destination_cell_access.setCellValueFactory(new PropertyValueFactory<>("accessibilite"));
         destination_cell_description.setCellValueFactory(new PropertyValueFactory<>("description"));
 
-        destinationTableView.getItems().addAll(destinationList);
+        destinationTableView.getItems().addAll(originalDestinationList);
+    }
+
+    private void filterAndUpdateDestinationTable(String keyword) {
+        new Thread(() -> {
+            List<Destination> filteredDestinationList = new ArrayList<>();
+
+            for (Destination destination : originalDestinationList) {
+                if (destination.getPays().toLowerCase().contains(keyword.toLowerCase()) ||
+                        destination.getVille().toLowerCase().contains(keyword.toLowerCase()) ||
+                        destination.getDescription().toLowerCase().contains(keyword.toLowerCase())) {
+                    filteredDestinationList.add(destination);
+                }
+            }
+
+            Platform.runLater(() -> {
+                destinationTableView.getItems().clear();
+
+                destinationTableView.getItems().addAll(filteredDestinationList);
+            });
+        }).start();
     }
     @FXML
     private void handleDeleteButtonAction(ActionEvent event) {

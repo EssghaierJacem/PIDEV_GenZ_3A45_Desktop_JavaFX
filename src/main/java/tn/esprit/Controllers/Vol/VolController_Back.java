@@ -7,10 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import com.jfoenix.controls.JFXButton;
 
@@ -21,6 +18,7 @@ import tn.esprit.entites.Vol;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.List;
 
@@ -43,6 +41,10 @@ public class VolController_Back implements Initializable {
 
     @FXML
     private JFXButton Update;
+
+    @FXML
+    private TextField keywordSearch;
+
 
     @FXML
     private TableColumn<Vol, Integer> vol_cell_id;
@@ -76,17 +78,23 @@ public class VolController_Back implements Initializable {
 
     @FXML
     private TableColumn<Vol, String> vol_cell_escale;
+    private List<Vol> originalVolList;
 
 
 
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
-        addVolShowListData();
+        populateVolTableView();
+
+        keywordSearch.textProperty().addListener((observable, oldValue, newValue) -> {
+            filterVols(newValue);
+        });
     }
 
-    private void addVolShowListData() {
+
+    private void populateVolTableView() {
         VolServices volServices = new VolServices();
-        List<Vol> volList = volServices.getAllVols();
+        originalVolList = volServices.getAllVols();
 
         vol_cell_id.setCellValueFactory(new PropertyValueFactory<>("id"));
         vol_cell_destination.setCellValueFactory(cellData -> {
@@ -103,7 +111,21 @@ public class VolController_Back implements Initializable {
         vol_cell_classe.setCellValueFactory(new PropertyValueFactory<>("classe"));
         vol_cell_escale.setCellValueFactory(new PropertyValueFactory<>("escale"));
 
-        volTableView.getItems().addAll(volList);
+        volTableView.getItems().addAll(originalVolList);
+    }
+    private void filterVols(String keyword) {
+        List<Vol> filteredVolList = new ArrayList<>();
+
+        for (Vol vol : originalVolList) {
+            if (vol.getDestination().getPays().toLowerCase().contains(keyword.toLowerCase()) ||
+                    vol.getCompagnie_a().toLowerCase().contains(keyword.toLowerCase()) ||
+                    vol.getAeroport_depart().toLowerCase().contains(keyword.toLowerCase()) ||
+                    vol.getAeroport_arrivee().toLowerCase().contains(keyword.toLowerCase())) {
+                filteredVolList.add(vol);
+            }
+        }
+
+        volTableView.getItems().setAll(filteredVolList);
     }
 
     @FXML
