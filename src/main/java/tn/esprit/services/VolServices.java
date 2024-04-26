@@ -183,4 +183,50 @@ public class VolServices implements IVolService<Vol> {
                 .collect(Collectors.toList());
         return closestFlights;
     }
+    public int countAllTarifs() {
+        String query = "SELECT COUNT(tarif) FROM vol";
+        try (PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(query);
+             ResultSet rs = pst.executeQuery()) {
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            System.out.println("Erreur lors de la récupération des tarif: " + e.getMessage());
+        }
+        return 0;
+    }
+    public int countDistinctAirports() {
+        String query = "SELECT COUNT(DISTINCT aeroport_depart) + COUNT(DISTINCT aeroport_arrivee) " +
+                "FROM vol";
+        try (PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(query);
+             ResultSet rs = pst.executeQuery()) {
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            System.out.println("Erreur lors de la récupération d'aeroport " + e.getMessage());
+        }
+        return 0;
+    }
+    public List<Vol> getTopCompaniesByRevenue(int limit) {
+        List<Vol> topCompanies = new ArrayList<>();
+        String query = "SELECT compagnie_a, SUM(tarif) AS totalTarif FROM vol GROUP BY compagnie_a ORDER BY totalTarif DESC LIMIT ?";
+
+        try (PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(query)) {
+            pst.setInt(1, limit);
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                Vol vol = new Vol();
+                vol.setCompagnie_a(rs.getString("compagnie_a"));
+                vol.setTarif(rs.getFloat("totalTarif"));
+                topCompanies.add(vol);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error retrieving total tariffs by company: " + e.getMessage());
+        }
+
+        return topCompanies;
+    }
+
 }

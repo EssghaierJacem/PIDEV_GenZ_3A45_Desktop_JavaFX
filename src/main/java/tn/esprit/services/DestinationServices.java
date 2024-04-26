@@ -1,6 +1,7 @@
 package tn.esprit.services;
 
 import tn.esprit.entites.Destination;
+import tn.esprit.entites.User;
 import tn.esprit.interfaces.IDestinationService;
 import tn.esprit.tools.MyConnection;
 
@@ -8,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class DestinationServices implements IDestinationService<Destination> {
@@ -149,6 +151,63 @@ public class DestinationServices implements IDestinationService<Destination> {
             System.out.println("Erreur lors de la récupération des destinations récemment ajoutées: " + e.getMessage());
         }
         return recentlyAddedList;
+    }
+    public int getUserCount() {
+        String query = "SELECT COUNT(*) FROM user";
+        try (PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(query);
+             ResultSet rs = pst.executeQuery()) {
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            System.out.println("Erreur lors de la récupération des utilisateurs: " + e.getMessage());
+        }
+        return 0;
+    }
+    public int countDistinctDevises() {
+        String query = "SELECT COUNT(DISTINCT devise) FROM destination";
+        try (PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(query);
+             ResultSet rs = pst.executeQuery()) {
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            System.out.println("Erreur lors de la récupération des devises " + e.getMessage());
+        }
+        return 0;
+    }
+    public List<Destination> getTopDestinationsByUserCount(int limit) {
+        List<Destination> topDestinations = new ArrayList<>();
+        String query = "SELECT d.id, d.pays, d.ville, COUNT(DISTINCT du.user_id) AS userCount " +
+                "FROM destination d " +
+                "LEFT JOIN user_destination du ON du.destination_id = d.id " +
+                "GROUP BY d.id, d.pays, d.ville " +
+                "ORDER BY userCount DESC " +
+                "LIMIT ?";
+
+        try (PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(query)) {
+            pst.setInt(1, limit);
+            try (ResultSet rs = pst.executeQuery()) {
+                while (rs.next()) {
+                    Destination destination = new Destination();
+                    destination.setId(rs.getInt("id"));
+                    destination.setPays(rs.getString("pays"));
+                    destination.setVille(rs.getString("ville"));
+                    int userCount = rs.getInt("userCount");
+                    destination.setUsers(new HashSet<>());
+                    for (int i = 0; i < userCount; i++) {
+                        destination.getUsers().add(new User());
+                    }
+
+                    System.out.println("Destination: " + destination.getPays() + ", User count: " + userCount);
+
+                    topDestinations.add(destination);
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error retrieving top destinations by user count: " + e.getMessage());
+        }
+        return topDestinations;
     }
 
 }
