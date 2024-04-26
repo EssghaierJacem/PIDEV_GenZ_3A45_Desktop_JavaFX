@@ -12,6 +12,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.Date;
+
 
 public class VolServices implements IVolService<Vol> {
 
@@ -171,7 +174,13 @@ public class VolServices implements IVolService<Vol> {
         }
         return recentlyAddedList;
     }
-
-
-
+    public List<Vol> getClosestFlights() {
+        Date currentTime = new Date();
+        List<Vol> allVols = getAllVols();
+        List<Vol> closestFlights = allVols.stream()
+                .filter(vol -> !vol.getDate_depart().before(currentTime))
+                .sorted((v1, v2) -> v1.getDate_depart().compareTo(v2.getDate_depart()))
+                .collect(Collectors.toList());
+        return closestFlights;
+    }
 }
