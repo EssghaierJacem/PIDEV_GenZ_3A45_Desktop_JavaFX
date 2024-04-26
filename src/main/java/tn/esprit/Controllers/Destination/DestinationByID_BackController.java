@@ -16,7 +16,10 @@ import javafx.stage.Stage;
 import tn.esprit.entites.Destination;
 import tn.esprit.entites.SessionManager;
 import tn.esprit.services.DestinationServices;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -25,6 +28,9 @@ public class DestinationByID_BackController implements Initializable {
 
     @FXML
     private JFXButton Delete;
+    @FXML
+    private JFXButton PDF;
+
     @FXML
     private JFXButton destinationButton;
     @FXML
@@ -181,4 +187,30 @@ public class DestinationByID_BackController implements Initializable {
             e.printStackTrace();
         }
     }
+    @FXML
+    void exportToPDF(ActionEvent event) {
+        DestinationServices destinationServices = new DestinationServices();
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save PDF");
+        fileChooser.getExtensionFilters().addAll(
+                new ExtensionFilter("PDF Files", "*.pdf"),
+                new ExtensionFilter("All Files", "*.*")
+        );
+
+        File file = fileChooser.showSaveDialog(((JFXButton) event.getSource()).getScene().getWindow());
+
+        if (file != null) {
+            String filePath = file.getAbsolutePath();
+
+            destinationServices.exportToPDF(currentDestination, filePath);
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("PDF Export");
+            alert.setHeaderText(null);
+            alert.setContentText("The PDF has been exported successfully!");
+            alert.showAndWait();
+        }
+    }
+
 }

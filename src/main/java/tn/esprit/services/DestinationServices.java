@@ -1,10 +1,15 @@
 package tn.esprit.services;
 
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import tn.esprit.entites.Destination;
 import tn.esprit.entites.User;
 import tn.esprit.interfaces.IDestinationService;
 import tn.esprit.tools.MyConnection;
 
+import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -209,5 +214,42 @@ public class DestinationServices implements IDestinationService<Destination> {
         }
         return topDestinations;
     }
+    public void exportToPDF(Destination destination, String filePath) {
+        try (PDDocument document = new PDDocument()) {
+            PDPage page = new PDPage();
+            document.addPage(page);
 
+            try (PDPageContentStream contentStream = new PDPageContentStream(document, page)) {
+                contentStream.setFont(PDType1Font.HELVETICA, 12);
+
+                contentStream.beginText();
+                contentStream.newLineAtOffset(100, 700);
+
+                contentStream.showText("Destination ID: " + destination.getId());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Pays: " + destination.getPays());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Ville: " + destination.getVille());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Description: " + destination.getDescription());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Attractions: " + destination.getAttractions());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Accommodations: " + destination.getAccomodation());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Devise: " + destination.getDevise());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Cuisine Locale: " + destination.getCuisine_locale());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Accessibilité: " + (destination.getAccessibilite() ? "Yes" : "No"));
+
+                contentStream.endText();
+            }
+
+            document.save(filePath);
+            System.out.println("PDF created successfully!");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

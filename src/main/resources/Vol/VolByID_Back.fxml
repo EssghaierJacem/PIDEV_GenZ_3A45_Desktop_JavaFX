@@ -446,6 +446,11 @@
                                     <Font name="Century Gothic Italic" size="12.0" />
                                  </font>
                               </Label>
+                              <ImageView fitHeight="33.0" fitWidth="33.0" layoutX="427.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../JImages/ExportPDF.png" />
+                                 </image>
+                              </ImageView>
                            </children>
                         </Pane>
                         <Pane prefHeight="378.0" prefWidth="295.0">
@@ -474,11 +479,16 @@
                 </AnchorPane>
                 <Pane prefHeight="98.0" prefWidth="765.0">
                     <children>
-                  <JFXButton fx:id="Update" layoutX="233.0" layoutY="30.0" onAction="#handleUpdateButtonAction" prefHeight="33.0" prefWidth="89.0" styleClass="pane_update" stylesheets="@../css/JStyle.css" text="Modifier">
+                  <JFXButton fx:id="Update" layoutX="267.0" layoutY="30.0" onAction="#handleUpdateButtonAction" prefHeight="33.0" prefWidth="89.0" styleClass="pane_update" stylesheets="@../css/JStyle.css" text="Modifier">
                      <font>
                         <Font name="Century Gothic Bold" size="12.0" />
                      </font></JFXButton>
-                  <JFXButton fx:id="Delete" layoutX="355.0" layoutY="30.0" onAction="#handleDeleteButtonAction" prefHeight="33.0" prefWidth="89.0" styleClass="pane_111" stylesheets="@../css/JStyle.css" text="Supprimer">
+                  <JFXButton fx:id="Delete" layoutX="383.0" layoutY="30.0" onAction="#handleDeleteButtonAction" prefHeight="33.0" prefWidth="89.0" styleClass="pane_111" stylesheets="@../css/JStyle.css" text="Supprimer">
+                     <font>
+                        <Font name="Century Gothic Bold" size="12.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="PDF" layoutX="146.0" layoutY="30.0" onAction="#exportToPDF" prefHeight="33.0" prefWidth="89.0" styleClass="pane_add" stylesheets="@../css/JStyle.css" text="Export PDF">
                      <font>
                         <Font name="Century Gothic Bold" size="12.0" />
                      </font>
