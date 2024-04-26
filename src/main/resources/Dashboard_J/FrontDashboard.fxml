@@ -4,6 +4,9 @@
 <?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.AreaChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
@@ -382,7 +385,17 @@
                   </HBox>
                </children>
             </HBox>
-            <HBox prefHeight="271.0" prefWidth="779.0" styleClass="pane_maybe" stylesheets="@../css/JStyle.css" />
+            <HBox prefHeight="271.0" prefWidth="779.0" styleClass="pane_maybe" stylesheets="@../css/JStyle.css">
+               <children>
+                  <AreaChart prefHeight="266.0" prefWidth="781.0">
+                    <xAxis>
+                      <CategoryAxis side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis side="LEFT" />
+                    </yAxis>
+                  </AreaChart>
+               </children></HBox>
          </children>
          <stylesheets>
             <URL value="@../css/frontStyles.css" />

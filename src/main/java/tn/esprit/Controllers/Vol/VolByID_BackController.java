@@ -16,7 +16,11 @@ import javafx.stage.Stage;
 import tn.esprit.entites.SessionManager;
 import tn.esprit.entites.Vol;
 import tn.esprit.services.VolServices;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 
+
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -28,6 +32,8 @@ public class VolByID_BackController implements Initializable {
     private JFXButton destinationButton;
     @FXML
     private JFXButton Logout;
+    @FXML
+    private JFXButton PDF;
 
     @FXML
     private JFXButton volButton;
@@ -188,6 +194,31 @@ public class VolByID_BackController implements Initializable {
 
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+    @FXML
+    void exportToPDF(ActionEvent event) {
+        VolServices volServices = new VolServices();
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save PDF");
+        fileChooser.getExtensionFilters().addAll(
+                new ExtensionFilter("PDF Files", "*.pdf"),
+                new ExtensionFilter("All Files", "*.*")
+        );
+
+        File file = fileChooser.showSaveDialog(((JFXButton) event.getSource()).getScene().getWindow());
+
+        if (file != null) {
+            String filePath = file.getAbsolutePath();
+
+            volServices.exportToPDF(currentVol, filePath);
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("PDF Export");
+            alert.setHeaderText(null);
+            alert.setContentText("The PDF has been exported successfully!");
+            alert.showAndWait();
         }
     }
 }

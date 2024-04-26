@@ -6,6 +6,7 @@ import tn.esprit.entites.Vol;
 import tn.esprit.interfaces.IDestinationService;
 import tn.esprit.interfaces.IVolService;
 import tn.esprit.tools.MyConnection;
+import java.io.IOException;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,6 +15,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.Date;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
+import java.io.IOException;
 
 
 public class VolServices implements IVolService<Vol> {
@@ -143,6 +149,7 @@ public class VolServices implements IVolService<Vol> {
         }
         return volList;
     }
+
     public List<Vol> getRecentlyAddedVols(int limit) {
         List<Vol> recentlyAddedList = new ArrayList<>();
         String query = "SELECT * FROM vol ORDER BY id DESC LIMIT ?";
@@ -174,6 +181,7 @@ public class VolServices implements IVolService<Vol> {
         }
         return recentlyAddedList;
     }
+
     public List<Vol> getClosestFlights() {
         Date currentTime = new Date();
         List<Vol> allVols = getAllVols();
@@ -182,5 +190,99 @@ public class VolServices implements IVolService<Vol> {
                 .sorted((v1, v2) -> v1.getDate_depart().compareTo(v2.getDate_depart()))
                 .collect(Collectors.toList());
         return closestFlights;
+    }
+
+    public int countAllTarifs() {
+        String query = "SELECT COUNT(tarif) FROM vol";
+        try (PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(query);
+             ResultSet rs = pst.executeQuery()) {
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            System.out.println("Erreur lors de la récupération des tarif: " + e.getMessage());
+        }
+        return 0;
+    }
+
+    public int countDistinctAirports() {
+        String query = "SELECT COUNT(DISTINCT aeroport_depart) + COUNT(DISTINCT aeroport_arrivee) " +
+                "FROM vol";
+        try (PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(query);
+             ResultSet rs = pst.executeQuery()) {
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            System.out.println("Erreur lors de la récupération d'aeroport " + e.getMessage());
+        }
+        return 0;
+    }
+
+    public List<Vol> getTopCompaniesByRevenue(int limit) {
+        List<Vol> topCompanies = new ArrayList<>();
+        String query = "SELECT compagnie_a, SUM(tarif) AS totalTarif FROM vol GROUP BY compagnie_a ORDER BY totalTarif DESC LIMIT ?";
+
+        try (PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(query)) {
+            pst.setInt(1, limit);
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                Vol vol = new Vol();
+                vol.setCompagnie_a(rs.getString("compagnie_a"));
+                vol.setTarif(rs.getFloat("totalTarif"));
+                topCompanies.add(vol);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error retrieving total tariffs by company: " + e.getMessage());
+        }
+
+        return topCompanies;
+    }
+
+    public void exportToPDF(Vol vol, String filePath) {
+        try (PDDocument document = new PDDocument()) {
+            PDPage page = new PDPage();
+            document.addPage(page);
+
+            try (PDPageContentStream contentStream = new PDPageContentStream(document, page)) {
+                contentStream.setFont(PDType1Font.HELVETICA, 12);
+
+                contentStream.beginText();
+                contentStream.newLineAtOffset(100, 700);
+
+                contentStream.showText("Vol ID: " + vol.getId());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Destination: " + vol.getDestination().getVille() + ", " + vol.getDestination().getPays());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Compagnie Aérienne: " + vol.getCompagnie_a());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Numéro de vol: " + vol.getNum_vol());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Aéroport de départ: " + vol.getAeroport_depart());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Aéroport d'arrivée: " + vol.getAeroport_arrivee());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Date de départ: " + vol.getDate_depart());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Date d'arrivée: " + vol.getDate_arrivee());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Durée du vol: " + vol.getDuree_vol() + " minutes");
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Tarif: " + vol.getTarif() + " €");
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Escale: " + vol.getEscale());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Classe: " + vol.getClasse());
+
+                contentStream.endText();
+            }
+
+            document.save(filePath);
+            System.out.println("PDF created successfully!");
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Error creating PDF: " + e.getMessage());
+        }
     }
 }
