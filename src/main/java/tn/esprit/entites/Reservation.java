@@ -64,16 +64,18 @@ public class Reservation {
         return prenom_client;
     }
 
-    public void setPrenom_client(String prenom_client) {
+    public String setPrenom_client(String sarra) {
         this.prenom_client = prenom_client;
+        return null;
     }
 
     public int getNum_tel() {
         return num_tel;
     }
 
-    public void setNum_tel(int num_tel) {
+    public String setNum_tel(int i) {
         this.num_tel = num_tel;
+        return null;
     }
 
     public int getQuantite() {
@@ -84,8 +86,8 @@ public class Reservation {
         this.quantite = quantite;
     }
 
-    public Date getDate_reservation() {
-        return date_reservation;
+    public java.sql.Date getDate_reservation() {
+        return (java.sql.Date) date_reservation;
     }
 
     public void setDate_reservation(Date date_reservation) {
@@ -114,4 +116,6 @@ public class Reservation {
                 ", qr_code='" + qr_code + '\'' +
                 '}';
     }
+
+
 }

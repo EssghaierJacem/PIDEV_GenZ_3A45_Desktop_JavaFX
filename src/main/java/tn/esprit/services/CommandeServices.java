@@ -14,17 +14,16 @@ import java.util.List;
 
 public class CommandeServices implements ICommandeService<Commande> {
     @Override
-    public void addCommande(Commande commande, int id) {
-        String query = "INSERT INTO commande(id, num_commande, prix, code_promo, type_paiement, email, date_commande) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?)";
+    public void addCommande(Commande commande) {
+        String query = "INSERT INTO commande( num_commande, prix, code_promo, type_paiement, email, date_commande) " +
+                "VALUES (?, ?, ?, ?, ?, ?)";
         try (PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(query)) {
-            pst.setInt(1, id);
-            pst.setString(2, commande.getNum_commande());
-            pst.setDouble(3, commande.getPrix());
-            pst.setString(4, commande.getCode_promo());
-            pst.setString(5, commande.getType_paiement());
-            pst.setString(6, commande.getEmail());
-            pst.setDate(7, commande.getDate_commande());
+            pst.setString(1, commande.getNum_commande());
+            pst.setDouble(2, commande.getPrix());
+            pst.setString(3, commande.getCode_promo());
+            pst.setString(4, commande.getType_paiement());
+            pst.setString(5, commande.getEmail());
+            pst.setDate(6, commande.getDate_commande());
 
             pst.executeUpdate();
             System.out.println("Commande ajouté avec succès");
@@ -50,7 +49,7 @@ public class CommandeServices implements ICommandeService<Commande> {
     @Override
     public void updateCommande(Commande commande) {
 
-        String query = "UPDATE commande SET id = ?,num_commande = ?, prix = ?, code_promo = ?, type_paiement = ?, email = ?, date_commande = ? WHERE id = ?";
+        String query = "UPDATE commande SET num_commande = ?, prix = ?, code_promo = ?, type_paiement = ?, email = ?, date_commande = ? WHERE id = ?";
         try (PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(query)) {
             pst.setString(1, commande.getNum_commande());
             pst.setDouble(2, commande.getPrix());
@@ -120,4 +119,29 @@ public class CommandeServices implements ICommandeService<Commande> {
         }
         return commandeList;
     }
+
+    public List<Commande> getRecentlyAddedCommandes(int limit) {
+        List<Commande> recentlyAddedList = new ArrayList<>();
+        String query = "SELECT * FROM reservation ORDER BY id DESC LIMIT ?";
+        try (PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(query)) {
+            pst.setInt(1, limit);
+            try (ResultSet rs = pst.executeQuery()) {
+                while (rs.next()) {
+                    Commande commande = new Commande();
+                    commande.setId(rs.getInt("id"));
+                    commande.setNum_commande(rs.getString("nom_client"));
+                    commande.setCode_promo("Sarra");
+                    commande.setType_paiement(rs.getString("num_tel"));
+                    commande.setEmail("123456");
+                    commande.setDate_commande(rs.getDate("date_commande"));
+
+                    recentlyAddedList.add(commande);
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Erreur lors de la récupération des commandes récemment ajoutées: " + e.getMessage());
+        }
+        return recentlyAddedList;
+    }
+
 }

@@ -1,5 +1,6 @@
-package tn.esprit.Controllers.Destination;
+package tn.esprit.Controllers.Reservation;
 
+import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,90 +12,73 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import com.jfoenix.controls.JFXButton;
-
 import javafx.stage.Stage;
-import tn.esprit.Controllers.Vol.VolByID_BackController;
-import tn.esprit.entites.Vol;
-import tn.esprit.services.DestinationServices;
-import tn.esprit.entites.Destination;
+import tn.esprit.Controllers.Reservation.ReservationByID_BackController;
+import tn.esprit.Controllers.Reservation.UpdateReservationController;
+import tn.esprit.entites.Reservation;
+import tn.esprit.services.ReservationServices;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ResourceBundle;
+import java.util.Date;
 import java.util.List;
+import java.util.ResourceBundle;
 
-public class DestinationController_Back implements Initializable {
+public class ReservationController_Back implements Initializable {
 
+    public JFXButton AjouterReservation;
     @FXML
     private JFXButton Delete;
 
     @FXML
-    private JFXButton GetDestination;
+    private JFXButton GetReservation;
 
     @FXML
     private JFXButton Update;
 
     @FXML
-    private TableColumn<Destination, Integer> destination_cell_id;
+    private TableView<Reservation> reservationTableView;
 
     @FXML
-    private TableColumn<Destination, String> destination_cell_pays;
+    private TableColumn<Reservation, Integer> reservation_cell_Id;
 
     @FXML
-    private TableColumn<Destination, String> destination_cell_ville;
+    private TableColumn<Reservation, String> reservation_cellNom_client;
 
     @FXML
-    private TableColumn<Destination, String> destination_cell_devise;
+    private TableColumn<Reservation, String> reservation_cell_Prenom_client;
 
     @FXML
-    private TableColumn<Destination, String> destination_cell_cuisinelocale;
+    private TableColumn<Reservation, Integer> reservation_cell_Num_tel;
 
     @FXML
-    private TableColumn<Destination, String> destination_cell_abbrev;
-
+    private TableColumn<Reservation, Integer> reservation_cell_quantite;
     @FXML
-    private TableColumn<Destination, String> destination_cell_attractions;
+    private TableColumn<Reservation, Date> reservation_cell_dateR;
 
-    @FXML
-    private TableColumn<Destination, String> destination_cell_accomodation;
-
-    @FXML
-    private TableColumn<Destination, Boolean> destination_cell_access;
-
-    @FXML
-    private TableColumn<Destination, String> destination_cell_description;
-
-    @FXML
-    private TableView<Destination> destinationTableView;
 
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
-        addDestinationShowListData();
+        addReservationShowListData();
     }
 
-    private void addDestinationShowListData() {
-        DestinationServices destinationServices = new DestinationServices();
-        List<Destination> destinationList = destinationServices.getAllDestinations();
+    private void addReservationShowListData() {
+        ReservationServices reservationServices = new ReservationServices();
+        List<Reservation> reservationList = reservationServices.getAllReservations();
 
-        destination_cell_id.setCellValueFactory(new PropertyValueFactory<>("id"));
-        destination_cell_pays.setCellValueFactory(new PropertyValueFactory<>("pays"));
-        destination_cell_ville.setCellValueFactory(new PropertyValueFactory<>("ville"));
-        destination_cell_devise.setCellValueFactory(new PropertyValueFactory<>("devise"));
-        destination_cell_cuisinelocale.setCellValueFactory(new PropertyValueFactory<>("cuisine_locale"));
-        destination_cell_abbrev.setCellValueFactory(new PropertyValueFactory<>("abbrev"));
-        destination_cell_attractions.setCellValueFactory(new PropertyValueFactory<>("attractions"));
-        destination_cell_accomodation.setCellValueFactory(new PropertyValueFactory<>("accomodation"));
-        destination_cell_access.setCellValueFactory(new PropertyValueFactory<>("accessibilite"));
-        destination_cell_description.setCellValueFactory(new PropertyValueFactory<>("description"));
-
-        destinationTableView.getItems().addAll(destinationList);
+        reservation_cell_Id.setCellValueFactory(new PropertyValueFactory<>("id"));
+        reservation_cellNom_client.setCellValueFactory(new PropertyValueFactory<>("nom_client"));
+        reservation_cell_Prenom_client.setCellValueFactory(new PropertyValueFactory<>("prenom_client"));
+        reservation_cell_Num_tel.setCellValueFactory(new PropertyValueFactory<>("num_tel"));
+        reservation_cell_quantite.setCellValueFactory(new PropertyValueFactory<>("quantite"));
+        reservation_cell_dateR.setCellValueFactory(new PropertyValueFactory<>("date_reservation"));
+        reservationTableView.getItems().addAll(reservationList);
     }
     @FXML
     private void handleDeleteButtonAction(ActionEvent event) {
-        Destination selectedDestination = destinationTableView.getSelectionModel().getSelectedItem();
+        Reservation selectedReservation = reservationTableView.getSelectionModel().getSelectedItem();
 
-        if (selectedDestination != null) {
+        if (selectedReservation != null) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Confirmation");
             alert.setHeaderText("Etes-vous sûr que vous voulez supprimer?");
@@ -102,10 +86,10 @@ public class DestinationController_Back implements Initializable {
 
             alert.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
-                    DestinationServices destinationServices = new DestinationServices();
-                    destinationServices.removeDestination(selectedDestination.getId());
+                    ReservationServices reservationServices = new ReservationServices();
+                    reservationServices.removeReservation(selectedReservation.getId());
 
-                    destinationTableView.getItems().remove(selectedDestination);
+                    reservationTableView.getItems().remove(selectedReservation);
                 }
             });
         } else {
@@ -118,22 +102,22 @@ public class DestinationController_Back implements Initializable {
     }
     @FXML
     private void handleUpdateButtonAction(ActionEvent event) throws IOException {
-        Destination selectedDestination = destinationTableView.getSelectionModel().getSelectedItem();
+        Reservation selectedReservation = reservationTableView.getSelectionModel().getSelectedItem();
 
-        if (selectedDestination == null) {
+        if (selectedReservation == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur");
-            alert.setHeaderText("Aucune destination sélectionnée");
-            alert.setContentText("Veuillez choisir une destination à modifier.");
+            alert.setHeaderText("Aucune Reservation sélectionnée");
+            alert.setContentText("Veuillez choisir une Reservation à modifier.");
             alert.showAndWait();
             return;
         }
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Destination/UpdateDestination.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Reservation/UpdateReservation.fxml"));
         Parent root = loader.load();
 
-        UpdateDestinationController updateDestinationController = loader.getController();
-        updateDestinationController.populateFieldsWithData(selectedDestination);
+        UpdateReservationController updateReservationController = loader.getController();
+        updateReservationController.populateFieldsWithData(selectedReservation);
 
         Scene scene = new Scene(root);
         Stage stage = new Stage();
@@ -141,9 +125,9 @@ public class DestinationController_Back implements Initializable {
         stage.show();
     }
     @FXML
-    private void handleAjouterDestinationButtonAction(ActionEvent event) throws IOException {
+    private void handleAjouterReservationButtonAction(ActionEvent event) throws IOException {
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Destination/AddDestination.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Reservation/AddReservation.fxml"));
         Parent root = fxmlLoader.load();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
@@ -151,24 +135,24 @@ public class DestinationController_Back implements Initializable {
     }
     @FXML
     private void handleVoirPlusButtonAction(ActionEvent event) throws IOException {
-        Destination selectedDestination = destinationTableView.getSelectionModel().getSelectedItem();
+        Reservation selectedReservation = reservationTableView.getSelectionModel().getSelectedItem();
 
-        if (selectedDestination == null) {
+        if (selectedReservation == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur");
             alert.setHeaderText("Aucune destination sélectionné");
-            alert.setContentText("Veuillez choisir une destination à afficher.");
+            alert.setContentText("Veuillez choisir une Reservation à afficher.");
             alert.showAndWait();
             return;
         }
 
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Destination/DestinationByID_Back.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Reservation/ReservationByID_Back.fxml"));
         Parent root = loader.load();
 
-        DestinationByID_BackController destinationByIDBackController = loader.getController();
+        ReservationByID_BackController reservationByIDBackController = loader.getController();
 
-        destinationByIDBackController.setDestinationData(selectedDestination);
+        reservationByIDBackController.setReservationData(selectedReservation);
 
         Scene scene = new Scene(root);
         Stage stage = new Stage();

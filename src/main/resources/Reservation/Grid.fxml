@@ -1,14 +1,104 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.*?>
 <?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="$CONTROLLER_NAME$"
-            prefHeight="400.0" prefWidth="600.0" >
-
-</AnchorPane>
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="180.0" style="-fx-background-radius: 10;" stylesheets="@../css/frontStyles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.Controllers.Reservation.ReservationGrid">
+    <children>
+        <VBox prefHeight="140.0" prefWidth="180.0">
+            <children>
+                <HBox prefHeight="29.0" prefWidth="180.0" spacing="5.0">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="selected" text="Nom_Client:" wrappingWidth="69.33672142028809">
+                            <HBox.margin>
+                                <Insets left="5.0" />
+                            </HBox.margin>
+                            <font>
+                                <Font name="Century Gothic Bold" size="12.0" />
+                            </font>
+                        </Text>
+                        <Label fx:id="GridNom_client" prefHeight="18.0" prefWidth="95.0" text="BenHamouda">
+                            <font>
+                                <Font name="Century Gothic" size="12.0" />
+                            </font>
+                        </Label>
+                    </children>
+                    <VBox.margin>
+                        <Insets left="5.0" right="5.0" />
+                    </VBox.margin>
+                </HBox>
+                <HBox layoutX="15.0" layoutY="10.0" prefHeight="29.0" prefWidth="180.0" spacing="5.0">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="selected" text="Prenom_Client:" wrappingWidth="87.33672904968262">
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin>
+                            <font>
+                                <Font name="Century Gothic Bold" size="12.0" />
+                            </font>
+                        </Text>
+                        <Label fx:id="GridPrenom_client" prefHeight="18.0" prefWidth="95.0" text="SARRA">
+                            <font>
+                                <Font name="Century Gothic" size="12.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </HBox>
+                <HBox layoutX="10.0" layoutY="40.0" prefHeight="29.0" prefWidth="180.0" spacing="5.0">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="selected" text="Num_tel:" wrappingWidth="49.33672904968262">
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin>
+                            <font>
+                                <Font name="Century Gothic Bold" size="12.0" />
+                            </font>
+                        </Text>
+                        <Label fx:id="GridNum_tel" prefHeight="18.0" prefWidth="95.0" text="52308505">
+                            <font>
+                                <Font name="Century Gothic" size="12.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </HBox>
+                <HBox layoutX="10.0" layoutY="69.0" prefHeight="29.0" prefWidth="180.0" spacing="5.0">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="selected" text="Quantite:" wrappingWidth="49.33672904968262">
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin>
+                            <font>
+                                <Font name="Century Gothic Bold" size="12.0" />
+                            </font>
+                        </Text>
+                        <Label fx:id="GridQuantite" prefHeight="18.0" prefWidth="95.0" text="9">
+                            <font>
+                                <Font name="Century Gothic" size="12.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </HBox>
+                <HBox prefHeight="32.0" prefWidth="180.0">
+                    <children>
+                        <JFXButton prefHeight="26.0" prefWidth="180.0" styleClass="pane_1" stylesheets="@../css/JStyle.css" text="Voir plus">
+                            <font>
+                                <Font name="Century Gothic Bold" size="12.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets bottom="5.0" left="40.0" right="40.0" top="2.0" />
+                            </HBox.margin>
+                        </JFXButton>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+    <styleClass>
+        <String fx:value="white-background" />
+        <String fx:value="shadow" />
+    </styleClass>
+</VBox>

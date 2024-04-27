@@ -1,7 +1,6 @@
 package tn.esprit.entites;
 
 import java.util.Date;
-import java.util.List;
 
 public class Commande {
     private int id;
@@ -73,8 +72,8 @@ public class Commande {
         this.email = email;
     }
 
-    public Date getDate_commande() {
-        return date_commande;
+    public java.sql.Date getDate_commande() {
+        return (java.sql.Date) date_commande;
     }
 
     public void setDate_commande(Date date_commande) {

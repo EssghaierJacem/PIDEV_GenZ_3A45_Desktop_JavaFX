@@ -5,10 +5,11 @@ import tn.esprit.interfaces.IReservationService;
 import tn.esprit.tools.MyConnection;
 
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 public class ReservationServices implements IReservationService<Reservation> {
 
     @Override
@@ -45,7 +46,7 @@ public class ReservationServices implements IReservationService<Reservation> {
     @Override
     public void updateReservation(Reservation reservation) {
 
-        String query = "UPDATE reserevation SET nom_client = ?, prenom_client = ?, num_tel = ?, quantite = ?, date_reservation = ? WHERE id = ?";
+        String query = "UPDATE reservation SET nom_client = ?, prenom_client = ?, num_tel = ?, quantite = ?, date_reservation = ? WHERE id = ?";
         try (PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(query)) {
             pst.setString(1, reservation.getNom_client());
             pst.setString(2, reservation.getPrenom_client());
@@ -72,9 +73,9 @@ public class ReservationServices implements IReservationService<Reservation> {
                     Reservation reservation = new Reservation();
                     reservation.setId(rs.getInt("id"));
                     reservation.setNom_client(rs.getString("nom_client"));
-                    reservation.setPrenom_client(rs.getString("prenom_client"));
+                    reservation.setPrenom_client("prenom_client");
                     reservation.setNum_tel(rs.getInt("num_tel"));
-                    reservation.setQuantite(rs.getInt("quantite"));
+                    reservation.setQuantite((rs.getInt("quantite")));
                     reservation.setDate_reservation(rs.getDate("date_reservation"));
                     return reservation;
                 }
@@ -95,9 +96,9 @@ public class ReservationServices implements IReservationService<Reservation> {
                     Reservation reservation = new Reservation();
                     reservation.setId(rs.getInt("id"));
                     reservation.setNom_client(rs.getString("nom_client"));
-                    reservation.setPrenom_client(rs.getString("prenom_client"));
+                    reservation.setPrenom_client("Sarra");
                     reservation.setNum_tel(rs.getInt("num_tel"));
-                    reservation.setQuantite(rs.getInt("quantite"));
+                    reservation.setQuantite(123456);
                     reservation.setDate_reservation(rs.getDate("date_reservation"));
                     reservationList.add(reservation);
                 }
@@ -107,7 +108,31 @@ public class ReservationServices implements IReservationService<Reservation> {
         }
         return reservationList;
     }
+    public List<Reservation> getRecentlyAddedReservations(int limit) {
+        List<Reservation> recentlyAddedList = new ArrayList<>();
+        String query = "SELECT * FROM reservation ORDER BY id DESC LIMIT ?";
+        try (PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(query)) {
+            pst.setInt(1, limit);
+            try (ResultSet rs = pst.executeQuery()) {
+                while (rs.next()) {
+                    Reservation reservation = new Reservation();
+                    reservation.setId(rs.getInt("id"));
+                    reservation.setNom_client(rs.getString("nom_client"));
+                    reservation.setPrenom_client("Sarra");
+                    reservation.setNum_tel(rs.getInt("num_tel"));
+                    reservation.setQuantite(123456);
+                    reservation.setDate_reservation(rs.getDate("date_reservation"));
+
+                    recentlyAddedList.add(reservation);
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Erreur lors de la récupération des reservation récemment ajoutées: " + e.getMessage());
+        }
+        return recentlyAddedList;
+    }
 
 }
+
 
 

@@ -1,14 +1,143 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="$CONTROLLER_NAME$"
-            prefHeight="400.0" prefWidth="600.0" >
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="568.0" prefWidth="942.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.Controllers.Commande.UpdateCommandeController">
+   <children>
+      <VBox prefHeight="495.0" prefWidth="155.0">
+         <children>
+            <AnchorPane prefHeight="606.0" prefWidth="178.0" styleClass="side_ankerpane" stylesheets="@../css/JStyle.css">
+               <children>
+                  <Pane layoutX="3.0" layoutY="24.0" prefHeight="62.0" prefWidth="169.0" styleClass="inner_pane" stylesheets="@../css/JStyle.css">
+                     <children>
+                        <Label layoutX="53.0" layoutY="15.0" prefHeight="18.0" prefWidth="54.0" text="Bonjour," />
+                        <Label layoutX="61.0" layoutY="31.0" text="Username">
+                           <font>
+                              <Font name="Century Gothic Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="35.0" fitWidth="33.0" layoutX="14.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../JImages/2096583.png" />
+                           </image>
+                        </ImageView>
+                        <Pane layoutX="139.0" layoutY="7.0" prefHeight="51.0" prefWidth="25.0" styleClass="most_inner_pane" stylesheets="@../css/JStyle.css">
+                           <children>
+                              <ImageView fitHeight="62.0" fitWidth="33.0" layoutX="-4.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../JImages/Dots.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Pane>
+                     </children>
+                  </Pane>
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+      <VBox prefHeight="568.0" prefWidth="833.0" styleClass="root" stylesheets="@../css/JStyle.css">
+         <children>
+            <Pane prefHeight="99.0" prefWidth="582.0">
+               <children>
+                  <Line endX="649.800048828125" endY="0.20000267028808594" layoutX="115.0" layoutY="31.0" startX="-115.00000762939453" startY="0.20000076293945312" />
+                  <Button layoutX="703.0" layoutY="2.0" minHeight="18.0" minWidth="53.0" mnemonicParsing="false" opacity="0.8" prefHeight="25.0" prefWidth="53.0" text="X">
+                     <font>
+                        <Font size="1.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="14.0" layoutY="42.0" text="Modifier Commandes                    :">
+                     <font>
+                        <Font name="Century Gothic Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="14.0" layoutY="67.0" prefHeight="25.0" prefWidth="284.0" text="Text Sample illustration for the ressources idk yet.">
+                     <font>
+                        <Font name="Century Gothic" size="12.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="51.0" fitWidth="75.0" layoutX="704.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../JImages/planeee.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane opacity="0.17" prefHeight="1.0" prefWidth="582.0" styleClass="pane_1111" stylesheets="@../css/JStyle.css">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Pane>
+            <AnchorPane prefHeight="461.0" prefWidth="765.0">
+               <children>
+                  <TableView fx:id="commandeTableView" layoutX="447.0" layoutY="17.0" prefHeight="430.0" prefWidth="304.0">
+                     <columns>
+                        <TableColumn fx:id="commande_cell_id" prefWidth="25.599977493286133" text="ID" />
+                        <TableColumn fx:id="commande_cell_Num_commande" prefWidth="75.20004272460938" text="Num_commande" />
+                        <TableColumn fx:id="commande_cell_code_promo" prefWidth="76.0" text="Code_promo" />
+                        <TableColumn fx:id="commande_cell_type" prefWidth="51.199951171875" text="TYpe_paiement" />
+                        <TableColumn fx:id="commande_cell_email" prefWidth="51.199951171875" text="email" />
+                        <TableColumn fx:id="commande_cell_dateC" prefWidth="73.60009765625" text="Date Commande" />
 
-</AnchorPane>
+                     </columns>
+                  </TableView>
+                  <Pane layoutX="21.0" layoutY="14.0" prefHeight="430.0" prefWidth="417.0" styleClass="pane_maybe" stylesheets="@../css/JStyle.css">
+                     <children>
+                        <Label layoutX="14.0" layoutY="24.0" prefHeight="18.0" prefWidth="68.0" text="Num_commande">
+                           <font>
+                              <Font name="Century Gothic" size="11.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="updateNum_commande" layoutX="83.0" layoutY="19.0" prefHeight="30.0" prefWidth="105.0" styleClass="progress" stylesheets="@../css/JStyle.css" />
+                        <Label layoutX="14.0" layoutY="69.0" prefHeight="18.0" prefWidth="54.0" text="Code_promo">
+                           <font>
+                              <Font name="Century Gothic" size="11.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="14.0" layoutY="109.0" prefHeight="18.0" prefWidth="85.0" text="Date Commande">
+                           <font>
+                              <Font name="Century Gothic" size="11.0" />
+                           </font>
+                        </Label>
+
+                        <TextField fx:id="updateCode_promo" layoutX="83.0" layoutY="64.0" prefHeight="29.0" prefWidth="105.0" styleClass="progress" stylesheets="@../css/JStyle.css" />
+
+
+                        <Label layoutX="200.0" layoutY="69.0" prefHeight="18.0" prefWidth="85.0" text="Type_paiement">
+                           <font>
+                              <Font name="Century Gothic" size="11.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="204.0" layoutY="24.0" prefHeight="18.0" prefWidth="77.0" text="Email">
+                           <font>
+                              <Font name="Century Gothic" size="12.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="updateEmail" layoutX="263.0" layoutY="18.0" prefHeight="29.0" prefWidth="123.0" styleClass="progress" stylesheets="@../css/JStyle.css" />
+                        <JFXButton fx:id="UpdateCommande" layoutX="68.0" layoutY="377.0" onAction="#handleUpdateCommandenButtonAction" prefHeight="33.0" prefWidth="85.0" styleClass="pane_update" stylesheets="@../css/JStyle.css" text="Modifier">
+                           <font>
+                              <Font name="Century Gothic Bold Italic" size="12.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton fx:id="Clear" layoutX="227.0" layoutY="377.0" onAction="#handleClearButtonAction" prefHeight="33.0" prefWidth="85.0" styleClass="pane_111" stylesheets="@../css/JStyle.css" text="Clear">
+                           <font>
+                              <Font name="Century Gothic Bold Italic" size="12.0" />
+                           </font>
+                        </JFXButton>
+                        <TextField fx:id="updateType" layoutX="270.0" layoutY="94.0" prefHeight="29.0" prefWidth="123.0" styleClass="progress" stylesheets="@../css/JStyle.css" />
+                        <DatePicker fx:id="updateDateC" layoutX="19.0" layoutY="140.0" prefHeight="25.0" prefWidth="127.0" styleClass="progress" stylesheets="@../css/JStyle.css" />
+
+                     </children>
+                  </Pane>
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+   </children>
+</HBox>

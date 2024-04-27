@@ -1,13 +1,17 @@
 package tn.esprit.Controllers.Reservation;
 
-import com.sun.javafx.charts.Legend;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
+import com.jfoenix.controls.JFXButton;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import tn.esprit.entites.Commande;
+import tn.esprit.entites.Destination;
 import tn.esprit.entites.Reservation;
+import tn.esprit.services.CommandeServices;
+import tn.esprit.services.DestinationServices;
 import tn.esprit.services.ReservationServices;
 
 import java.net.URL;
@@ -17,10 +21,10 @@ import java.util.ResourceBundle;
 public class AddReservationController implements Initializable {
 
     @FXML
-    private Button AddReservation;
+    private JFXButton AddReservation;
 
     @FXML
-    private Button Clear;
+    private JFXButton Clear;
 
     @FXML
     private TextField addNom_client;
@@ -36,7 +40,6 @@ public class AddReservationController implements Initializable {
 
     @FXML
     private DatePicker addDateR;
-    private Legend addAccess;
 
     @FXML
     void handleAddReservationButtonAction(ActionEvent event) {
@@ -46,9 +49,9 @@ public class AddReservationController implements Initializable {
         newReservation.setNum_tel(Integer.parseInt(addNum_tel.getText()));
         newReservation.setQuantite(Integer.parseInt(addQuantite.getText()));
         newReservation.setDate_reservation(java.sql.Date.valueOf(addDateR.getValue()));
-
         ReservationServices reservationServices = new ReservationServices();
         reservationServices.addReservation(newReservation);
+
 
         clearFields();
     }
@@ -59,7 +62,9 @@ public class AddReservationController implements Initializable {
         addNum_tel.clear();
         addQuantite.clear();
         addDateR.setValue(null);
+
     }
+    @FXML
     private void handleClear(ActionEvent event) {
         clearFields();
     }

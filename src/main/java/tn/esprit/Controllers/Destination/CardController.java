@@ -6,10 +6,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
 import tn.esprit.entites.Destination;
 
-import java.awt.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -37,16 +35,16 @@ public class CardController  implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
-    public void setData(Destination destination) {
-        labelPays.setText(destination.getPays());
-        labelVille.setText(destination.getVille());
-        labelAttractions.setText(destination.getAttractions());
-        if (destination.getMultimedia() != null && !destination.getMultimedia().isEmpty()) {
+    public void setData(Destination reservation) {
+        labelPays.setText(reservation.getPays());
+        labelVille.setText(reservation.getVille());
+        labelAttractions.setText(reservation.getAttractions());
+        if (reservation.getMultimedia() != null && !reservation.getMultimedia().isEmpty()) {
             try {
-                Image image = new Image(destination.getMultimedia());
+                Image image = new Image(reservation.getMultimedia());
                 ImageViewSample.setImage(image);
             } catch (Exception e) {
-                System.out.println("Invalid image URL or resource not found: " + destination.getMultimedia());
+                System.out.println("Invalid image URL or resource not found: " + reservation.getMultimedia());
             }
         }
         String style = String.format("-fx-background-color: #%s; -fx-background-radius: 15; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0,10);", randomColor);
