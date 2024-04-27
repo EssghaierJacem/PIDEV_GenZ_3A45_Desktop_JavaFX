@@ -17,7 +17,7 @@
     <left>
         <HBox prefHeight="558.0" prefWidth="346.0" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="715.0" fitWidth="357.0" pickOnBounds="true">
+            <ImageView fitHeight="701.0" fitWidth="357.0" pickOnBounds="true">
                <image>
                   <Image url="@../JImages/world-map-continent-global-support-graphic.jpg" />
                </image>
@@ -26,18 +26,18 @@
         </HBox>
     </left>
     <center>
-        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="progress_login" BorderPane.alignment="CENTER">
+        <VBox prefHeight="710.0" prefWidth="545.0" styleClass="progress_login" BorderPane.alignment="CENTER">
             <stylesheets>
                 <URL value="@../css/frontStyles.css" />
                 <URL value="@../css/JStyle.css" />
             </stylesheets>
             <children>
-                <VBox prefHeight="540.0" prefWidth="446.0" styleClass="side_ankerpane" stylesheets="@../css/JStyle.css">
+                <VBox prefHeight="684.0" prefWidth="514.0" styleClass="side_ankerpane" stylesheets="@../css/JStyle.css">
                     <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                     </VBox.margin>
                     <children>
-                        <VBox prefHeight="530.0" prefWidth="425.0" styleClass="progress">
+                        <VBox prefHeight="667.0" prefWidth="505.0" styleClass="progress">
                             <VBox.margin>
                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                             </VBox.margin>
@@ -199,9 +199,14 @@
                               <Insets left="20.0" right="20.0" top="10.0" />
                            </VBox.margin>
                         </TextField>
+                        <Label fx:id="labelError" maxHeight="-Infinity" prefHeight="38.0" prefWidth="460.0" text="Label" textFill="RED">
+                           <VBox.margin>
+                              <Insets left="20.0" right="20.0" top="5.0" />
+                           </VBox.margin>
+                        </Label>
                                 <JFXButton fx:id="Register" onAction="#handleRegisterButtonAction" prefHeight="39.0" prefWidth="248.0" styleClass="progress_button" stylesheets="@../css/JStyle.css" text="Créer un compte !" textFill="WHITE">
                                     <VBox.margin>
-                                        <Insets left="100.0" right="100.0" top="30.0" />
+                                        <Insets left="100.0" right="100.0" top="10.0" />
                                     </VBox.margin>
                                     <font>
                                         <Font name="Century Gothic Bold" size="14.0" />

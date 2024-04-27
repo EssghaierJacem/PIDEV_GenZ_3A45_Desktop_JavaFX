@@ -7,9 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import tn.esprit.entites.Role;
 import tn.esprit.entites.SessionManager;
@@ -34,11 +32,15 @@ public class LoginController implements Initializable {
     @FXML
     private JFXButton Register;
 
+    @FXML
+    private Label errorLabel;
+
     private UserServices userServices;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         userServices = new UserServices();
+        errorLabel.setVisible(false);
     }
 
     @FXML
@@ -46,20 +48,26 @@ public class LoginController implements Initializable {
         String email = LoginEmail.getText();
         String password = LoginPassword.getText();
 
+        if (!validateEmailFormat(email)) {
+            errorLabel.setText("Invalid email format. Email should follow the format 'y@x.sth'.");
+            errorLabel.setVisible(true);
+            return;
+        }
+
         User authenticatedUser = userServices.authenticate(email, password);
 
         if (authenticatedUser != null) {
+            errorLabel.setVisible(false);
+            errorLabel.setText("");
             String sessionId = SessionManager.createSession(authenticatedUser);
 
             if (authenticatedUser.getRole() == Role.ADMIN) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Destination/ListDestination_Back.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/User/UserBack.fxml"));
                 Parent adminDashboardRoot = loader.load();
 
                 Stage currentStage = (Stage) Connect.getScene().getWindow();
-
                 Scene adminDashboardScene = new Scene(adminDashboardRoot);
                 currentStage.setScene(adminDashboardScene);
-
                 currentStage.setTitle("Dashboard - Destination");
 
             } else if (authenticatedUser.getRole() == Role.USER) {
@@ -67,22 +75,16 @@ public class LoginController implements Initializable {
                 Parent userDashboardRoot = loader.load();
 
                 Stage currentStage = (Stage) Connect.getScene().getWindow();
-
                 Scene userDashboardScene = new Scene(userDashboardRoot);
                 currentStage.setScene(userDashboardScene);
-
                 currentStage.setTitle("Beyond Borders Travel - Destination");
             }
 
         } else {
-            Alert errorAlert = new Alert(AlertType.ERROR);
-            errorAlert.setTitle("Login Failed");
-            errorAlert.setHeaderText(null);
-            errorAlert.setContentText("Invalid email or password. Please try again.");
-            errorAlert.showAndWait();
+            errorLabel.setText("Invalid email or password. Please try again.");
+            errorLabel.setVisible(true);
         }
     }
-
 
     @FXML
     void handleRegisterButtonAction(ActionEvent event) {
@@ -99,8 +101,13 @@ public class LoginController implements Initializable {
             e.printStackTrace();
         }
     }
+
+    private boolean validateEmailFormat(String email) {
+        String emailRegex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+        return email.matches(emailRegex);
+    }
     @FXML
     void handlePasswordButtonAction(ActionEvent event) {
-            // For Later.
+        // For Later.
     }
 }
