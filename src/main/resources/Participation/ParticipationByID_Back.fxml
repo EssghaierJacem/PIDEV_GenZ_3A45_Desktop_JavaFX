@@ -116,6 +116,10 @@
                                                 <Font name="Century Gothic" size="13.0" />
                                             </font>
                                         </Text>
+                              <Label fx:id="participation_nom" layoutX="22.0" layoutY="76.0" prefHeight="17.0" prefWidth="120.0" text="Label" />
+                              <Label fx:id="participation_prenom" layoutX="22.0" layoutY="143.0" prefHeight="17.0" prefWidth="120.0" text="Label" />
+                              <Label fx:id="participation_tel" layoutX="22.0" layoutY="208.0" prefHeight="17.0" prefWidth="120.0" text="Label" />
+                              <Label fx:id="participation_email" layoutX="192.0" layoutY="76.0" prefHeight="17.0" prefWidth="120.0" text="Label" />
 
                                     </children>
                                 </Pane>

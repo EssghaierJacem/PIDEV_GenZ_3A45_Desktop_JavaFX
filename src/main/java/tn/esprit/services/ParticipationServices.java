@@ -14,16 +14,14 @@ public class ParticipationServices implements IParticipationService<Participatio
 
 
     @Override
-    public void addParticipation(Participation participation) {
-        String query = "INSERT INTO participation(nom, prenom, tel, email) " +
-                "VALUES (?, ?, ?, ?)";
-
-
+    public void addParticipation(Participation participation, int eventID) {
+        String query = "INSERT INTO participation(event_id, nom, prenom, tel, email) " +
+                "VALUES (?, ?, ?, ?, ?)";
         try (PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(query)) {
-            pst.setInt(1, participation.getId());
+            pst.setInt(1, eventID); // Insert the event ID
             pst.setString(2, participation.getNom());
             pst.setString(3, participation.getPrenom());
-            pst.setInt(4,(participation.getTel()));
+            pst.setInt(4, participation.getTel());
             pst.setString(5, participation.getEmail());
 
             pst.executeUpdate();
@@ -31,8 +29,8 @@ public class ParticipationServices implements IParticipationService<Participatio
         } catch (SQLException e) {
             System.out.println("Erreur lors de l'ajout de la Participation: " + e.getMessage());
         }
-
     }
+
 
 
 
@@ -53,10 +51,12 @@ public class ParticipationServices implements IParticipationService<Participatio
         String query = "UPDATE participation SET nom = ?, prenom = ?, tel = ?, email = ? WHERE id = ?";
 
         try (PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(query)) {
-            pst.setString(2, participation.getNom());
-            pst.setString(3, participation.getPrenom());
-            pst.setInt(4, (participation.getTel()));
-            pst.setString(5, participation.getEmail());
+            pst.setString(1, participation.getNom());
+            pst.setString(2, participation.getPrenom());
+            pst.setInt(3, (participation.getTel()));
+            pst.setString(4, participation.getEmail());
+            pst.setInt(5, participation.getId());
+
 
             pst.executeUpdate();
             System.out.println("Participation mise à jour avec succès");

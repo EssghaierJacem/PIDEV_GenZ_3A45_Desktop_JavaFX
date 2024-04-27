@@ -70,7 +70,7 @@ public class ParticipationController_Back implements Initializable {
 
         participationTableView.getItems().addAll(participationList);
     }
-   /* @FXML
+    @FXML
     private void handleDeleteButtonAction(ActionEvent event) {
         Participation selectedParticipation = participationTableView.getSelectionModel().getSelectedItem();
 
@@ -82,8 +82,8 @@ public class ParticipationController_Back implements Initializable {
 
             alert.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
-                    ParticipationServices participationServicesServices = new ParticipationServices();
-                    ParticipationServices.removeParticipation(selectedParticipation.getId());
+                    ParticipationServices participationServices= new ParticipationServices();
+                    participationServices.removeParticipation(selectedParticipation.getId());
 
                     participationTableView.getItems().remove(selectedParticipation);
                 }
@@ -95,7 +95,7 @@ public class ParticipationController_Back implements Initializable {
             alert.setContentText("Veuillez choisir une participation à supprimer.");
             alert.showAndWait();
         }
-    }*/
+    }
     @FXML
     private void handleUpdateButtonAction(ActionEvent event) throws IOException {
         Participation selectedParticipation = participationTableView.getSelectionModel().getSelectedItem();

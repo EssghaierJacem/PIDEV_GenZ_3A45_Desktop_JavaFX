@@ -5,7 +5,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -15,6 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="568.0" prefWidth="942.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.Controllers.Participation.AddParticipationController">
     <children>
@@ -124,6 +124,8 @@
                                 <Insets />
                             </opaqueInsets>
                         </TextField>
+                  <Text layoutX="215.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Event" wrappingWidth="136.0" />
+                  <ComboBox fx:id="events" layoutX="208.0" layoutY="50.0" prefWidth="150.0" />
                     </children>
                 </AnchorPane>
                 <Pane prefHeight="98.0" prefWidth="765.0">

@@ -6,21 +6,25 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import tn.esprit.entites.Event;
 import tn.esprit.entites.Participation;
+import tn.esprit.services.EventServices;
 import tn.esprit.services.ParticipationServices;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public abstract class AddParticipationController implements Initializable {
+public class AddParticipationController implements Initializable{
 
     @FXML
     private JFXButton AddParticipation;
 
     @FXML
     private JFXButton Clear;
+
+    @FXML
+    private TextField addEmail;
 
     @FXML
     private TextField addNom;
@@ -32,7 +36,12 @@ public abstract class AddParticipationController implements Initializable {
     private TextField addTel;
 
     @FXML
-    private TextField addEmail;
+    private ComboBox<Event> events;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        loadEvents();
+    }
 
 
     @FXML
@@ -43,11 +52,18 @@ public abstract class AddParticipationController implements Initializable {
         newParticipation.setTel(Integer.parseInt(addTel.getText()));
         newParticipation.setEmail(addEmail.getText());
 
-        ParticipationServices participationServices = new ParticipationServices();
-        participationServices.addParticipation(newParticipation);
+        Event selectedEvent = events.getValue();
 
-        clearFields();
+        if (selectedEvent != null) {
+            ParticipationServices participationServices = new ParticipationServices();
+            participationServices.addParticipation(newParticipation, selectedEvent.getId());
+
+            clearFields();
+        } else {
+            System.out.println("Please select an event");
+        }
     }
+
 
     private void clearFields() {
         addNom.clear();
@@ -55,9 +71,14 @@ public abstract class AddParticipationController implements Initializable {
         addTel.clear();
         addEmail.clear();
     }
+
     @FXML
     private void handleClear(ActionEvent event) {
         clearFields();
     }
 
+    private void loadEvents() {
+        EventServices eventServices = new EventServices();
+        events.setItems(FXCollections.observableArrayList(eventServices.getAllEvents()));
+    }
 }
