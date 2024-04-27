@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="568.0" prefWidth="942.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.Controllers.Reservation.UpdateReservationController">
+    <children>
+        <VBox prefHeight="495.0" prefWidth="155.0">
+            <children>
+                <AnchorPane prefHeight="606.0" prefWidth="178.0" styleClass="side_ankerpane" stylesheets="@../css/JStyle.css">
+                    <children>
+                        <Pane layoutX="3.0" layoutY="24.0" prefHeight="62.0" prefWidth="169.0" styleClass="inner_pane" stylesheets="@../css/JStyle.css">
+                            <children>
+                                <Label layoutX="53.0" layoutY="15.0" prefHeight="18.0" prefWidth="54.0" text="Bonjour," />
+                                <Label layoutX="61.0" layoutY="31.0" text="Username">
+                                    <font>
+                                        <Font name="Century Gothic Bold" size="14.0" />
+                                    </font>
+                                </Label>
+                                <ImageView fitHeight="35.0" fitWidth="33.0" layoutX="14.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../JImages/2096583.png" />
+                                    </image>
+                                </ImageView>
+                                <Pane layoutX="139.0" layoutY="7.0" prefHeight="51.0" prefWidth="25.0" styleClass="most_inner_pane" stylesheets="@../css/JStyle.css">
+                                    <children>
+                                        <ImageView fitHeight="62.0" fitWidth="33.0" layoutX="-4.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@../JImages/Dots.png" />
+                                            </image>
+                                        </ImageView>
+                                    </children>
+                                </Pane>
+                            </children>
+                        </Pane>
+                    </children>
+                </AnchorPane>
+            </children>
+        </VBox>
+        <VBox prefHeight="568.0" prefWidth="833.0" styleClass="root" stylesheets="@../css/JStyle.css">
+            <children>
+                <Pane prefHeight="99.0" prefWidth="582.0">
+                    <children>
+                        <Line endX="649.800048828125" endY="0.20000267028808594" layoutX="115.0" layoutY="31.0" startX="-115.00000762939453" startY="0.20000076293945312" />
+                        <Button layoutX="703.0" layoutY="2.0" minHeight="18.0" minWidth="53.0" mnemonicParsing="false" opacity="0.8" prefHeight="25.0" prefWidth="53.0" text="X">
+                            <font>
+                                <Font size="1.0" />
+                            </font>
+                        </Button>
+                        <Label layoutX="14.0" layoutY="42.0" text="Liste des Reservations :">
+                            <font>
+                                <Font name="Century Gothic Bold" size="20.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="14.0" layoutY="67.0" prefHeight="25.0" prefWidth="284.0" text="Text Sample illustration for the ressources idk yet.">
+                            <font>
+                                <Font name="Century Gothic" size="12.0" />
+                            </font>
+                        </Label>
+                        <ImageView fitHeight="51.0" fitWidth="75.0" layoutX="704.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../JImages/pngtree-destinations-holidays-travel-tour-vacations-png-image_5683178.png" />
+                            </image>
+                        </ImageView>
+                    </children>
+                </Pane>
+                <Pane opacity="0.17" prefHeight="1.0" prefWidth="582.0" styleClass="pane_1111" stylesheets="@../css/JStyle.css">
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                </Pane>
+                <AnchorPane prefHeight="461.0" prefWidth="765.0">
+                    <children>
+                        <TableView fx:id="reservationTableView" layoutX="447.0" layoutY="17.0" prefHeight="430.0" prefWidth="304.0">
+                            <columns>
+                                <TableColumn fx:id="reservation_cell_Id" prefWidth="25.599977493286133" text="ID" />
+                                <TableColumn fx:id="reservation_cellNom_client" prefWidth="60.79998779296875" text="Nom_Client" />
+                                <TableColumn fx:id="reservation_cell_Prenom_client" prefWidth="67.20000457763672" text="Prenom_Client" />
+                                <TableColumn fx:id="reservation_cell_Num_tel" prefWidth="58.39996337890625" text="Num_tel" />
+                                <TableColumn fx:id="reservation_cell_quantite" prefWidth="90.39990234375" text="Quantite" />
+                                <TableColumn fx:id="reservation_cell_dateR" prefWidth="90.39990234375" text="Datereservation" />
+                            </columns>
+                        </TableView>
+                        <Pane layoutX="21.0" layoutY="14.0" prefHeight="430.0" prefWidth="417.0" styleClass="pane_maybe" stylesheets="@../css/JStyle.css">
+                            <children>
+                                <Label layoutX="14.0" layoutY="24.0" prefHeight="18.0" prefWidth="54.0" text="Nom_Client: ">
+                                    <font>
+                                        <Font name="Century Gothic" size="11.0" />
+                                    </font>
+                                </Label>
+                                <TextField fx:id="updateNom_client" layoutX="68.0" layoutY="19.0" prefHeight="29.0" prefWidth="105.0" styleClass="progress" stylesheets="@../css/JStyle.css" />
+                                <Label layoutX="14.0" layoutY="68.0" prefHeight="18.0" prefWidth="33.0" text="Prenom_Client:">
+                                    <font>
+                                        <Font name="Century Gothic" size="11.0" />
+                                    </font>
+                                </Label>
+                                <TextField fx:id="updatePrenom_client" layoutX="49.0" layoutY="62.0" prefHeight="29.0" prefWidth="123.0" styleClass="progress" stylesheets="@../css/JStyle.css" />
+                                <Label layoutX="14.0" layoutY="120.0" prefHeight="18.0" prefWidth="54.0" text="Quantite:">
+                                    <font>
+                                        <Font name="Century Gothic" size="11.0" />
+                                    </font>
+                                </Label>
+                                <TextField fx:id="updateNum_tel" layoutX="268.0" layoutY="20.0" prefHeight="29.0" prefWidth="105.0" styleClass="progress" stylesheets="@../css/JStyle.css" />
+                                <Label layoutX="185.0" layoutY="25.0" prefHeight="18.0" prefWidth="85.0" text="Num_tel">
+                                    <font>
+                                        <Font name="Century Gothic" size="11.0" />
+                                    </font>
+                                </Label>
+                                <DatePicker fx:id="updateDateR" layoutX="275.0" layoutY="63.0" prefHeight="25.0" prefWidth="127.0" styleClass="progress" stylesheets="@../css/JStyle.css" />
+                                <JFXButton fx:id="UpdateReservation" layoutX="68.0" layoutY="377.0" onAction="#handleUpdateReservationButtonAction" prefHeight="33.0" prefWidth="85.0" styleClass="pane_update" stylesheets="@../css/JStyle.css" text="Modifier">
+                                    <font>
+                                        <Font name="Century Gothic Bold Italic" size="12.0" />
+                                    </font>
+                                </JFXButton>
+                                <JFXButton fx:id="Clear" layoutX="227.0" layoutY="377.0" onAction="#handleClearButtonAction" prefHeight="33.0" prefWidth="85.0" styleClass="pane_111" stylesheets="@../css/JStyle.css" text="Clear">
+                                    <font>
+                                        <Font name="Century Gothic Bold Italic" size="12.0" />
+                                    </font>
+                                </JFXButton>
+                        <Label layoutX="185.0" layoutY="69.0" text="Datereservation" />
+                        <TextField fx:id="updateQuantity" layoutX="60.0" layoutY="138.0" />
+
+                            </children>
+                        </Pane>
+                    </children>
+                </AnchorPane>
+            </children>
+        </VBox>
+    </children>
+</HBox>
