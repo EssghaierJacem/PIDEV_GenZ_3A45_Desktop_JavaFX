@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import java.lang.String?>
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
@@ -18,11 +20,11 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="568.0" prefWidth="942.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.Controllers.Destination.UpdateDestinationController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="607.0" prefWidth="942.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.Controllers.Destination.UpdateDestinationController">
     <children>
         <VBox prefHeight="495.0" prefWidth="155.0">
             <children>
-                <AnchorPane prefHeight="606.0" prefWidth="178.0" styleClass="side_ankerpane" stylesheets="@../css/JStyle.css">
+                <AnchorPane prefHeight="606.0" prefWidth="199.0" styleClass="side_ankerpane" stylesheets="@../css/JStyle.css">
                     <children>
                         <Pane layoutX="3.0" layoutY="24.0" prefHeight="62.0" prefWidth="169.0" styleClass="inner_pane" stylesheets="@../css/JStyle.css">
                             <children>
@@ -48,6 +50,221 @@
                                 </Pane>
                             </children>
                         </Pane>
+                  <Pane layoutX="3.0" layoutY="111.0" prefHeight="34.0" prefWidth="178.0">
+                     <children>
+                        <ImageView fitHeight="34.0" fitWidth="44.0" layoutX="14.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../JImages/icons8-home-50.png" />
+                           </image>
+                        </ImageView>
+                        <JFXButton layoutX="54.0" layoutY="1.0" prefHeight="32.0" prefWidth="117.0" text="Dashboard" textFill="WHITE">
+                           <font>
+                              <Font name="Century Gothic Bold" size="12.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                     <stylesheets>
+                        <URL value="@../css/frontStyles.css" />
+                        <URL value="@../css/frontStyles.css" />
+                     </stylesheets>
+                     <styleClass>
+                        <String fx:value="most_inner_pane" />
+                        <String fx:value="mouse-moved" />
+                     </styleClass>
+                  </Pane>
+                  <Pane layoutX="3.0" layoutY="158.0" prefHeight="34.0" prefWidth="178.0">
+                     <children>
+                        <ImageView fitHeight="34.0" fitWidth="44.0" layoutX="14.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../JImages/icons8-map-50.png" />
+                           </image>
+                        </ImageView>
+                        <JFXButton fx:id="destinationButton" layoutX="54.0" layoutY="1.0" onAction="#goToDestination" prefHeight="32.0" prefWidth="117.0" text="Destination" textFill="WHITE">
+                           <font>
+                              <Font name="Century Gothic Bold" size="12.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                     <stylesheets>
+                        <URL value="@../css/frontStyles.css" />
+                        <URL value="@../css/frontStyles.css" />
+                     </stylesheets>
+                     <styleClass>
+                        <String fx:value="most_inner_pane" />
+                        <String fx:value="mouse-moved" />
+                     </styleClass>
+                  </Pane>
+                  <Pane layoutX="3.0" layoutY="202.0" prefHeight="34.0" prefWidth="178.0">
+                     <children>
+                        <ImageView fitHeight="34.0" fitWidth="44.0" layoutX="14.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../JImages/icons8-plane-50.png" />
+                           </image>
+                        </ImageView>
+                        <JFXButton fx:id="volButton" layoutX="54.0" layoutY="1.0" onAction="#goToVol" prefHeight="32.0" prefWidth="117.0" text="Vol" textFill="WHITE">
+                           <font>
+                              <Font name="Century Gothic Bold" size="12.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                     <stylesheets>
+                        <URL value="@../css/frontStyles.css" />
+                        <URL value="@../css/frontStyles.css" />
+                     </stylesheets>
+                     <styleClass>
+                        <String fx:value="most_inner_pane" />
+                        <String fx:value="mouse-moved" />
+                     </styleClass>
+                  </Pane>
+                  <Pane layoutX="3.0" layoutY="249.0" prefHeight="34.0" prefWidth="178.0">
+                     <children>
+                        <ImageView fitHeight="34.0" fitWidth="44.0" layoutX="14.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../JImages/icons8-tour-50.png" />
+                           </image>
+                        </ImageView>
+                        <JFXButton layoutX="54.0" layoutY="1.0" prefHeight="32.0" prefWidth="117.0" text="Tournee" textFill="WHITE">
+                           <font>
+                              <Font name="Century Gothic Bold" size="12.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                     <stylesheets>
+                        <URL value="@../css/frontStyles.css" />
+                        <URL value="@../css/frontStyles.css" />
+                     </stylesheets>
+                     <styleClass>
+                        <String fx:value="most_inner_pane" />
+                        <String fx:value="mouse-moved" />
+                     </styleClass>
+                  </Pane>
+                  <Pane layoutX="9.0" layoutY="294.0" prefHeight="34.0" prefWidth="178.0">
+                     <children>
+                        <ImageView fitHeight="34.0" fitWidth="44.0" layoutX="14.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../JImages/icons8-guide-50.png" />
+                           </image>
+                        </ImageView>
+                        <JFXButton layoutX="54.0" layoutY="1.0" prefHeight="32.0" prefWidth="117.0" text="Guide" textFill="WHITE">
+                           <font>
+                              <Font name="Century Gothic Bold" size="12.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                     <stylesheets>
+                        <URL value="@../css/frontStyles.css" />
+                        <URL value="@../css/frontStyles.css" />
+                     </stylesheets>
+                     <styleClass>
+                        <String fx:value="most_inner_pane" />
+                        <String fx:value="mouse-moved" />
+                     </styleClass>
+                  </Pane>
+                  <Pane layoutX="9.0" layoutY="341.0" prefHeight="34.0" prefWidth="178.0">
+                     <children>
+                        <ImageView fitHeight="34.0" fitWidth="44.0" layoutX="14.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../JImages/icons8-command-50.png" />
+                           </image>
+                        </ImageView>
+                        <JFXButton layoutX="54.0" layoutY="1.0" prefHeight="32.0" prefWidth="117.0" text="Commandes" textFill="WHITE">
+                           <font>
+                              <Font name="Century Gothic Bold" size="12.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                     <stylesheets>
+                        <URL value="@../css/frontStyles.css" />
+                        <URL value="@../css/frontStyles.css" />
+                     </stylesheets>
+                     <styleClass>
+                        <String fx:value="most_inner_pane" />
+                        <String fx:value="mouse-moved" />
+                     </styleClass>
+                  </Pane>
+                  <Pane layoutX="12.0" layoutY="385.0" prefHeight="34.0" prefWidth="178.0">
+                     <children>
+                        <ImageView fitHeight="34.0" fitWidth="44.0" layoutX="14.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../JImages/icons8-reservation-50.png" />
+                           </image>
+                        </ImageView>
+                        <JFXButton layoutX="54.0" layoutY="1.0" prefHeight="32.0" prefWidth="117.0" text="Reservations" textFill="WHITE">
+                           <font>
+                              <Font name="Century Gothic Bold" size="12.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                     <stylesheets>
+                        <URL value="@../css/frontStyles.css" />
+                        <URL value="@../css/frontStyles.css" />
+                     </stylesheets>
+                     <styleClass>
+                        <String fx:value="most_inner_pane" />
+                        <String fx:value="mouse-moved" />
+                     </styleClass>
+                  </Pane>
+                  <Pane layoutX="12.0" layoutY="432.0" prefHeight="34.0" prefWidth="178.0">
+                     <children>
+                        <ImageView fitHeight="34.0" fitWidth="44.0" layoutX="14.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../JImages/icons8-volunteering-50.png" />
+                           </image>
+                        </ImageView>
+                        <JFXButton layoutX="54.0" layoutY="1.0" prefHeight="32.0" prefWidth="117.0" text="Participation" textFill="WHITE">
+                           <font>
+                              <Font name="Century Gothic Bold" size="12.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                     <stylesheets>
+                        <URL value="@../css/frontStyles.css" />
+                        <URL value="@../css/frontStyles.css" />
+                     </stylesheets>
+                     <styleClass>
+                        <String fx:value="most_inner_pane" />
+                        <String fx:value="mouse-moved" />
+                     </styleClass>
+                  </Pane>
+                  <Pane layoutX="13.0" layoutY="485.0" prefHeight="34.0" prefWidth="178.0">
+                     <children>
+                        <ImageView fitHeight="34.0" fitWidth="44.0" layoutX="14.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../JImages/icons8-events-64.png" />
+                           </image>
+                        </ImageView>
+                        <JFXButton layoutX="54.0" layoutY="1.0" prefHeight="32.0" prefWidth="117.0" text="Evenements" textFill="WHITE">
+                           <font>
+                              <Font name="Century Gothic Bold" size="12.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                     <stylesheets>
+                        <URL value="@../css/frontStyles.css" />
+                        <URL value="@../css/frontStyles.css" />
+                     </stylesheets>
+                     <styleClass>
+                        <String fx:value="most_inner_pane" />
+                        <String fx:value="mouse-moved" />
+                     </styleClass>
+                  </Pane>
+                  <Pane layoutX="32.0" layoutY="540.0" prefHeight="34.0" prefWidth="140.0">
+                     <children>
+                        <JFXButton fx:id="Logout" layoutX="12.0" layoutY="1.0" onAction="#Logout" prefHeight="32.0" prefWidth="117.0" text="Logout">
+                           <font>
+                              <Font name="Century Gothic Bold" size="12.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                     <stylesheets>
+                        <URL value="@../css/frontStyles.css" />
+                        <URL value="@../css/frontStyles.css" />
+                     </stylesheets>
+                     <styleClass>
+                        <String fx:value="pane_maybe" />
+                        <String fx:value="mouse-moved" />
+                     </styleClass>
+                  </Pane>
                     </children>
                 </AnchorPane>
             </children>
@@ -67,7 +284,7 @@
                                 <Font name="Century Gothic Bold" size="20.0" />
                             </font>
                         </Label>
-                        <Label layoutX="14.0" layoutY="67.0" prefHeight="25.0" prefWidth="284.0" text="Text Sample illustration for the ressources idk yet.">
+                        <Label layoutX="14.0" layoutY="67.0" prefHeight="25.0" prefWidth="284.0" text="Vous pouvez visualiser la liste des destinations">
                             <font>
                                 <Font name="Century Gothic" size="12.0" />
                             </font>
@@ -86,7 +303,7 @@
                 </Pane>
                 <AnchorPane prefHeight="461.0" prefWidth="765.0">
                     <children>
-                        <TableView fx:id="destinationTableView" layoutX="447.0" layoutY="17.0" prefHeight="430.0" prefWidth="304.0">
+                        <TableView fx:id="destinationTableView" layoutX="447.0" layoutY="17.0" prefHeight="458.0" prefWidth="304.0">
                             <columns>
                                 <TableColumn fx:id="destination_cell_id" prefWidth="25.599977493286133" text="ID" />
                                 <TableColumn fx:id="destination_cell_pays" prefWidth="60.79998779296875" text="Pays" />
@@ -95,7 +312,7 @@
                                 <TableColumn fx:id="destination_cell_cuisinelocale" prefWidth="90.39990234375" text="Cuisine locale" />
                             </columns>
                         </TableView>
-                  <Pane layoutX="21.0" layoutY="14.0" prefHeight="430.0" prefWidth="417.0" styleClass="pane_maybe" stylesheets="@../css/JStyle.css">
+                  <Pane layoutX="21.0" layoutY="14.0" prefHeight="465.0" prefWidth="418.0" styleClass="pane_maybe" stylesheets="@../css/JStyle.css">
                      <children>
                         <Label layoutX="14.0" layoutY="24.0" prefHeight="18.0" prefWidth="54.0" text="Pays: ">
                            <font>
@@ -157,19 +374,24 @@
                            </font>
                         </Label>
                         <TextField fx:id="updateAttractions" layoutX="277.0" layoutY="169.0" prefHeight="29.0" prefWidth="123.0" styleClass="progress" stylesheets="@../css/JStyle.css" />
-                         <JFXButton fx:id="UpdateDestination" layoutX="68.0" layoutY="377.0" prefHeight="33.0" prefWidth="85.0" styleClass="pane_update" stylesheets="@../css/JStyle.css" text="Modifier" onAction="#handleUpdateDestinationButtonAction">
-                             <font>
-                                 <Font name="Century Gothic Bold Italic" size="12.0" />
-                             </font>
-                         </JFXButton>
-                         <JFXButton fx:id="Clear" layoutX="227.0" layoutY="377.0" prefHeight="33.0" prefWidth="85.0" styleClass="pane_111" stylesheets="@../css/JStyle.css" text="Clear" onAction="#handleClearButtonAction">
-                             <font>
-                                 <Font name="Century Gothic Bold Italic" size="12.0" />
-                             </font>
-                         </JFXButton>
+                        <Label fx:id="errorLabel" layoutX="27.0" layoutY="308.0" prefHeight="62.0" prefWidth="315.0" text="Label" textFill="#f40606">
+                           <font>
+                              <Font name="Century Gothic" size="12.0" />
+                           </font>
+                        </Label>
 
                      </children>
                   </Pane>
+                   <JFXButton fx:id="UpdateDestination" layoutX="145.0" layoutY="437.0" onAction="#handleUpdateDestinationButtonAction" prefHeight="33.0" prefWidth="85.0" styleClass="pane_update" stylesheets="@../css/JStyle.css" text="Modifier">
+                       <font>
+                           <Font name="Century Gothic Bold Italic" size="12.0" />
+                       </font>
+                   </JFXButton>
+                   <JFXButton fx:id="Clear" layoutX="232.0" layoutY="436.0" onAction="#handleClearButtonAction" prefHeight="33.0" prefWidth="85.0" styleClass="pane_111" stylesheets="@../css/JStyle.css" text="Clear">
+                       <font>
+                           <Font name="Century Gothic Bold Italic" size="12.0" />
+                       </font>
+                   </JFXButton>
                     </children>
                 </AnchorPane>
             </children>
