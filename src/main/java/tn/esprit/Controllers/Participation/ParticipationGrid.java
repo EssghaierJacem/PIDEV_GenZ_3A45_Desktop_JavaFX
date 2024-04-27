@@ -30,7 +30,7 @@ public class ParticipationGrid implements Initializable {
     public void setData(Participation participation) {
         GridNom.setText(participation.getNom());
         GridPrenom.setText(participation.getPrenom());
-        GridTel.setText(participation.getTel());
+        GridTel.setText(String.valueOf(participation.getTel()));
         GridEmail.setText(participation.getEmail());
     }
 }

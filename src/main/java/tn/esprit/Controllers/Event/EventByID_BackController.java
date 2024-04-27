@@ -36,13 +36,11 @@ public class EventByID_BackController implements Initializable {
 
     @FXML
     private Label event_nom;
+    @FXML
+    private Label event_dateD;
 
     @FXML
-    private Label dateD;
-
-    @FXML
-    private Label dateF;
-
+    private Label event_dateF;
 
     @FXML
     private Label event_lieu;
@@ -70,8 +68,8 @@ public class EventByID_BackController implements Initializable {
         event_lieu.setText(event.getLieu());
         event_description.setText(event.getDescription());
         event_organisateur.setText(event.getOrganisateur());
-        dateD.setText(dateFormat.format(event.getDate_debut()));
-        dateF.setText(dateFormat.format(event.getDate_fin()));
+        event_dateD.setText(dateFormat.format(event.getDate_debut()));
+        event_dateF.setText(dateFormat.format(event.getDate_fin()));
         event_prix.setText(String.valueOf(event.getPrix()));
 
 

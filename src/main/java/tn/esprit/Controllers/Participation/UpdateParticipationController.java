@@ -81,7 +81,7 @@ public class UpdateParticipationController implements Initializable {
     void populateFieldsWithData(Participation participation) {
         updateNom.setText(participation.getNom());
         updatePrenom.setText(participation.getPrenom());
-        updateTel.setText(participation.getTel());
+        updateTel.setText(String.valueOf(participation.getTel()));
         updateEmail.setText(participation.getEmail());
     }
     @FXML

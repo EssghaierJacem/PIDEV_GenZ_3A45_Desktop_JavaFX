@@ -74,6 +74,7 @@ public class AddEventController implements Initializable{
         addOrganisateur.clear();
         addImage.clear();
         addPrix.clear();
+        addLieu.clear();
     }
     @FXML
     private void handleClear(ActionEvent event) {
@@ -87,7 +88,6 @@ public class AddEventController implements Initializable{
         addOrganisateur.setPromptText("Enter event's organisator");
         addLieu.setPromptText("Enter event's location");
 
-        // Example of setting a default value for the date picker
         addDateD.setValue(LocalDate.now());
         addDateF.setValue(LocalDate.now());
     }

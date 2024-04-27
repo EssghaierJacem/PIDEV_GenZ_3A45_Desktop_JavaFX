@@ -91,7 +91,6 @@ public class UpdateEventController implements Initializable {
         event_cell_lieu.setCellValueFactory(new PropertyValueFactory<>("lieu"));
         event_cell_description.setCellValueFactory(new PropertyValueFactory<>("description"));
         event_cell_organisateur.setCellValueFactory(new PropertyValueFactory<>("organisateur"));
-        event_cell_dateD.setCellValueFactory(new PropertyValueFactory<>("date_debut"));
 
         eventTableView.getItems().addAll(eventList);
     }
@@ -112,8 +111,9 @@ public class UpdateEventController implements Initializable {
         updateOrganisateur.clear();
         updateImage.clear();
         updateDescription.clear();
-        updateDateD.setValue(null);
-        updateDateF.setValue(null);
+        updatePrix.clear();
+//        updateDateD.setValue(null);
+//        updateDateF.setValue(null);
 
     }
 
@@ -130,13 +130,13 @@ public class UpdateEventController implements Initializable {
             Optional<ButtonType> result = alert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
                 selectedEvent.setNom(updateNom.getText());
-                selectedEvent.setLieu(updateLieu.getItems().toString());
+//                selectedEvent.setLieu(updateLieu.getItems().toString());
                 selectedEvent.setDescription(updateDescription.getText());
                 selectedEvent.setOrganisateur(updateOrganisateur.getText());
-                java.sql.Date dateDebut = java.sql.Date.valueOf(updateDateD.getValue());
-                selectedEvent.setDate_debut(dateDebut);
-                java.sql.Date dateFin = java.sql.Date.valueOf(updateDateF.getValue());
-                selectedEvent.setDate_fin(dateFin);
+//                java.sql.Date dateDebut = java.sql.Date.valueOf(updateDateD.getValue());
+//                selectedEvent.setDate_debut(dateDebut);
+//                java.sql.Date dateFin = java.sql.Date.valueOf(updateDateF.getValue());
+//                selectedEvent.setDate_fin(dateFin);
                 selectedEvent.setImage(updateImage.getText());
                 selectedEvent.setPrix((float) Double.parseDouble(updatePrix.getText()));
 

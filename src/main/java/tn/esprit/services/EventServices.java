@@ -26,7 +26,7 @@ public class EventServices implements IEventService<Event> {
             pst.setString(7, event.getImage());
             pst.setDouble(8, event.getPrix());
             pst.executeUpdate();
-            System.out.println("Destination ajoutée avec succès");
+            System.out.println("Event ajoutée avec succès");
         } catch (SQLException e) {
             System.out.println("Erreur lors de l'ajout de la event: " + e.getMessage());
         }
@@ -102,6 +102,7 @@ public class EventServices implements IEventService<Event> {
                     event.setDate_debut(rs.getDate("date_debut"));
                     event.setDate_fin(rs.getDate("date_fin"));
                     event.setLieu(rs.getString("lieu"));
+                    event.setOrganisateur(rs.getString("organisateur"));
                     event.setDescription(rs.getString("description"));
                     event.setImage(rs.getString("image"));
                     event.setPrix(rs.getFloat("prix"));

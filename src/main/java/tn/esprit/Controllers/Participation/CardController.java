@@ -40,7 +40,7 @@ public class CardController  implements Initializable {
     public void setData(Participation participation) {
         labelNom.setText(participation.getNom());
         labelPrenom.setText(participation.getPrenom());
-        labelTel.setText(participation.getTel());
+        labelTel.setText(String.valueOf(participation.getTel()));
         labelEmail.setText(participation.getEmail());
 
         }

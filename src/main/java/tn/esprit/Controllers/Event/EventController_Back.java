@@ -19,6 +19,7 @@ import tn.esprit.entites.Event;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
 import java.util.List;
 
@@ -57,7 +58,7 @@ public class EventController_Back implements Initializable {
     @FXML
     private TableColumn<Event, Float> event_cell_prix;
 
-    
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
     
     @FXML
     private TableView<Event> eventTableView;
@@ -76,7 +77,7 @@ public class EventController_Back implements Initializable {
         event_cell_lieu.setCellValueFactory(new PropertyValueFactory<>("lieu"));
         event_cell_description.setCellValueFactory(new PropertyValueFactory<>("description"));
         event_cell_organisateur.setCellValueFactory(new PropertyValueFactory<>("organisateur"));
-        event_cell_dateD.setCellValueFactory(new PropertyValueFactory<>("date_depart"));
+        event_cell_dateD.setCellValueFactory(new PropertyValueFactory<>("date_debut"));
         event_cell_dateF.setCellValueFactory(new PropertyValueFactory<>("date_fin"));
         event_cell_prix.setCellValueFactory(new PropertyValueFactory<>("prix"));
 

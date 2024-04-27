@@ -23,7 +23,7 @@ public class ParticipationServices implements IParticipationService<Participatio
             pst.setInt(1, participation.getId());
             pst.setString(2, participation.getNom());
             pst.setString(3, participation.getPrenom());
-            pst.setInt(4, Integer.parseInt(participation.getTel()));
+            pst.setInt(4,(participation.getTel()));
             pst.setString(5, participation.getEmail());
 
             pst.executeUpdate();
@@ -55,7 +55,7 @@ public class ParticipationServices implements IParticipationService<Participatio
         try (PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(query)) {
             pst.setString(2, participation.getNom());
             pst.setString(3, participation.getPrenom());
-            pst.setInt(4, Integer.parseInt(participation.getTel()));
+            pst.setInt(4, (participation.getTel()));
             pst.setString(5, participation.getEmail());
 
             pst.executeUpdate();
