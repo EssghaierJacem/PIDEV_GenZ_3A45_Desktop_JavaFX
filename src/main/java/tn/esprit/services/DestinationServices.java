@@ -1,15 +1,20 @@
 package tn.esprit.services;
 
-
-
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import tn.esprit.entites.Destination;
+import tn.esprit.entites.User;
 import tn.esprit.interfaces.IDestinationService;
 import tn.esprit.tools.MyConnection;
 
+import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class DestinationServices implements IDestinationService<Destination> {
@@ -152,5 +157,99 @@ public class DestinationServices implements IDestinationService<Destination> {
         }
         return recentlyAddedList;
     }
+    public int getUserCount() {
+        String query = "SELECT COUNT(*) FROM user";
+        try (PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(query);
+             ResultSet rs = pst.executeQuery()) {
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            System.out.println("Erreur lors de la récupération des utilisateurs: " + e.getMessage());
+        }
+        return 0;
+    }
+    public int countDistinctDevises() {
+        String query = "SELECT COUNT(DISTINCT devise) FROM destination";
+        try (PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(query);
+             ResultSet rs = pst.executeQuery()) {
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            System.out.println("Erreur lors de la récupération des devises " + e.getMessage());
+        }
+        return 0;
+    }
+    public List<Destination> getTopDestinationsByUserCount(int limit) {
+        List<Destination> topDestinations = new ArrayList<>();
+        String query = "SELECT d.id, d.pays, d.ville, COUNT(DISTINCT du.user_id) AS userCount " +
+                "FROM destination d " +
+                "LEFT JOIN user_destination du ON du.destination_id = d.id " +
+                "GROUP BY d.id, d.pays, d.ville " +
+                "ORDER BY userCount DESC " +
+                "LIMIT ?";
 
+        try (PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(query)) {
+            pst.setInt(1, limit);
+            try (ResultSet rs = pst.executeQuery()) {
+                while (rs.next()) {
+                    Destination destination = new Destination();
+                    destination.setId(rs.getInt("id"));
+                    destination.setPays(rs.getString("pays"));
+                    destination.setVille(rs.getString("ville"));
+                    int userCount = rs.getInt("userCount");
+                    destination.setUsers(new HashSet<>());
+                    for (int i = 0; i < userCount; i++) {
+                        destination.getUsers().add(new User());
+                    }
+
+                    System.out.println("Destination: " + destination.getPays() + ", User count: " + userCount);
+
+                    topDestinations.add(destination);
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error retrieving top destinations by user count: " + e.getMessage());
+        }
+        return topDestinations;
+    }
+    public void exportToPDF(Destination destination, String filePath) {
+        try (PDDocument document = new PDDocument()) {
+            PDPage page = new PDPage();
+            document.addPage(page);
+
+            try (PDPageContentStream contentStream = new PDPageContentStream(document, page)) {
+                contentStream.setFont(PDType1Font.HELVETICA, 12);
+
+                contentStream.beginText();
+                contentStream.newLineAtOffset(100, 700);
+
+                contentStream.showText("Destination ID: " + destination.getId());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Pays: " + destination.getPays());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Ville: " + destination.getVille());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Description: " + destination.getDescription());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Attractions: " + destination.getAttractions());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Accommodations: " + destination.getAccomodation());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Devise: " + destination.getDevise());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Cuisine Locale: " + destination.getCuisine_locale());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Accessibilité: " + (destination.getAccessibilite() ? "Yes" : "No"));
+
+                contentStream.endText();
+            }
+
+            document.save(filePath);
+            System.out.println("PDF created successfully!");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
