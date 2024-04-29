@@ -1,6 +1,8 @@
 package tn.esprit.Controllers.User;
 
 import com.jfoenix.controls.JFXButton;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,18 +12,21 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import tn.esprit.entites.PDFExporter;
 import tn.esprit.entites.Role;
 import tn.esprit.entites.SessionManager;
 import tn.esprit.entites.User;
+import tn.esprit.services.ExcelExporter;
 import tn.esprit.services.UserServices;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class UserController implements Initializable {
+public class UserController  {
 
     @FXML
     private JFXButton DeleteUser;
@@ -88,11 +93,19 @@ public class UserController implements Initializable {
 
     @FXML
     private TableColumn<User, String> user_cell_username;
+    @FXML
+    private TextField idSearch;
+    @FXML
+    private ComboBox<String> idSort;
+    @FXML
+    private ComboBox<String > idSearchWith;
 
     private UserServices userServices;
+    private final String[] attributsSearch = {"nom", "prenom", "email", "cin", "username"};
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    public void initialize() {
+        idSearchWith.setItems(FXCollections.observableArrayList(attributsSearch));
         userServices = new UserServices();
         fillUserTableView();
         loadRoles();
@@ -315,4 +328,50 @@ public class UserController implements Initializable {
         String urlRegex = "^(http|https)://[a-zA-Z0-9./_%+-]+\\.[a-zA-Z]{2,}$";
         return photoURL.matches(urlRegex);
     }
+    @FXML
+    private void export(ActionEvent event) {
+        ExcelExporter d = new ExcelExporter();
+        d.generateExcel(UserTableView);
+    }
+
+    @FXML
+    private void exportToPDF(ActionEvent event) {
+        PDFExporter pdfExporter = new PDFExporter();
+        pdfExporter.generatePDF(UserTableView);
+    }
+
+    private final UserServices ps=new UserServices();
+
+    @FXML
+    private void searchauto() {
+
+        String searchAttribute = idSearchWith.getValue();
+        String searchKeyword = idSearch.getText();
+
+        try {
+            List<User> searchResults = ps.searchUsersByEmailStartingWithLetter(searchAttribute,searchKeyword);
+
+            ObservableList<User> observableList = FXCollections.observableList(searchResults);
+
+            UserTableView.setItems(observableList);
+            user_cell_cin.setCellValueFactory(new PropertyValueFactory<>("cin"));
+            user_cell_nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
+            user_cell_prenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
+            user_cell_username.setCellValueFactory(new PropertyValueFactory<>("username"));
+            user_cell_password.setCellValueFactory(new PropertyValueFactory<>("password"));
+            user_cell_email.setCellValueFactory(new PropertyValueFactory<>("email"));
+            user_cell_role.setCellValueFactory(new PropertyValueFactory<>("role"));
+
+
+
+
+        } catch (SQLException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+        }
+
+    }
+
 }
