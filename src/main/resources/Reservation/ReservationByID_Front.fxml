@@ -15,7 +15,6 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Reservation.ReservationByIDFront">
    <children>
       <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="568.0" prefWidth="942.0">
@@ -86,36 +85,36 @@
                       </Pane>
                       <AnchorPane prefHeight="461.0" prefWidth="765.0">
                           <children>
-                              <TableView fx:id="reservationTableView" layoutX="447.0" layoutY="17.0" prefHeight="430.0" prefWidth="304.0">
+                              <TableView fx:id="reservationTableView" layoutX="309.0" layoutY="17.0" prefHeight="430.0" prefWidth="442.0">
                                   <columns>
-                                      <TableColumn fx:id="reservation_cell_Id" prefWidth="25.599977493286133" text="ID" />
-                                      <TableColumn fx:id="reservation_cellNom_client" prefWidth="60.79998779296875" text="Nom_Client" />
-                                      <TableColumn fx:id="reservatio_cell_Prenom_client" prefWidth="67.20000457763672" text="Prenom_Client" />
-                                      <TableColumn fx:id="reservation_cell_Num_tel" prefWidth="58.39996337890625" text="Num_tel" />
-                                      <TableColumn fx:id="reservation_cell_quantite" prefWidth="90.39990234375" text="Quantite" />
+                                      <TableColumn fx:id="reservation_cell_Id" prefWidth="59.333282470703125" text="ID" />
+                                      <TableColumn fx:id="reservation_cellNom_client" prefWidth="82.0" text="Nom" />
+                                      <TableColumn fx:id="reservatio_cell_Prenom_client" prefWidth="74.00003051757812" text="Prenom" />
+                                      <TableColumn fx:id="reservation_cell_Num_tel" prefWidth="125.33331298828125" text="Numero Téléphone" />
+                                      <TableColumn fx:id="reservation_cell_quantite" prefWidth="101.33331298828125" text="Quantite" />
                                   </columns>
                               </TableView>
-                              <Pane layoutX="21.0" layoutY="14.0" prefHeight="430.0" prefWidth="417.0" styleClass="pane_maybe" stylesheets="@../css/JStyle.css">
+                              <Pane layoutX="21.0" layoutY="14.0" prefHeight="430.0" prefWidth="263.0" styleClass="pane_maybe" stylesheets="@../css/JStyle.css">
                                   <children>
-                                      <Label layoutX="14.0" layoutY="24.0" prefHeight="18.0" prefWidth="54.0" text="Nom_Client: ">
+                                      <Label layoutX="21.0" layoutY="14.0" prefHeight="18.0" prefWidth="85.0" text="Nom_Client: ">
                                           <font>
                                               <Font name="Century Gothic" size="11.0" />
                                           </font>
                                       </Label>
-                                      <TextField fx:id="updateNom_client" layoutX="68.0" layoutY="19.0" prefHeight="29.0" prefWidth="105.0" styleClass="progress" stylesheets="@../css/JStyle.css" />
-                                      <Label layoutX="14.0" layoutY="68.0" prefHeight="18.0" prefWidth="33.0" text="Prenom_Clientille:">
+                                      <TextField fx:id="updateNom_client" layoutX="15.0" layoutY="41.0" prefHeight="29.0" prefWidth="123.0" styleClass="progress" stylesheets="@../css/JStyle.css" />
+                                      <Label layoutX="21.0" layoutY="77.0" prefHeight="18.0" prefWidth="105.0" text="Prenom_Client :">
                                           <font>
                                               <Font name="Century Gothic" size="11.0" />
                                           </font>
                                       </Label>
-                                      <TextField fx:id="updatePrenom_client" layoutX="277.0" layoutY="19.0" prefHeight="29.0" prefWidth="123.0" styleClass="progress" stylesheets="@../css/JStyle.css" />
-                                      <Label layoutX="14.0" layoutY="120.0" prefHeight="18.0" prefWidth="54.0" text="Quantitevise:">
+                                      <TextField fx:id="updatePrenom_client" layoutX="12.0" layoutY="179.0" prefHeight="29.0" prefWidth="123.0" styleClass="progress" stylesheets="@../css/JStyle.css" />
+                                      <Label layoutX="31.0" layoutY="222.0" prefHeight="18.0" prefWidth="85.0" text="Quantité">
                                           <font>
                                               <Font name="Century Gothic" size="11.0" />
                                           </font>
                                       </Label>
-                                      <TextField fx:id="updateNum_tel" layoutX="68.0" layoutY="63.0" prefHeight="29.0" prefWidth="105.0" styleClass="progress" stylesheets="@../css/JStyle.css" />
-                                      <Label layoutX="184.0" layoutY="68.0" prefHeight="18.0" prefWidth="85.0" text="Num_tel">
+                                      <TextField fx:id="updateNum_tel" layoutX="15.0" layoutY="104.0" prefHeight="29.0" prefWidth="123.0" styleClass="progress" stylesheets="@../css/JStyle.css" />
+                                      <Label layoutX="15.0" layoutY="152.0" prefHeight="18.0" prefWidth="123.0" text="Numero Téléphone">
                                           <font>
                                               <Font name="Century Gothic" size="11.0" />
                                           </font>

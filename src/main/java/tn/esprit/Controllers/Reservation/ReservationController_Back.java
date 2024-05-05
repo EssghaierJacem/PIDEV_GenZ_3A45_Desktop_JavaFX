@@ -1,28 +1,26 @@
 package tn.esprit.Controllers.Reservation;
 
 import com.jfoenix.controls.JFXButton;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import tn.esprit.Controllers.Reservation.ReservationByID_BackController;
 import tn.esprit.Controllers.Reservation.UpdateReservationController;
+import tn.esprit.entites.Commande;
 import tn.esprit.entites.Reservation;
+import tn.esprit.services.CommandeServices;
 import tn.esprit.services.ReservationServices;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Date;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class ReservationController_Back implements Initializable {
 
@@ -56,9 +54,26 @@ public class ReservationController_Back implements Initializable {
     @FXML
     private TableColumn<Reservation, Date> reservation_cell_dateR;
 
+    @FXML
+    private TextField keywordSearch;
+    private Timer searchTimer = new Timer();
+
 
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
+        keywordSearch.textProperty().addListener((observable, oldValue, newValue) -> {
+            searchTimer.cancel();
+            searchTimer = new Timer();
+            searchTimer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    filterAndUpdateReservationTable(newValue);
+                }
+            }, 100);
+        });
+
+
+
         addReservationShowListData();
     }
 
@@ -158,6 +173,24 @@ public class ReservationController_Back implements Initializable {
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.show();
+    }
+    private void filterAndUpdateReservationTable(String keyword) {
+        new Thread(() -> {
+            List<Reservation> filteredReservationList = new ArrayList<>();
+            ReservationServices reservationServices = new ReservationServices();
+            List<Reservation> originalReservationList= reservationServices.getAllReservations();
+            for (Reservation reservation :originalReservationList ) {
+                if (reservation.getNom_client().toLowerCase().contains(keyword.toLowerCase())) {
+                    filteredReservationList.add(reservation);
+                }
+            }
+            Platform.runLater(() -> {
+                reservationTableView.getItems().clear();
+
+                reservationTableView.getItems().addAll(filteredReservationList);
+            });
+        }).start();
+
     }
 
 

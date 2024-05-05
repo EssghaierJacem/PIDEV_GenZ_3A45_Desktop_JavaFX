@@ -1,22 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
-<?import java.lang.String?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="641.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.Controllers.Commande.CommandeController_Front">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="641.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.Controllers.Commande.CommandeController_Front">
     <top>
         <HBox alignment="CENTER_LEFT" prefHeight="74.0" prefWidth="950.0" styleClass="white-background" stylesheets="@../css/frontStyles.css" BorderPane.alignment="CENTER">
             <children>
@@ -258,13 +250,33 @@
             <TableView fx:id="CommandeTableView" prefHeight="200.0" prefWidth="200.0">
               <columns>
                 <TableColumn fx:id="commande_id" prefWidth="75.0" text="ID" />
-                <TableColumn fx:id="Num_commande" prefWidth="75.0" text="Num_commande" />
-                  <TableColumn fx:id="Code_promo" prefWidth="75.0" text="Code_promo" />
-                  <TableColumn fx:id="Type_paiement" prefWidth="75.0" text="Type_paiement" />
-                  <TableColumn fx:id="Email" prefWidth="75.0" text="Email" />
-                  <TableColumn fx:id="Date_commande" prefWidth="75.0" text="Date_commande" />
+                <TableColumn fx:id="Num_commande" prefWidth="141.33331298828125" text="Numero_commande" />
+                  <TableColumn fx:id="Code_promo" prefWidth="121.66668701171875" text="Code_promo" />
+                  <TableColumn fx:id="Type_paiement" prefWidth="104.99993896484375" text="Type_paiement" />
+                  <TableColumn fx:id="Email" prefWidth="123.3333740234375" text="Email" />
+                  <TableColumn fx:id="Date_commande" prefWidth="136.6666259765625" text="Date_commande" />
               </columns>
             </TableView>
+                <JFXButton fx:id="AjouterCommande" layoutX="267.0" layoutY="24.0" onAction="#handleAjouterCommandeButtonAction" prefHeight="42.0" prefWidth="100.0" styleClass="pane_add" stylesheets="@../css/JStyle.css" text="Ajouter!">
+                    <font>
+                        <Font name="Century Gothic Bold" size="12.0" />
+                    </font>
+                </JFXButton>
+                <JFXButton fx:id="Update" layoutX="267.0" layoutY="77.0" onAction="#handleUpdateButtonAction" prefHeight="42.0" prefWidth="100.0" styleClass="pane_update" stylesheets="@../css/JStyle.css" text="Modifier">
+                    <font>
+                        <Font name="Century Gothic Bold" size="12.0" />
+                    </font>
+                </JFXButton>
+                <JFXButton fx:id="GetCommande" layoutX="409.0" layoutY="24.0" onAction="#handleVoirPlusButtonAction" prefHeight="42.0" prefWidth="100.0" styleClass="inner_pane" stylesheets="@../css/JStyle.css" text="Voir plus">
+                    <font>
+                        <Font name="Century Gothic Bold" size="12.0" />
+                    </font>
+                </JFXButton>
+                <JFXButton fx:id="Delete" layoutX="409.0" layoutY="77.0" onAction="#handleDeleteButtonAction" prefHeight="42.0" prefWidth="100.0" styleClass="pane_111" stylesheets="@../css/JStyle.css" text="Supprimer">
+                    <font>
+                        <Font name="Century Gothic Bold" size="12.0" />
+                    </font>
+                </JFXButton>
             </children>
             <padding>
                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />

@@ -9,7 +9,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import tn.esprit.entites.Commande;
 import tn.esprit.services.CommandeServices;
 
+import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -53,7 +55,8 @@ public class UpdateCommandeController implements Initializable {
 
 
     @FXML
-    private TextField updateCode_promo;;
+    private TextField updateCode_promo;
+    ;
 
     @FXML
     private TextField updateType;
@@ -63,6 +66,9 @@ public class UpdateCommandeController implements Initializable {
 
     @FXML
     private DatePicker updateDateC;
+
+    @FXML
+    private Label errorLabel;
 
 
     private CommandeServices commandeServices;
@@ -97,19 +103,22 @@ public class UpdateCommandeController implements Initializable {
         updateType.setText(commande.getType_paiement());
         updateEmail.setText(commande.getEmail());
     }
+
     @FXML
     private void handleClearButtonAction(ActionEvent event) {
         updateNum_commande.clear();
         updateCode_promo.clear();
         updateType.clear();
         updateEmail.clear();
+        errorLabel.setText("");
     }
 
     @FXML
     private void handleUpdateCommandenButtonAction(ActionEvent event) {
-       Commande selectedCommande = commandeTableView.getSelectionModel().getSelectedItem();
+        Commande selectedCommande = commandeTableView.getSelectionModel().getSelectedItem();
 
         if (selectedCommande != null) {
+            if (validateInputs()) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Confirmation");
             alert.setHeaderText("Voulez-vous mettre à jour la destination?");
@@ -132,7 +141,7 @@ public class UpdateCommandeController implements Initializable {
                 successAlert.setHeaderText(null);
                 successAlert.setContentText("Destination mise à jour avec succès");
                 successAlert.showAndWait();
-            }
+            }}
         } else {
             Alert errorAlert = new Alert(Alert.AlertType.ERROR);
             errorAlert.setTitle("Erreur");
@@ -142,4 +151,54 @@ public class UpdateCommandeController implements Initializable {
         }
     }
 
+    private void showAlert(Alert.AlertType type, String title, String header, String content) {
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
+    private boolean validateInputs() {
+        String numCommande = updateNum_commande.getText();
+        String codePromo = updateCode_promo.getText();
+        String typePaiement = updateType.getText();
+        String email = updateEmail.getText();
+        LocalDate dateCommande = updateDateC.getValue();
+
+        if (numCommande.length() < 4 || numCommande.length() > 6) {
+            errorLabel.setText("Le numéro de commande doit avoir entre 4 et 6 caractères.");
+            return false;
+        }
+
+        if (codePromo.length() < 4 || codePromo.length() > 6) {
+            errorLabel.setText("Le code promo doit avoir entre 4 et 6 caractères.");
+            return false;
+        }
+
+        if (typePaiement.length() < 4 || typePaiement.length() > 6) {
+            errorLabel.setText("Le type de paiement doit avoir entre 4 et 6 caractères.");
+            return false;
+        }
+
+        if (!isValidEmail(email)) {
+            errorLabel.setText("L'email n'est pas valide.");
+            return false;
+        }
+
+        if (dateCommande == null || dateCommande.isAfter(LocalDate.now())) {
+            errorLabel.setText("Veuillez sélectionner une date de commande valide (passée ou présente).");
+            return false;
+        }
+
+        return true;
+    }
+    private boolean isValidEmail(String email) {
+        // Regular expression pattern for validating email addresses
+        String emailPattern = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+        return email.matches(emailPattern);
+    }
 }
+
+
+
+

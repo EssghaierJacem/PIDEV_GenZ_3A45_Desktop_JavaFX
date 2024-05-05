@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="568.0" prefWidth="942.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.Controllers.Commande.UpdateCommandeController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="568.0" prefWidth="942.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.Controllers.Commande.UpdateCommandeController">
    <children>
       <VBox prefHeight="495.0" prefWidth="155.0">
          <children>
@@ -76,50 +85,50 @@
             </Pane>
             <AnchorPane prefHeight="461.0" prefWidth="765.0">
                <children>
-                  <TableView fx:id="commandeTableView" layoutX="447.0" layoutY="17.0" prefHeight="430.0" prefWidth="304.0">
+                  <TableView fx:id="commandeTableView" layoutX="374.0" layoutY="17.0" prefHeight="430.0" prefWidth="377.0">
                      <columns>
-                        <TableColumn fx:id="commande_cell_id" prefWidth="25.599977493286133" text="ID" />
-                        <TableColumn fx:id="commande_cell_Num_commande" prefWidth="75.20004272460938" text="Num_commande" />
-                        <TableColumn fx:id="commande_cell_code_promo" prefWidth="76.0" text="Code_promo" />
-                        <TableColumn fx:id="commande_cell_type" prefWidth="51.199951171875" text="TYpe_paiement" />
-                        <TableColumn fx:id="commande_cell_email" prefWidth="51.199951171875" text="email" />
-                        <TableColumn fx:id="commande_cell_dateC" prefWidth="73.60009765625" text="Date Commande" />
+                        <TableColumn fx:id="commande_cell_id" prefWidth="45.3333740234375" text="ID" />
+                        <TableColumn fx:id="commande_cell_Num_commande" prefWidth="68.66668701171875" text="Numero" />
+                        <TableColumn fx:id="commande_cell_code_promo" prefWidth="54.666595458984375" text="Code" />
+                        <TableColumn fx:id="commande_cell_type" prefWidth="72.6666259765625" text="Paiement" />
+                        <TableColumn fx:id="commande_cell_email" prefWidth="68.0" text="Email" />
+                        <TableColumn fx:id="commande_cell_dateC" prefWidth="53.3333740234375" text="Date" />
 
                      </columns>
                   </TableView>
-                  <Pane layoutX="21.0" layoutY="14.0" prefHeight="430.0" prefWidth="417.0" styleClass="pane_maybe" stylesheets="@../css/JStyle.css">
+                  <Pane layoutX="6.0" layoutY="14.0" prefHeight="430.0" prefWidth="354.0" styleClass="pane_maybe" stylesheets="@../css/JStyle.css">
                      <children>
-                        <Label layoutX="14.0" layoutY="24.0" prefHeight="18.0" prefWidth="68.0" text="Num_commande">
+                        <Label layoutX="14.0" layoutY="10.0" prefHeight="18.0" prefWidth="123.0" text="Numero_commande">
                            <font>
                               <Font name="Century Gothic" size="11.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="updateNum_commande" layoutX="83.0" layoutY="19.0" prefHeight="30.0" prefWidth="105.0" styleClass="progress" stylesheets="@../css/JStyle.css" />
-                        <Label layoutX="14.0" layoutY="69.0" prefHeight="18.0" prefWidth="54.0" text="Code_promo">
+                        <TextField fx:id="updateNum_commande" layoutX="14.0" layoutY="39.0" prefHeight="30.0" prefWidth="123.0" styleClass="progress" stylesheets="@../css/JStyle.css" />
+                        <Label layoutX="16.0" layoutY="83.0" prefHeight="18.0" prefWidth="77.0" text="Code_promo">
                            <font>
                               <Font name="Century Gothic" size="11.0" />
                            </font>
                         </Label>
-                        <Label layoutX="14.0" layoutY="109.0" prefHeight="18.0" prefWidth="85.0" text="Date Commande">
+                        <Label layoutX="21.0" layoutY="156.0" prefHeight="18.0" prefWidth="105.0" text="Date Commande">
                            <font>
                               <Font name="Century Gothic" size="11.0" />
                            </font>
                         </Label>
 
-                        <TextField fx:id="updateCode_promo" layoutX="83.0" layoutY="64.0" prefHeight="29.0" prefWidth="105.0" styleClass="progress" stylesheets="@../css/JStyle.css" />
+                        <TextField fx:id="updateCode_promo" layoutX="16.0" layoutY="112.0" prefHeight="29.0" prefWidth="123.0" styleClass="progress" stylesheets="@../css/JStyle.css" />
 
 
-                        <Label layoutX="200.0" layoutY="69.0" prefHeight="18.0" prefWidth="85.0" text="Type_paiement">
+                        <Label layoutX="209.0" layoutY="83.0" prefHeight="18.0" prefWidth="85.0" text="Type_paiement">
                            <font>
                               <Font name="Century Gothic" size="11.0" />
                            </font>
                         </Label>
-                        <Label layoutX="204.0" layoutY="24.0" prefHeight="18.0" prefWidth="77.0" text="Email">
+                        <Label layoutX="212.0" layoutY="11.0" prefHeight="18.0" prefWidth="77.0" text="Email">
                            <font>
                               <Font name="Century Gothic" size="12.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="updateEmail" layoutX="263.0" layoutY="18.0" prefHeight="29.0" prefWidth="123.0" styleClass="progress" stylesheets="@../css/JStyle.css" />
+                        <TextField fx:id="updateEmail" layoutX="198.0" layoutY="40.0" prefHeight="29.0" prefWidth="132.0" styleClass="progress" stylesheets="@../css/JStyle.css" />
                         <JFXButton fx:id="UpdateCommande" layoutX="68.0" layoutY="377.0" onAction="#handleUpdateCommandenButtonAction" prefHeight="33.0" prefWidth="85.0" styleClass="pane_update" stylesheets="@../css/JStyle.css" text="Modifier">
                            <font>
                               <Font name="Century Gothic Bold Italic" size="12.0" />
@@ -130,9 +139,13 @@
                               <Font name="Century Gothic Bold Italic" size="12.0" />
                            </font>
                         </JFXButton>
-                        <TextField fx:id="updateType" layoutX="270.0" layoutY="94.0" prefHeight="29.0" prefWidth="123.0" styleClass="progress" stylesheets="@../css/JStyle.css" />
-                        <DatePicker fx:id="updateDateC" layoutX="19.0" layoutY="140.0" prefHeight="25.0" prefWidth="127.0" styleClass="progress" stylesheets="@../css/JStyle.css" />
-
+                        <TextField fx:id="updateType" layoutX="203.0" layoutY="113.0" prefHeight="29.0" prefWidth="132.0" styleClass="progress" stylesheets="@../css/JStyle.css" />
+                        <DatePicker fx:id="updateDateC" layoutX="18.0" layoutY="188.0" prefHeight="18.0" prefWidth="123.0" styleClass="progress" stylesheets="@../css/JStyle.css" />
+                        <Label fx:id="errorLabel" layoutX="27.0" layoutY="308.0" prefHeight="62.0" prefWidth="315.0" text="Label" textFill="#f40606">
+                           <font>
+                              <Font name="Century Gothic" size="12.0" />
+                           </font>
+                        </Label>
                      </children>
                   </Pane>
                </children>

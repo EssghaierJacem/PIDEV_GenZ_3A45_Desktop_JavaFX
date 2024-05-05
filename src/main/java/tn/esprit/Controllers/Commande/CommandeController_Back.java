@@ -1,5 +1,6 @@
 package tn.esprit.Controllers.Commande;
 
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -7,22 +8,24 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import com.jfoenix.controls.JFXButton;
 
 import javafx.stage.Stage;
+
+import tn.esprit.entites.Destination;
 import tn.esprit.services.CommandeServices;
 import tn.esprit.entites.Commande;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ResourceBundle;
+import java.util.*;
+import java.util.ArrayList;
 import java.util.List;
-
+import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
 public class CommandeController_Back implements Initializable {
 
     @FXML
@@ -51,11 +54,23 @@ public class CommandeController_Back implements Initializable {
     @FXML
     private TableColumn<Commande, Integer> commande_cell_Num_commande;
 
-
+    @FXML
+    private TextField keywordSearch;
+    private Timer searchTimer = new Timer();
 
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
         addCommandeShowListData();
+        keywordSearch.textProperty().addListener((observable, oldValue, newValue) -> {
+            searchTimer.cancel();
+            searchTimer = new Timer();
+            searchTimer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    filterAndUpdateCommandeTable(newValue);
+                }
+            }, 100);
+        });
     }
 
     private void addCommandeShowListData() {
@@ -68,13 +83,12 @@ public class CommandeController_Back implements Initializable {
         commande_cell_email.setCellValueFactory(new PropertyValueFactory<>("email"));
         commande_cell_code_promo.setCellValueFactory(new PropertyValueFactory<>("code_promo"));
         commande_cell_type.setCellValueFactory(new PropertyValueFactory<>("type_paiement"));
-
         commandeTableView.getItems().addAll(commandeList);
     }
 
     @FXML
     private void handleDeleteButtonAction(ActionEvent event) {
-        Commande selectedCommande =commandeTableView.getSelectionModel().getSelectedItem();
+        Commande selectedCommande = commandeTableView.getSelectionModel().getSelectedItem();
 
         if (selectedCommande != null) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -132,6 +146,7 @@ public class CommandeController_Back implements Initializable {
         stage.setScene(new Scene(root));
         stage.show();
     }
+
     @FXML
     private void handleVoirPlusButtonAction(ActionEvent event) throws IOException {
         Commande selectedCommande = commandeTableView.getSelectionModel().getSelectedItem();
@@ -159,4 +174,22 @@ public class CommandeController_Back implements Initializable {
         stage.show();
     }
 
+    private void filterAndUpdateCommandeTable(String keyword) {
+        new Thread(() -> {
+            List<Commande> filteredCommandeList = new ArrayList<>();
+            CommandeServices commandeServices = new CommandeServices();
+            List<Commande> originalCommandeList= commandeServices.getAllCommandes();
+            for (Commande commande :originalCommandeList ) {
+                if (commande.getNum_commande().toLowerCase().contains(keyword.toLowerCase())) {
+                    filteredCommandeList.add(commande);
+                }
+            }
+            Platform.runLater(() -> {
+                commandeTableView.getItems().clear();
+
+                commandeTableView.getItems().addAll(filteredCommandeList);
+            });
+        }).start();
+
+    }
 }

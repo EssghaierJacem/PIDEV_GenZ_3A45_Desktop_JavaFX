@@ -28,10 +28,6 @@
                 <Separator maxHeight="-Infinity" orientation="VERTICAL" prefHeight="56.0" prefWidth="30.0" />
                 <HBox maxHeight="-Infinity" prefHeight="27.0" prefWidth="237.0" spacing="5.0" styleClass="round-layout" stylesheets="@../css/frontStyles.css">
                     <children>
-                        <TextField prefHeight="26.0" prefWidth="202.0" styleClass="transparent" stylesheets="@../css/frontStyles.css" text="Search...">
-                            <font>
-                                <Font name="Century Gothic Italic" size="12.0" />
-                            </font></TextField>
                         <ImageView fitHeight="35.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../JImages/icons8_Search_52px.png" />
@@ -250,6 +246,11 @@
     <center>
         <VBox prefHeight="200.0" prefWidth="100.0" spacing="7.5" BorderPane.alignment="CENTER">
             <children>
+                <TextField fx:id="keywordSearch" layoutY="4.0" prefHeight="26.0" prefWidth="170.0" styleClass="progress" stylesheets="@../css/JStyle.css" text="Search...">
+                    <font>
+                        <Font name="Century Gothic Italic" size="10.0" />
+                    </font>
+                </TextField>
                 <Label prefHeight="39.0" prefWidth="274.0" text="Récemment ajouté">
                     <font>
                         <Font name="Century Gothic Bold" size="15.0" />
@@ -258,13 +259,33 @@
                 <TableView fx:id="reservationTableView" prefHeight="200.0" prefWidth="200.0">
                     <columns>
                         <TableColumn fx:id="reservation_cell_Id" prefWidth="75.0" text="ID" />
-                        <TableColumn fx:id="reservation_cellNom_client" prefWidth="75.0" text="Nom_client" />
-                        <TableColumn fx:id="reservation_cell_Prenom_client" prefWidth="75.0" text="renom_client" />
-                        <TableColumn fx:id="reservation_cell_Num_tel" prefWidth="75.0" text="Num_tel" />
-                        <TableColumn fx:id="reservation_cell_quantite" prefWidth="75.0" text="Quantite" />
-                        <TableColumn fx:id="reservation_cell_dateR" prefWidth="75.0" text="Date_reservation" />
+                        <TableColumn fx:id="reservation_cellNom_client" prefWidth="107.33331298828125" text="Nom_client" />
+                        <TableColumn fx:id="reservation_cell_Prenom_client" prefWidth="120.0" text="Prenom_client" />
+                        <TableColumn fx:id="reservation_cell_Num_tel" prefWidth="137.33331298828125" text="Numero Téléphone" />
+                        <TableColumn fx:id="reservation_cell_quantite" prefWidth="110.0" text="Quantite" />
+                        <TableColumn fx:id="reservation_cell_dateR" prefWidth="153.33331298828125" text="Date Réservation" />
                     </columns>
                 </TableView>
+                <JFXButton fx:id="GetReservation" layoutX="409.0" layoutY="24.0" onAction="#handleVoirPlusButtonAction" prefHeight="42.0" prefWidth="100.0" styleClass="inner_pane" stylesheets="@../css/JStyle.css" text="Voir plus">
+                    <font>
+                        <Font name="Century Gothic Bold" size="12.0" />
+                    </font>
+                </JFXButton>
+                <JFXButton fx:id="AjouterReservation" layoutX="267.0" layoutY="24.0" onAction="#handleAjouterReservationButtonAction" prefHeight="42.0" prefWidth="100.0" styleClass="pane_add" stylesheets="@../css/JStyle.css" text="Ajouter!">
+                    <font>
+                        <Font name="Century Gothic Bold" size="12.0" />
+                    </font>
+                </JFXButton>
+                <JFXButton fx:id="Update" layoutX="267.0" layoutY="77.0" onAction="#handleUpdateButtonAction" prefHeight="42.0" prefWidth="100.0" styleClass="pane_update" stylesheets="@../css/JStyle.css" text="Modifier">
+                    <font>
+                        <Font name="Century Gothic Bold" size="12.0" />
+                    </font>
+                </JFXButton>
+                <JFXButton fx:id="Delete" layoutX="409.0" layoutY="77.0" onAction="#handleDeleteButtonAction" prefHeight="42.0" prefWidth="100.0" styleClass="pane_111" stylesheets="@../css/JStyle.css" text="Supprimer">
+                    <font>
+                        <Font name="Century Gothic Bold" size="12.0" />
+                    </font>
+                </JFXButton>
             </children>
             <padding>
                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />

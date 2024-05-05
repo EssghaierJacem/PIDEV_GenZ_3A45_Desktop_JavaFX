@@ -1,11 +1,17 @@
 package tn.esprit.services;
 
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import tn.esprit.entites.Commande;
+import tn.esprit.entites.Destination;
 import tn.esprit.entites.Reservation;
 import tn.esprit.interfaces.ICommandeService;
 import tn.esprit.interfaces.IReservationService;
 import tn.esprit.tools.MyConnection;
 
+import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -142,5 +148,36 @@ public class CommandeServices implements ICommandeService<Commande> {
         }
         return recentlyAddedList;
     }
+    public void exportToPDF(Commande commande, String filePath) {
+        try (PDDocument document = new PDDocument()) {
+            PDPage page = new PDPage();
+            document.addPage(page);
 
+            try (PDPageContentStream contentStream = new PDPageContentStream(document, page)) {
+                contentStream.setFont(PDType1Font.HELVETICA, 12);
+
+                contentStream.beginText();
+                contentStream.newLineAtOffset(100, 700);
+
+                contentStream.showText("Commande ID: " + commande.getId());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Num_commande: " + commande.getNum_commande());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Prix: " + commande.getPrix());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Code_promo: " + commande.getCode_promo());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Email: " + commande.getEmail());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Date_commande: " + commande.getDate_commande());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.endText();
+            }
+
+            document.save(filePath);
+            System.out.println("PDF created successfully!");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

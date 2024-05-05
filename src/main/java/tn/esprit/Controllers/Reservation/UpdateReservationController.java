@@ -10,6 +10,8 @@ import tn.esprit.entites.Reservation;
 import tn.esprit.services.ReservationServices;
 
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -58,6 +60,9 @@ public class UpdateReservationController implements Initializable {
     @FXML
     private DatePicker updateDateR;
 
+    @FXML
+    private Label errorLabel;
+
 
     private ReservationServices reservationServices;
 
@@ -95,6 +100,10 @@ public class UpdateReservationController implements Initializable {
 
         updateQuantity.setText(String.valueOf(reservation.getQuantite()));
 
+        Date dateReservation = reservation.getDate_reservation();
+        LocalDate dateR = dateReservation.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        updateDateR.setValue(dateR);
+
 
     }
     @FXML
@@ -103,6 +112,7 @@ public class UpdateReservationController implements Initializable {
         updatePrenom_client.clear();
         updateNum_tel.clear();
         updateQuantity.clear();
+        updateDateR.setValue(null);
     }
 
     @FXML
@@ -110,6 +120,7 @@ public class UpdateReservationController implements Initializable {
         Reservation selectedReservation = reservationTableView.getSelectionModel().getSelectedItem();
 
         if (selectedReservation != null) {
+            if (validateInputs()) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Confirmation");
             alert.setHeaderText("Voulez-vous mettre à jour la destination?");
@@ -120,8 +131,8 @@ public class UpdateReservationController implements Initializable {
                 selectedReservation.setNom_client(updateNom_client.getText());
                 selectedReservation.setPrenom_client(updatePrenom_client.getText());
                 selectedReservation.setNum_tel(Integer.parseInt(updateNum_tel.getText()));
-                selectedReservation.setQuantite(Integer.parseInt(updateNum_tel.getText()));
-
+                selectedReservation.setQuantite(Integer.parseInt(updateQuantity.getText()));
+                selectedReservation.setDate_reservation(java.sql.Date.valueOf(updateDateR.getValue()));
                 reservationServices.updateReservation(selectedReservation);
 
                 reservationTableView.refresh();
@@ -131,7 +142,7 @@ public class UpdateReservationController implements Initializable {
                 successAlert.setHeaderText(null);
                 successAlert.setContentText("reservation mise à jour avec succès");
                 successAlert.showAndWait();
-            }
+            }}
         } else {
             Alert errorAlert = new Alert(Alert.AlertType.ERROR);
             errorAlert.setTitle("Erreur");
@@ -140,5 +151,42 @@ public class UpdateReservationController implements Initializable {
             errorAlert.showAndWait();
         }
     }
+    private boolean validateInputs() {
+        String nomClient = updateNom_client.getText();
+        String prenomClient = updatePrenom_client.getText();
+        String numTel = updateNum_tel.getText();
+        String quantity = updateQuantity.getText();
+        LocalDate dateR = updateDateR.getValue();
+
+        if (nomClient.isEmpty() || prenomClient.isEmpty() || numTel.isEmpty() || quantity.isEmpty() || dateR == null) {
+            errorLabel.setText("Veuillez remplir tous les champs correctement.");
+            return false; // Au moins un champ est vide
+        }
+
+        if (!isNumeric(numTel) || numTel.length() != 8) {
+            errorLabel.setText("Le numéro de téléphone doit avoir 8 chiffres.");
+            return false; // Le numéro de téléphone doit avoir 8 chiffres et être numérique
+        }
+
+        try {
+            int quantityValue = Integer.parseInt(quantity);
+            if (quantityValue <= 0) {
+                errorLabel.setText("La quantité doit être un nombre positif.");
+                return false; // La quantité doit être un nombre positif
+            }
+        } catch (NumberFormatException e) {
+            errorLabel.setText("La quantité doit être un nombre valide.");
+            return false; // La quantité n'est pas un nombre valide
+        }
+
+        // Vous pouvez ajouter d'autres validations selon vos besoins, par exemple pour la date de réservation
+
+        return true; // Toutes les validations ont réussi
+    }
+
+    private boolean isNumeric(String str) {
+        return str.matches("\\d+"); // Vérifie si la chaîne ne contient que des chiffres
+    }
+
 
 }

@@ -86,17 +86,22 @@
                     <children>
                         <TableView fx:id="reservationTableView" layoutX="14.0" layoutY="64.0" prefHeight="253.0" prefWidth="735.0">
                             <columns>
-                                <TableColumn fx:id="reservation_cell_Id" prefWidth="25.599977493286133" text="ID" />
-                                <TableColumn fx:id="reservation_cellNom_client" prefWidth="60.79998779296875" text="Nom_Client" />
-                                <TableColumn fx:id="reservation_cell_Prenom_client" prefWidth="67.20000457763672" text="Prenom_Client" />
-                                <TableColumn fx:id="reservation_cell_Num_tel" prefWidth="58.39996337890625" text="Num_tel" />
-                                <TableColumn fx:id="reservation_cell_quantite" prefWidth="86.4000244140625" text="Quantite" />
-                                <TableColumn fx:id="reservation_cell_dateR" prefWidth="52.79998779296875" text="DateR" />
+                                <TableColumn fx:id="reservation_cell_Id" prefWidth="90.66665935516357" text="ID" />
+                                <TableColumn fx:id="reservation_cellNom_client" prefWidth="115.33333587646484" text="Nom_Client" />
+                                <TableColumn fx:id="reservation_cell_Prenom_client" prefWidth="122.66670227050781" text="Prenom_Client" />
+                                <TableColumn fx:id="reservation_cell_Num_tel" prefWidth="127.3333740234375" text="Numero téléphone" />
+                                <TableColumn fx:id="reservation_cell_quantite" prefWidth="128.6666259765625" text="Quantite" />
+                                <TableColumn fx:id="reservation_cell_dateR" prefWidth="147.99993896484375" text="Date Réservation" />
                             </columns>
                         </TableView>
                         <Pane layoutX="564.0" layoutY="14.0" prefHeight="33.0" prefWidth="170.0">
                             <children>
-                                <TextField layoutY="4.0" prefHeight="26.0" prefWidth="170.0" styleClass="progress" stylesheets="@../css/JStyle.css" text="Search...">
+                                <TextField fx:id="keywordSearch" layoutY="4.0" prefHeight="26.0" prefWidth="170.0" styleClass="progress" stylesheets="@../css/JStyle.css" text="Search...">
+                                    <font>
+                                        <Font name="Century Gothic Italic" size="10.0" />
+                                    </font>
+                                </TextField>
+                                <TextField fx:id="keywordSearch" layoutY="4.0" prefHeight="26.0" prefWidth="170.0" styleClass="progress" stylesheets="@../css/JStyle.css" text="Search...">
                                     <font>
                                         <Font name="Century Gothic Italic" size="10.0" />
                                     </font>

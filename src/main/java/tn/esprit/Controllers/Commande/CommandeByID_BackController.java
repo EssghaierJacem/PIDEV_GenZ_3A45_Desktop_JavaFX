@@ -13,10 +13,13 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import tn.esprit.entites.Commande;
 import tn.esprit.services.CommandeServices;
+import tn.esprit.services.DestinationServices;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -96,4 +99,32 @@ public class CommandeByID_BackController implements Initializable {
             }
         });
     }
+    @FXML
+    void exportToPDF(ActionEvent event) {
+        CommandeServices commandeServices = new CommandeServices();
+
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save PDF");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("PDF Files", "*.pdf"),
+                new FileChooser.ExtensionFilter("All Files", "*.*")
+        );
+
+        File file = fileChooser.showSaveDialog(((JFXButton) event.getSource()).getScene().getWindow());
+
+        if (file != null) {
+            String filePath = file.getAbsolutePath();
+
+            commandeServices.exportToPDF(currentCommande, filePath);
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("PDF Export");
+            alert.setHeaderText(null);
+            alert.setContentText("The PDF has been exported successfully!");
+            alert.showAndWait();
+        }
+    }
+
 }
+

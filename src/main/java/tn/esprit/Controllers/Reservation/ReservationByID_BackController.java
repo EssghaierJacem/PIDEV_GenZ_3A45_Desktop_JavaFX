@@ -11,10 +11,13 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import tn.esprit.entites.Commande;
 import tn.esprit.entites.Reservation;
 import tn.esprit.services.ReservationServices;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -48,14 +51,14 @@ public class ReservationByID_BackController implements Initializable {
 
     @FXML
     private Label reservation_qunatite;
-    private Label currentReservation;
+    private Reservation currentReservation;
     private SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
     }
 
     public void setReservationData(Reservation reservation) {
-        this.currentReservation = reservation_id;
+        this.currentReservation = reservation;
         reservation_id.setText(String.valueOf(reservation.getId()));
         reservation_nom.setText(reservation.getNom_client());
         reservation_prenom.setText(reservation.getPrenom_client()); // Removed incorrect setter
@@ -87,12 +90,39 @@ public class ReservationByID_BackController implements Initializable {
         alert.showAndWait().ifPresent(response -> {
             if (response == ButtonType.OK && currentReservation != null) {
                 ReservationServices reservationServices = new ReservationServices();
-                reservationServices.removeReservation(Integer.parseInt(currentReservation.getId()));
+                reservationServices.removeReservation((currentReservation.getId()));
 
                 Stage stage = (Stage) Delete.getScene().getWindow();
                 stage.close();
             }
         });
     }
+    @FXML
+    void exportToPDF(ActionEvent event) {
+        ReservationServices reservationServices = new ReservationServices();
+
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save PDF");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("PDF Files", "*.pdf"),
+                new FileChooser.ExtensionFilter("All Files", "*.*")
+        );
+
+        File file = fileChooser.showSaveDialog(((JFXButton) event.getSource()).getScene().getWindow());
+
+        if (file != null) {
+            String filePath = file.getAbsolutePath();
+
+            reservationServices.exportToPDF(currentReservation, filePath);
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("PDF Export");
+            alert.setHeaderText(null);
+            alert.setContentText("The PDF has been exported successfully!");
+            alert.showAndWait();
+        }
+    }
+
 
 }

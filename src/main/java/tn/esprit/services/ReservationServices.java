@@ -1,9 +1,15 @@
 package tn.esprit.services;
 
+import javafx.scene.control.Label;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import tn.esprit.entites.Reservation;
 import tn.esprit.interfaces.IReservationService;
 import tn.esprit.tools.MyConnection;
 
+import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -120,7 +126,7 @@ public class ReservationServices implements IReservationService<Reservation> {
                     reservation.setNom_client(rs.getString("nom_client"));
                     reservation.setPrenom_client("Sarra");
                     reservation.setNum_tel(rs.getInt("num_tel"));
-                    reservation.setQuantite(123456);
+                    reservation.setQuantite(rs.getInt("quantite"));
                     reservation.setDate_reservation(rs.getDate("date_reservation"));
 
                     recentlyAddedList.add(reservation);
@@ -130,6 +136,38 @@ public class ReservationServices implements IReservationService<Reservation> {
             System.out.println("Erreur lors de la récupération des reservation récemment ajoutées: " + e.getMessage());
         }
         return recentlyAddedList;
+    }
+    public void exportToPDF(Reservation reservation, String filePath) {
+        try (PDDocument document = new PDDocument()) {
+            PDPage page = new PDPage();
+            document.addPage(page);
+
+            try (PDPageContentStream contentStream = new PDPageContentStream(document, page)) {
+                contentStream.setFont(PDType1Font.HELVETICA, 12);
+
+                contentStream.beginText();
+                contentStream.newLineAtOffset(100, 700);
+
+                contentStream.showText("Reservation ID: " + reservation.getId());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Nom_client: " + reservation.getNom_client());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Prenom_client: " + reservation.getPrenom_client());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Num_client: " + reservation.getNum_tel());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Quantie: " + reservation.getQuantite());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Date_reservation: " + reservation.getDate_reservation());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.endText();
+            }
+
+            document.save(filePath);
+            System.out.println("PDF created successfully!");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

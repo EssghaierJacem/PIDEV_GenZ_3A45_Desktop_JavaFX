@@ -96,22 +96,22 @@
                                                 <Font name="Century Gothic Bold Italic" size="13.0" />
                                             </font>
                                         </Text>
-                                        <Text layoutX="22.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom_client:" wrappingWidth="107.199951171875">
+                                        <Text layoutX="25.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom_client:" wrappingWidth="107.199951171875">
                                             <font>
                                                 <Font name="Century Gothic" size="13.0" />
                                             </font>
                                         </Text>
-                                        <Text layoutX="22.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantite:" wrappingWidth="107.199951171875">
+                                        <Text layoutX="24.0" layoutY="264.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantite:" wrappingWidth="107.199951171875">
                                             <font>
                                                 <Font name="Century Gothic" size="13.0" />
                                             </font>
                                         </Text>
-                                        <Text layoutX="320.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Num_tel:" wrappingWidth="107.199951171875">
+                                        <Text layoutX="22.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Numero Téléphone" wrappingWidth="131.86663818359375">
                                             <font>
                                                 <Font name="Century Gothic" size="13.0" />
                                             </font>
                                         </Text>
-                                        <Text layoutX="182.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prenom_client:ille:" wrappingWidth="107.199951171875">
+                                        <Text layoutX="22.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prenom_Client" wrappingWidth="107.199951171875">
                                             <font>
                                                 <Font name="Century Gothic" size="13.0" />
                                             </font>
@@ -121,32 +121,32 @@
                                                 <Font name="Century Gothic" size="13.0" />
                                             </font>
                                         </Text>
-                                        <Label fx:id="reservation_nom" layoutX="31.0" layoutY="75.0" prefHeight="25.0" prefWidth="107.0" text="Champ example" textFill="#1d44f2">
+                                        <Label fx:id="reservation_nom" layoutX="176.0" layoutY="138.0" prefHeight="25.0" prefWidth="107.0" text="Champ example" textFill="#1d44f2">
                                             <font>
                                                 <Font name="Century Gothic Italic" size="12.0" />
                                             </font>
                                         </Label>
-                                        <Label fx:id="reservation_qunatite" layoutX="31.0" layoutY="140.0" prefHeight="25.0" prefWidth="107.0" text="Champ example" textFill="#1d44f2">
+                                        <Label fx:id="reservation_qunatite" layoutX="176.0" layoutY="246.0" prefHeight="25.0" prefWidth="107.0" text="Champ example" textFill="#1d44f2">
                                             <font>
                                                 <Font name="Century Gothic Italic" size="12.0" />
                                             </font>
                                         </Label>
-                                        <Label fx:id="reservation_prenom" layoutX="182.0" layoutY="75.0" prefHeight="25.0" prefWidth="107.0" text="Champ example" textFill="#1d44f2">
+                                        <Label fx:id="reservation_prenom" layoutX="176.0" layoutY="100.0" prefHeight="25.0" prefWidth="107.0" text="Champ example" textFill="#1d44f2">
                                             <font>
                                                 <Font name="Century Gothic Italic" size="12.0" />
                                             </font>
                                         </Label>
-                                        <Label fx:id="reservation_num" layoutX="320.0" layoutY="75.0" prefHeight="25.0" prefWidth="107.0" text="Champ example" textFill="#1d44f2">
+                                        <Label fx:id="reservation_num" layoutX="176.0" layoutY="176.0" prefHeight="25.0" prefWidth="107.0" text="Champ example" textFill="#1d44f2">
                                             <font>
                                                 <Font name="Century Gothic Italic" size="12.0" />
                                             </font>
                                         </Label>
-                              <Text layoutX="167.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date Reservation" wrappingWidth="125.199951171875">
+                              <Text layoutX="22.0" layoutY="228.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date Reservation" wrappingWidth="125.199951171875">
                                  <font>
                                     <Font name="Century Gothic" size="13.0" />
                                  </font>
                               </Text>
-                              <Label fx:id="date_R" layoutX="176.0" layoutY="140.0" prefHeight="25.0" prefWidth="107.0" text="Champ example" textFill="#1d44f2">
+                              <Label fx:id="date_R" layoutX="176.0" layoutY="211.0" prefHeight="25.0" prefWidth="107.0" text="Champ example" textFill="#1d44f2">
                                  <font>
                                     <Font name="Century Gothic Italic" size="12.0" />
                                  </font>
@@ -186,6 +186,11 @@
                                 <Font name="Century Gothic Bold" size="12.0" />
                             </font></JFXButton>
                         <JFXButton fx:id="Delete" layoutX="355.0" layoutY="20.0" onAction="#handleDeleteButtonAction" prefHeight="51.0" prefWidth="107.0" styleClass="pane_111" stylesheets="@../css/JStyle.css" text="Supprimer">
+                            <font>
+                                <Font name="Century Gothic Bold" size="12.0" />
+                            </font>
+                        </JFXButton>
+                        <JFXButton fx:id="PDF" layoutX="51.0" layoutY="20.0" onAction="#exportToPDF" prefHeight="51.0" prefWidth="107.0" styleClass="pane_add" stylesheets="@../css/JStyle.css" text="Export To&#10;    PDF">
                             <font>
                                 <Font name="Century Gothic Bold" size="12.0" />
                             </font>
