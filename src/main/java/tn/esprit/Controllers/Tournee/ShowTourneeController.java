@@ -7,11 +7,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import tn.esprit.entites.Tournee;
+import tn.esprit.services.TourneeServices;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -21,6 +25,9 @@ public class ShowTourneeController implements Initializable {
 
     @FXML
     private JFXButton Update;
+
+    @FXML
+    private JFXButton PDF;
 
     @FXML
     private Label age;
@@ -98,6 +105,34 @@ public class ShowTourneeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    }
+    @FXML
+    void exportToPDF(ActionEvent event) {
+
+        TourneeServices tourneeServices = new TourneeServices();
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save PDF");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("PDF Files", "*.pdf"),
+                new FileChooser.ExtensionFilter("All Files", "*.*")
+        );
+
+        File file = fileChooser.showSaveDialog(((JFXButton) event.getSource()).getScene().getWindow());
+
+        if (file != null) {
+            String filePath = file.getAbsolutePath();
+
+            tourneeServices.exportToPDF(currentTournee, filePath);
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("PDF Export");
+            alert.setHeaderText(null);
+            alert.setContentText("The PDF has been exported successfully!");
+            alert.showAndWait();
+        }
+
 
     }
 }

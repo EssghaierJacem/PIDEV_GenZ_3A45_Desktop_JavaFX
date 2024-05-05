@@ -2,6 +2,9 @@ package tn.esprit.Controllers.Tournee;
 
 import com.jfoenix.controls.JFXButton;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,7 +16,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 
-
+import tn.esprit.entites.SessionManager;
 import tn.esprit.entites.Tournee;
 
 import tn.esprit.services.GuideServices;
@@ -76,13 +79,25 @@ public class Tournee_BackController implements Initializable {
 
     @FXML
     private JFXButton VoirPlus;
+
+    private ObservableList<Tournee> tourneeList;
     @FXML
     private JFXButton guideButton;
 
+    @FXML
+    private JFXButton Logout;
+
+    @FXML
+    private JFXButton volButton;
+
+    @FXML
+    private JFXButton destinationButton;
+
 
      private void addTourneeShow() {
-        TourneeServices tourneeServices = new TourneeServices();
-        List<Tournee> tourneeList = tourneeServices.getAllTournees();
+         TourneeServices tourneeServices = new TourneeServices();
+         List<Tournee> tournees = tourneeServices.getAllTournees();
+         tourneeList = FXCollections.observableArrayList(tournees); // Initialise tourneeList
 
         T_id.setCellValueFactory(new PropertyValueFactory<>("id"));
         T_destination.setCellValueFactory(cellData -> {
@@ -122,6 +137,23 @@ public class Tournee_BackController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void initializeSearchFunctionality() {
+        FilteredList<Tournee> filteredData = new FilteredList<>(tourneeList, p -> true);
+
+        Search.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(tournee -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                String lowerCaseFilter = newValue.toLowerCase();
+                return tournee.getMonuments().toLowerCase().contains(lowerCaseFilter);
+            });
+        });
+
+        TourneeTableView.setItems(filteredData);
     }
 
 
@@ -221,9 +253,69 @@ public class Tournee_BackController implements Initializable {
 
     }
 
+    @FXML
+    void Logout(ActionEvent event) {
+        String currentSessionId = SessionManager.getCurrentSessionId();
+
+        if (currentSessionId != null) {
+            SessionManager.terminateSession(currentSessionId);
+        }
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/User/Login.fxml"));
+            Parent loginRoot = loader.load();
+
+            Stage currentStage = (Stage) Logout.getScene().getWindow();
+
+            Scene loginScene = new Scene(loginRoot);
+            currentStage.setScene(loginScene);
+
+            currentStage.setTitle("Login");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void goToVol(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vol/ListVol_Back.fxml"));
+            Parent root = loader.load();
+
+            Stage currentStage = (Stage) volButton.getScene().getWindow();
+            Scene newScene = new Scene(root);
+            currentStage.setScene(newScene);
+
+            currentStage.setTitle("List of Vols");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void goToDestination(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Destination/ListDestination_Back.fxml"));
+            Parent root = loader.load();
+
+            Stage currentStage = (Stage) destinationButton.getScene().getWindow();
+            Scene newScene = new Scene(root);
+
+            currentStage.setScene(newScene);
+
+            currentStage.setTitle("List of Destinations");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         addTourneeShow();
+        initializeSearchFunctionality();
 
     }
 }

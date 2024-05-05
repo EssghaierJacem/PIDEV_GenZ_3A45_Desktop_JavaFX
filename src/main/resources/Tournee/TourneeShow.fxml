@@ -217,6 +217,11 @@
                                                 </Pane>
                                             </children>
                                         </Pane>
+                              <JFXButton fx:id="PDF" layoutX="17.0" layoutY="316.0" onAction="#exportToPDF" prefHeight="33.0" prefWidth="89.0" styleClass="pane_add" stylesheets="@../css/JStyle.css" text="Export PDF">
+                                 <font>
+                                    <Font name="Century Gothic Bold" size="12.0" />
+                                 </font>
+                              </JFXButton>
                                     </children>
                                 </Pane>
                             </children>
