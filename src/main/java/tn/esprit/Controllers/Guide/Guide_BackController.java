@@ -63,6 +63,9 @@ public class Guide_BackController implements Initializable {
     @FXML
     private TableView<Guide> guideTableView;
 
+    @FXML
+    private JFXButton TourneeButton;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         addGuideShowListData();
@@ -185,8 +188,23 @@ public class Guide_BackController implements Initializable {
         stage.show();
 
     }
+    @FXML
+    void goToTournee(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Tournee/Tournee_Back.fxml"));
+            Parent root = loader.load();
+
+            Stage currentStage = (Stage) TourneeButton.getScene().getWindow();
+            Scene newScene = new Scene(root);
+            currentStage.setScene(newScene);
+
+            currentStage.setTitle("Tournees");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    }
 
 
 
-
-}

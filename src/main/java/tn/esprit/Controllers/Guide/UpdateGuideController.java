@@ -23,6 +23,9 @@ public class UpdateGuideController implements Initializable {
     private JFXButton UpdateGuide;
 
     @FXML
+    private Label errorLabel;
+
+    @FXML
     private TableView<Guide> guideTableView;
 
     @FXML
@@ -67,7 +70,7 @@ public class UpdateGuideController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         guideServices = new GuideServices();
         fillGuideTableView();
-
+        errorLabel.setVisible(false);
         guideTableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
                 populateFieldsWithData(newSelection);
@@ -114,7 +117,9 @@ public class UpdateGuideController implements Initializable {
 
     @FXML
     void handleUpdateGuideButtonAction(ActionEvent event) {
-
+        if (!validateInputs()) {
+            return;
+        }
         Guide selectedGuide = guideTableView.getSelectionModel().getSelectedItem();
 
         if (selectedGuide != null) {
@@ -153,6 +158,109 @@ public class UpdateGuideController implements Initializable {
         }
 
 
+    }
+    private boolean validateInputs() {
+        StringBuilder errors = new StringBuilder();
+
+        if (!validateNom(errors)) {
+            errors.append(" 'nom' doit comporter entre 4 et 10 caractères.\n");
+        }
+
+        if (!validatePrenom(errors)) {
+            errors.append(" 'prenom' doit comporter entre 4 et 10 caractères.\n");
+        }
+
+        if (!validateNationalite(errors)) {
+            errors.append(" La nationalite doit comporter au moins 5 caractères.\n");
+        }
+
+        if (!validateLangues(errors)) {
+            errors.append(" 'Langues' doit comporter au moins 5 caractères.\n");
+        }
+
+        if (!validateExperience(errors)) {
+            errors.append(" 'Experience' doit comporter au moins 5 caractères.\n");
+        }
+
+        if (!validateTarif(errors)) {
+            errors.append(" 'Tarif' doit être une URL valide.\n");
+        }
+
+
+
+        if (errors.length() > 0) {
+            errorLabel.setText(errors.toString());
+            errorLabel.setVisible(true);
+            return false;
+        }
+
+        return true;
+    }
+
+    private boolean validateNom(StringBuilder errors) {
+        String nom = updateNom.getText().trim();
+        if (nom.isEmpty() || nom.length() > 10 || nom.length() < 4) {
+            return false;
+        }
+        return true;
+    }
+
+    private boolean validatePrenom(StringBuilder errors) {
+        String prenom = updatePrenom.getText().trim();
+        if (prenom.isEmpty() || prenom.length() > 10 || prenom.length() < 4) {
+            return false;
+        }
+        return true;
+    }
+
+    private boolean validateNationalite(StringBuilder errors) {
+        String nationalite = updateNationalite.getText().trim();
+        if (nationalite.length() < 5) {
+            return false;
+        }
+        return true;
+    }
+
+    private boolean validateLangues(StringBuilder errors) {
+        String langues = updateLangues.getText().trim();
+        if (langues.length() < 5) {
+            return false;
+        }
+        return true;
+    }
+
+    private boolean validateExperience(StringBuilder errors) {
+        String experience = updateExperiences.getText().trim();
+        if (experience.length() < 5) {
+            return false;
+        }
+        return true;
+    }
+
+    private boolean validateTarif(StringBuilder errors) {
+        try {
+            float tarif = Float.parseFloat(updateTarif.getText().trim());
+            if (tarif > 5000.0) {
+                errors.append("'Tarif' ne doit pas dépasser 5000.0.\n");
+                return false;
+            }
+        } catch (NumberFormatException e) {
+            errors.append("'Tarif' doit être un nombre valide.\n");
+            return false;
+        }
+        return true;
+    }
+
+
+    private void validateNum(String cinText, StringBuilder errors) {
+        try {
+            int cin = Integer.parseInt(cinText);
+            if (cin < 10000000 || cin > 99999999) {
+                errors.append("'num' doit être un nombre entier composé de 8 chiffres.\n");
+            }
+        } catch (NumberFormatException e) {
+            errors.append("'num' doit être un nombre entier composé de 8 chiffres.\n");
+        }
     }
 
 }

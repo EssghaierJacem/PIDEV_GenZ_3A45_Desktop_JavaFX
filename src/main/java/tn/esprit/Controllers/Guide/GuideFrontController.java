@@ -2,13 +2,19 @@ package tn.esprit.Controllers.Guide;
 
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import tn.esprit.entites.Guide;
 import tn.esprit.services.GuideServices;
 
+import java.awt.event.ActionEvent;
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -40,6 +46,10 @@ public class GuideFrontController implements Initializable {
     private TableColumn<Guide, Integer> Guide_Id;
 
 
+
+
+
+
     @FXML
     private TableView<Guide> guideTableView;
 
@@ -48,6 +58,7 @@ public class GuideFrontController implements Initializable {
         addGuideShowListData();
 
     }
+
 
 
 
@@ -67,4 +78,23 @@ public class GuideFrontController implements Initializable {
 
         guideTableView.getItems().addAll(guideList);
     }
+
+    /*@FXML
+    void goToTournee2(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Tournee/Tournee_Back.fxml"));
+            Parent root = loader.load();
+
+            Stage currentStage = (Stage) nav.getScene().getWindow();
+            Scene newScene = new Scene(root);
+            currentStage.setScene(newScene);
+
+            currentStage.setTitle("Tournees");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }*/
+
+
 }

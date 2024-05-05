@@ -4,15 +4,22 @@ import com.jfoenix.controls.JFXButton;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
+
+
+
 import tn.esprit.entites.Tournee;
 
+import tn.esprit.services.GuideServices;
 import tn.esprit.services.TourneeServices;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -69,6 +76,8 @@ public class Tournee_BackController implements Initializable {
 
     @FXML
     private JFXButton VoirPlus;
+    @FXML
+    private JFXButton guideButton;
 
 
      private void addTourneeShow() {
@@ -99,22 +108,116 @@ public class Tournee_BackController implements Initializable {
 
 
     @FXML
-    void handleAjouterButtonAction(ActionEvent event) {
+    void goToGuide(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Guide/Guide_Back.fxml"));
+            Parent root = loader.load();
 
+            Stage currentStage = (Stage) guideButton.getScene().getWindow();
+            Scene newScene = new Scene(root);
+            currentStage.setScene(newScene);
+
+            currentStage.setTitle("Tournees");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @FXML
+    void handleAjouterButtonAction(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Tournee/AddTournee.fxml"));
+            Parent root = loader.load();
+
+            Stage currentStage = (Stage) Ajouter.getScene().getWindow();
+            Scene newScene = new Scene(root);
+            currentStage.setScene(newScene);
+
+            currentStage.setTitle("Tournees");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     void handleDeleteButtonAction(ActionEvent event) {
+       Tournee selectedTournee = TourneeTableView.getSelectionModel().getSelectedItem();
+
+        if (selectedTournee != null) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation");
+            alert.setHeaderText("Etes-vous sûr que vous voulez supprimer?");
+            alert.setContentText("Cette action ne peut pas être annulée.");
+
+            alert.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    GuideServices guideServices = new GuideServices();
+                    guideServices.removeGuide(selectedTournee.getId());
+
+                    TourneeTableView.getItems().remove(selectedTournee);
+                }
+            });
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Aucun guide sélectionné");
+            alert.setContentText("Veuillez choisir un uide à supprimer.");
+            alert.showAndWait();
+        }
+    }
+
+    @FXML
+    void handleUpdateButtonAction(ActionEvent event) throws IOException{
+        Tournee selectedTournee = TourneeTableView.getSelectionModel().getSelectedItem();
+
+        if (selectedTournee == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Aucun Tournee sélectionné");
+            alert.setContentText("Veuillez choisir un Tournee à modifier.");
+            alert.showAndWait();
+            return;
+        }
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Tournee/TourneeUpdate.fxml"));
+        Parent root = loader.load();
+
+        UpdateTourneeController updateTourneeController = loader.getController();
+        updateTourneeController.populateFieldsWithData(selectedTournee);
+
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
 
     }
 
     @FXML
-    void handleUpdateButtonAction(ActionEvent event) {
+    void handleVoirPlusButtonAction(ActionEvent event) throws IOException {
+        Tournee selectedTournee = TourneeTableView.getSelectionModel().getSelectedItem();
 
-    }
+        if (selectedTournee == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Aucun Guide sélectionné");
+            alert.setContentText("Veuillez choisir un Guide à afficher.");
+            alert.showAndWait();
+            return;
+        }
 
-    @FXML
-    void handleVoirPlusButtonAction(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Tournee/TourneeShow.fxml"));
+        Parent root = loader.load();
+
+        ShowTourneeController showTourneeController = loader.getController();
+        showTourneeController.setTourneeData(selectedTournee);
+
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
 
     }
 
