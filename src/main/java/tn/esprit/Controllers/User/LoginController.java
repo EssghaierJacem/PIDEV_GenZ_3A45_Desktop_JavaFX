@@ -20,6 +20,7 @@ import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
 
+    public Button idForgotPassword;
     @FXML
     private JFXButton Connect;
 
@@ -62,7 +63,7 @@ public class LoginController implements Initializable {
             String sessionId = SessionManager.createSession(authenticatedUser);
 
             if (authenticatedUser.getRole() == Role.ADMIN) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Destination/ListDestination_Back.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/User/UserBack.fxml"));
                 Parent adminDashboardRoot = loader.load();
 
                 Stage currentStage = (Stage) Connect.getScene().getWindow();
@@ -89,7 +90,6 @@ public class LoginController implements Initializable {
     @FXML
     void handleRegisterButtonAction(ActionEvent event) {
         try {
-            // Load the register FXML
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/User/Register.fxml"));
             Parent root = loader.load();
 
@@ -107,8 +107,15 @@ public class LoginController implements Initializable {
         String emailRegex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
         return email.matches(emailRegex);
     }
-    @FXML
-    void handlePasswordButtonAction(ActionEvent event) {
-        // For Later.
+
+
+    public void oublier(ActionEvent actionEvent) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/User/ForgotPassword.fxml"));
+            LoginEmail.getScene().setRoot(root);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
     }
 }
+
