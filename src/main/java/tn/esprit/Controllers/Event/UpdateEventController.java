@@ -9,6 +9,7 @@ import tn.esprit.entites.Event;
 import tn.esprit.services.EventServices;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
@@ -68,6 +69,8 @@ public class UpdateEventController implements Initializable {
     @FXML
     private TextField updatePrix;
 
+    @FXML
+    private Label errorLabel;
 
     private EventServices eventServices;
 
@@ -104,6 +107,7 @@ public class UpdateEventController implements Initializable {
 
 
     }
+
     @FXML
     private void handleClearButtonAction(ActionEvent event) {
         updateNom.clear();
@@ -122,6 +126,7 @@ public class UpdateEventController implements Initializable {
         Event selectedEvent = eventTableView.getSelectionModel().getSelectedItem();
 
         if (selectedEvent != null) {
+            if (validateInputs()){
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Confirmation");
             alert.setHeaderText("Voulez-vous mettre à jour l evenement?");
@@ -150,6 +155,7 @@ public class UpdateEventController implements Initializable {
                 successAlert.setHeaderText(null);
                 successAlert.setContentText("evenement mise à jour avec succès");
                 successAlert.showAndWait();
+                }
             }
         } else {
             Alert errorAlert = new Alert(Alert.AlertType.ERROR);
@@ -160,4 +166,44 @@ public class UpdateEventController implements Initializable {
         }
     }
 
+    private boolean validateInputs() {
+        String nom = updateNom.getText();
+        String organisateur = updateOrganisateur.getText();
+        String description = updateDescription.getText();
+        String prix = updatePrix.getText();
+        StringBuilder errorMessage = new StringBuilder();
+
+
+        if (nom.length() < 4 || nom.length() > 20) {
+            errorLabel.setText("Le nom de l evenement doit avoir entre 4 et 20 caractères.");
+            return false;
+        }
+
+        if (organisateur.length() < 4 || organisateur.length() > 20) {
+            errorLabel.setText("L organisateur doit avoir entre 4 et 20 caractères.");
+            return false;
+        }
+
+        if (description.length() < 4 || description.length() > 6) {
+            errorLabel.setText("La description doit avoir entre 4 et 20 caractères.");
+            return false;
+        }
+
+        try {
+            float prixValue = Float.parseFloat(prix);
+            if (prixValue <= 0) {
+                errorMessage.append("Le prix de l'événement doit être supérieur à zéro.\n");
+            }
+        } catch (NumberFormatException e) {
+            errorMessage.append("Le prix de l'événement doit être un nombre valide.\n");
+        }
+
+        if (errorMessage.length() > 0) {
+            errorLabel.setText(errorMessage.toString());
+            return false;
+        }
+
+        return true;
+
+    }
 }

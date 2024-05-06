@@ -1,8 +1,14 @@
 package tn.esprit.services;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
+import tn.esprit.entites.Destination;
 import tn.esprit.entites.Participation;
 import tn.esprit.interfaces.IParticipationService;
 import tn.esprit.tools.MyConnection;
 
+import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -112,4 +118,36 @@ public class ParticipationServices implements IParticipationService<Participatio
         return participationList;
 
     }
+    public void exportToPDF(Participation participation, String filePath) {
+        try (PDDocument document = new PDDocument()) {
+            PDPage page = new PDPage();
+            document.addPage(page);
+
+            try (PDPageContentStream contentStream = new PDPageContentStream(document, page)) {
+                contentStream.setFont(PDType1Font.HELVETICA, 12);
+
+                contentStream.beginText();
+                contentStream.newLineAtOffset(100, 700);
+
+                contentStream.showText("Participation ID: " + participation.getId());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Nom: " + participation.getNom());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Prenom: " + participation.getPrenom());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Phone Number: " + participation.getTel());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Email: " + participation.getEmail());
+                contentStream.newLineAtOffset(0, -20);
+
+                contentStream.endText();
+            }
+
+            document.save(filePath);
+            System.out.println("PDF created successfully!");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
+

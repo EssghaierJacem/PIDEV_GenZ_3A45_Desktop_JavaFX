@@ -11,9 +11,13 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import tn.esprit.entites.Event;
+import tn.esprit.services.DestinationServices;
 import tn.esprit.services.EventServices;
+
+import java.io.File;
 import java.text.SimpleDateFormat;
 
 import java.io.IOException;
@@ -108,5 +112,31 @@ public class EventByID_BackController implements Initializable {
             }
         });
     }
+    @FXML
+    void exportToPDF(ActionEvent event) {
+        EventServices eventServices = new EventServices();
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save PDF");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("PDF Files", "*.pdf"),
+                new FileChooser.ExtensionFilter("All Files", "*.*")
+        );
+
+        File file = fileChooser.showSaveDialog(((JFXButton) event.getSource()).getScene().getWindow());
+
+        if (file != null) {
+            String filePath = file.getAbsolutePath();
+
+            eventServices.exportToPDF(currentEvent, filePath);
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("PDF Export");
+            alert.setHeaderText(null);
+            alert.setContentText("The PDF has been exported successfully!");
+            alert.showAndWait();
+        }
+    }
+
 }
 

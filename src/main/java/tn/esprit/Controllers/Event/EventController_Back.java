@@ -1,27 +1,27 @@
 package tn.esprit.Controllers.Event;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import com.jfoenix.controls.JFXButton;
 
 import javafx.stage.Stage;
-import tn.esprit.entites.Vol;
 import tn.esprit.services.EventServices;
 import tn.esprit.entites.Event;
 
 import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public class EventController_Back implements Initializable {
@@ -34,6 +34,8 @@ public class EventController_Back implements Initializable {
     @FXML
     private JFXButton Update;
 
+    @FXML
+    private Button rollBackButton;
     @FXML
     private TableColumn<Event, Integer> event_cell_id;
 
@@ -62,10 +64,26 @@ public class EventController_Back implements Initializable {
     
     @FXML
     private TableView<Event> eventTableView;
+    @FXML
+    private TextField keywordSearch;
+    private List<Event> originalEventList;
+
+    private Timer searchTimer = new Timer();
 
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
         addEventShowListData();
+        keywordSearch.textProperty().addListener((observable, oldValue, newValue) -> {
+            searchTimer.cancel();
+            searchTimer = new Timer();
+            searchTimer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    filterAndUpdateEventTable(newValue);
+                }
+            }, 100);
+        });
+
     }
 
     private void addEventShowListData() {
@@ -82,6 +100,30 @@ public class EventController_Back implements Initializable {
         event_cell_prix.setCellValueFactory(new PropertyValueFactory<>("prix"));
 
         eventTableView.getItems().addAll(eventList);
+
+    }
+    private void filterAndUpdateEventTable(String keyword) {
+        new Thread(() -> {
+            List<Event> filteredEventList = new ArrayList<>();
+            EventServices eventServices = new EventServices();
+            originalEventList = eventServices.getAllEvents();
+
+
+
+            for (Event event : originalEventList) {
+                if (event.getNom().toLowerCase().contains(keyword.toLowerCase()) ||
+                        event.getLieu().toLowerCase().contains(keyword.toLowerCase()) ||
+                        event.getDescription().toLowerCase().contains(keyword.toLowerCase())) {
+                    filteredEventList.add(event);
+                }
+            }
+
+            Platform.runLater(() -> {
+                eventTableView.getItems().clear();
+
+                eventTableView.getItems().addAll(filteredEventList);
+            });
+        }).start();
     }
     @FXML
     private void handleDeleteButtonAction(ActionEvent event) {
@@ -168,7 +210,28 @@ public class EventController_Back implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+    public void handleRollBackButtonAction(ActionEvent actionEvent) {
+        // Get the button that triggered the event
+        Button rollBackButton = (Button) actionEvent.getSource();
 
+        // Get the stage from the button's scene
+        Stage stage = (Stage) rollBackButton.getScene().getWindow();
+
+        try {
+            // Load the dashboard FXML file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Dashboard_J/BackDashboard.fxml"));
+            Parent root = loader.load();
+
+            // Create a new scene with the dashboard
+            Scene dashboardScene = new Scene(root);
+
+            // Set the scene in the stage and show it
+            stage.setScene(dashboardScene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }
 

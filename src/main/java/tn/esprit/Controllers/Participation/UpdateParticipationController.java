@@ -51,6 +51,8 @@ public class UpdateParticipationController implements Initializable {
 
     @FXML
     private TextField updateEmail;
+    @FXML
+    private Label errorLabel;
 
     private ParticipationServices participationServices;
 
@@ -84,6 +86,7 @@ public class UpdateParticipationController implements Initializable {
         updateTel.setText(String.valueOf(participation.getTel()));
         updateEmail.setText(participation.getEmail());
     }
+
     @FXML
     private void handleClearButtonAction(ActionEvent event) {
         updateNom.clear();
@@ -97,27 +100,39 @@ public class UpdateParticipationController implements Initializable {
         Participation selectedParticipation = participationTableView.getSelectionModel().getSelectedItem();
 
         if (selectedParticipation != null) {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Confirmation");
-            alert.setHeaderText("Voulez-vous mettre à jour la participation?");
-            alert.setContentText("Cette action ne peut pas être annulée.");
+            String nom = updateNom.getText().trim();
+            String prenom = updatePrenom.getText().trim();
+            String tel = updateTel.getText().trim();
+            String email = updateEmail.getText().trim();
 
-            Optional<ButtonType> result = alert.showAndWait();
-            if (result.isPresent() && result.get() == ButtonType.OK) {
-                selectedParticipation.setNom(updateNom.getText());
-                selectedParticipation.setPrenom(updatePrenom.getText());
-                selectedParticipation.setTel(Integer.parseInt(updateTel.getText()));
-                selectedParticipation.setEmail(updateEmail.getText());
+            // Validate input
+            String errorMessage = validateInput(nom, prenom, tel, email);
+            if (errorMessage.isEmpty()) {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Confirmation");
+                alert.setHeaderText("Voulez-vous mettre à jour la participation?");
+                alert.setContentText("Cette action ne peut pas être annulée.");
 
-                participationServices.updateParticipation(selectedParticipation);
+                Optional<ButtonType> result = alert.showAndWait();
+                if (result.isPresent() && result.get() == ButtonType.OK) {
+                    selectedParticipation.setNom(nom);
+                    selectedParticipation.setPrenom(prenom);
+                    selectedParticipation.setTel(Integer.parseInt(tel));
+                    selectedParticipation.setEmail(email);
 
-                participationTableView.refresh();
+                    participationServices.updateParticipation(selectedParticipation);
 
-                Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
-                successAlert.setTitle("Success");
-                successAlert.setHeaderText(null);
-                successAlert.setContentText("Participation mise à jour avec succès");
-                successAlert.showAndWait();
+                    participationTableView.refresh();
+
+                    Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+                    successAlert.setTitle("Success");
+                    successAlert.setHeaderText(null);
+                    successAlert.setContentText("Participation mise à jour avec succès");
+                    successAlert.showAndWait();
+                }
+            } else {
+                // Display error message
+                errorLabel.setText(errorMessage);
             }
         } else {
             Alert errorAlert = new Alert(Alert.AlertType.ERROR);
@@ -128,4 +143,29 @@ public class UpdateParticipationController implements Initializable {
         }
     }
 
+    private String validateInput(String nom, String prenom, String tel, String email) {
+        StringBuilder errorMessage = new StringBuilder();
+
+        // Validate nom
+        if (nom.isEmpty() || nom.length() < 3 || nom.length() > 10) {
+            errorMessage.append("Le nom doit contenir entre 3 et 10 caractères.\n");
+        }
+
+        // Validate prenom
+        if (prenom.isEmpty() || prenom.length() < 3 || prenom.length() > 10) {
+            errorMessage.append("Le prénom doit contenir entre 3 et 10 caractères.\n");
+        }
+
+        // Validate tel
+        if (!tel.matches("\\d{8}")) {
+            errorMessage.append("Le numéro de téléphone doit contenir exactement 8 chiffres.\n");
+        }
+
+        // Validate email
+        if (!email.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}")) {
+            errorMessage.append("L'adresse e-mail n'est pas valide.\n");
+        }
+
+        return errorMessage.toString();
+    }
 }

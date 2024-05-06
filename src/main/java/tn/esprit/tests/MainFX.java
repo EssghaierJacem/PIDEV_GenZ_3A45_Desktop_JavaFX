@@ -1,12 +1,11 @@
 package tn.esprit.tests;
 
 import javafx.application.Application;
-import javafx.scene.input.MouseEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 public class MainFX extends Application {
 

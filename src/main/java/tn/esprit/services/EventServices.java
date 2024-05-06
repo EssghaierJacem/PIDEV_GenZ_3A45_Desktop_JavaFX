@@ -1,13 +1,25 @@
 package tn.esprit.services;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
+import tn.esprit.entites.Destination;
 import tn.esprit.entites.Event;
 import tn.esprit.interfaces.IEventService;
 import tn.esprit.tools.MyConnection;
 
+import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.net.URL;
+import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
+import org.apache.pdfbox.pdmodel.common.PDStream;
+import java.io.InputStream;
+import java.io.ByteArrayOutputStream;
+
 
 
 public class EventServices implements IEventService<Event> {
@@ -140,4 +152,40 @@ public class EventServices implements IEventService<Event> {
         return recentlyAddedList;
     }
 
+    public void exportToPDF(Event event, String filePath) {
+        try (PDDocument document = new PDDocument()) {
+            PDPage page = new PDPage();
+            document.addPage(page);
+
+            try (PDPageContentStream contentStream = new PDPageContentStream(document, page)) {
+                contentStream.setFont(PDType1Font.HELVETICA, 12);
+
+                contentStream.beginText();
+                contentStream.newLineAtOffset(100, 700);
+
+                contentStream.showText("Event ID: " + event.getId());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Nom: " + event.getNom());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Date Début: " + event.getDate_debut());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Date Fin: " + event.getDate_fin());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Lieu: " + event.getLieu());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Description: " + event.getDescription());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Prix: " + event.getPrix());
+                contentStream.newLineAtOffset(0, -20);
+
+                contentStream.endText();
+            }
+
+            document.save(filePath);
+            System.out.println("PDF created successfully!");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
+

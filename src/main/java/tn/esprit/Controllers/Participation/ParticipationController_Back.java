@@ -1,27 +1,22 @@
 package tn.esprit.Controllers.Participation;
 
+import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import com.jfoenix.controls.JFXButton;
-
 import javafx.stage.Stage;
-import tn.esprit.Controllers.Participation.ParticipationByID_BackController;
-import tn.esprit.services.ParticipationServices;
 import tn.esprit.entites.Participation;
+import tn.esprit.services.ParticipationServices;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ResourceBundle;
 import java.util.List;
+import java.util.ResourceBundle;
 
 public class ParticipationController_Back implements Initializable {
 
@@ -30,6 +25,9 @@ public class ParticipationController_Back implements Initializable {
 
     @FXML
     private JFXButton GetParticipation;
+
+    @FXML
+    private Button rollBackButton;
 
     @FXML
     private JFXButton Update;
@@ -155,6 +153,27 @@ public class ParticipationController_Back implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+    public void handleRollBackButtonAction(ActionEvent actionEvent) {
+        // Get the button that triggered the event
+        Button rollBackButton = (Button) actionEvent.getSource();
 
+        // Get the stage from the button's scene
+        Stage stage = (Stage) rollBackButton.getScene().getWindow();
+
+        try {
+            // Load the dashboard FXML file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Dashboard_J/BackDashboard.fxml"));
+            Parent root = loader.load();
+
+            // Create a new scene with the dashboard
+            Scene dashboardScene = new Scene(root);
+
+            // Set the scene in the stage and show it
+            stage.setScene(dashboardScene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }
