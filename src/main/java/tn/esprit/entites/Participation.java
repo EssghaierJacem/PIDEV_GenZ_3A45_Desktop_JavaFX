@@ -21,6 +21,13 @@ public class Participation {
         this.tel = tel;
         this.email = email;
     }
+    public Participation(Event event, String nom, String prenom, int tel, String email) {
+        this.event = event;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.tel = tel;
+        this.email = email;
+    }
 
     public int getId() {
         return id;
@@ -45,6 +52,7 @@ public class Participation {
     public void setEvent(Event event) {
         this.event = event;
     }
+
 
     public String getNom() {
         return nom;
