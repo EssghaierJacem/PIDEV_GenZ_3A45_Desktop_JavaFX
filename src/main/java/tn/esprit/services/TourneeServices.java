@@ -1,16 +1,24 @@
 package tn.esprit.services;
 
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import tn.esprit.entites.*;
 import tn.esprit.interfaces.IDestinationService;
 import tn.esprit.interfaces.IGuideService;
 import tn.esprit.interfaces.ITourneeService;
 import tn.esprit.tools.MyConnection;
 
+
+
+import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class TourneeServices implements ITourneeService<Tournee> {
 
@@ -149,4 +157,51 @@ public class TourneeServices implements ITourneeService<Tournee> {
 
         return tourneeList;
     }
+    public void exportToPDF(Tournee tournee, String filePath) {
+        try (PDDocument document = new PDDocument()) {
+            PDPage page = new PDPage();
+            document.addPage(page);
+
+            try (PDPageContentStream contentStream = new PDPageContentStream(document, page)) {
+                contentStream.setFont(PDType1Font.HELVETICA, 12);
+
+                contentStream.beginText();
+                contentStream.newLineAtOffset(100, 700);
+
+                contentStream.showText("Tournée ID : " + tournee.getId());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Destination : " + tournee.getDestination().getVille() + ", " + tournee.getDestination().getPays());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Guide : " + tournee.getGuide().getNom() + ", " + tournee.getGuide().getPrenom());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Nom : " + tournee.getNom());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Date de debut : " + tournee.getDate_debut());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Durée : " + tournee.getDuree());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Description : " + tournee.getDescription());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Tarif : " + tournee.getTarif() + " €");
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Monuments : " + tournee.getMonuments());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Moyen de transport : " + tournee.getMoyen_transport() );
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Tranche d'age: " + tournee.getTranche_age() );
+
+
+                contentStream.endText();
+            }
+
+            document.save(filePath);
+            System.out.println("PDF created successfully!");
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Error creating PDF: " + e.getMessage());
+        }
+    }
+
+
+
 }
