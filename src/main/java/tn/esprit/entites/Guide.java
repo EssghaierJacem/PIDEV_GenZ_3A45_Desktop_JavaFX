@@ -110,15 +110,6 @@ public class Guide {
 
     @Override
     public String toString() {
-        return "Guide{" +
-                "id=" + id +
-                ", nom='" + nom + '\'' +
-                ", prenom='" + prenom + '\'' +
-                ", nationalite='" + nationalite + '\'' +
-                ", langues_parlees='" + langues_parlees + '\'' +
-                ", experiences='" + experiences + '\'' +
-                ", tarif_horaire=" + tarif_horaire +
-                ", num_tel=" + num_tel +
-                '}';
+        return ""+ nom +"," + prenom +".";
     }
 }
