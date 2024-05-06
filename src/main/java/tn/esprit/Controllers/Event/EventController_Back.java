@@ -36,6 +36,7 @@ public class EventController_Back implements Initializable {
 
     @FXML
     private Button rollBackButton;
+
     @FXML
     private TableColumn<Event, Integer> event_cell_id;
 
@@ -219,7 +220,7 @@ public class EventController_Back implements Initializable {
 
         try {
             // Load the dashboard FXML file
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Dashboard_J/BackDashboard.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Dashboard_J/FrontDashboard.fxml"));
             Parent root = loader.load();
 
             // Create a new scene with the dashboard
@@ -232,6 +233,7 @@ public class EventController_Back implements Initializable {
             e.printStackTrace();
         }
     }
+
 
 }
 
