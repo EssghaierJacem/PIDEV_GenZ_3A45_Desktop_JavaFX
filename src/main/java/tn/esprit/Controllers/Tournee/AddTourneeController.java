@@ -1,6 +1,9 @@
 package tn.esprit.Controllers.Tournee;
 
 import com.jfoenix.controls.JFXButton;
+import com.twilio.rest.api.v2010.account.Message;
+import com.twilio.type.PhoneNumber;
+import com.twilio.Twilio;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -55,13 +58,13 @@ public class AddTourneeController implements Initializable {
 
     @FXML
     private TextField addTransport;
+    private static final String ACCOUNT_SID = "ACde90f2a6ff59a35aa69aa9c5554ce829";
+    private static final String AUTH_TOKEN = "6fd2a62e9757cb2ca55fce8bc1088524";
 
     @FXML
     void handleAddButtonAction(ActionEvent event) {
-
         Tournee newTournee = new Tournee();
         newTournee.setNom(addNom.getText());
-
         newTournee.setMonuments(addMonuments.getText());
         newTournee.setDuree(addDuree.getText());
         newTournee.setDate_debut(java.sql.Date.valueOf(addDate.getValue()));
@@ -71,18 +74,14 @@ public class AddTourneeController implements Initializable {
         newTournee.setTranche_age(addAge.getText());
 
         Guide selectedGuide = addGuide.getValue();
-
-
-
         Destination selectedDestination = addDestination.getValue();
 
-
         TourneeServices tourneeServices = new TourneeServices();
-        tourneeServices.addTournee(newTournee, selectedDestination.getId(),selectedGuide.getId());
+        tourneeServices.addTournee(newTournee, selectedDestination.getId(), selectedGuide.getId());
 
-
-
-
+        String guidePhoneNumber = "+216" + selectedGuide.getNum_tel();
+        String messageBody = " Bonjour Mr " + selectedGuide.getNom() +" Vous etes affecté a la tournée: " + newTournee.getNom();
+        sendSMS(guidePhoneNumber, messageBody);
     }
 
     @FXML
@@ -105,6 +104,7 @@ public class AddTourneeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
         loadDestinations();
         loadGuides();
     }
@@ -117,6 +117,32 @@ public class AddTourneeController implements Initializable {
     private void loadGuides() {
         GuideServices guideServices = new GuideServices();
         addGuide.getItems().addAll(guideServices.getAllGuides());
+    }
+
+    public static void sendMessageToGuide(Tournee tournee, String messageBody) {
+        if (tournee != null && tournee.getGuide() != null) {
+            Guide guide = tournee.getGuide();
+            String guidePhoneNumber = String.valueOf(guide.getNum_tel());
+
+            sendSMS(guidePhoneNumber, messageBody);
+        } else {
+            System.out.println("No guide or tour found. Cannot send SMS.");
+        }
+    }
+    public static void sendSMS(String recipientPhoneNumber, String messageBody) {
+        String twilioPhoneNumber = "+19513197180";
+
+        try {
+            Message message = Message.creator(
+                    new PhoneNumber(recipientPhoneNumber),
+                    new PhoneNumber(twilioPhoneNumber),
+                    messageBody
+            ).create();
+
+            System.out.println("SMS sent successfully. SID: " + message.getSid());
+        } catch (com.twilio.exception.ApiException e) {
+            System.err.println("Failed to send SMS: " + e.getMessage());
+        }
     }
 
 }
