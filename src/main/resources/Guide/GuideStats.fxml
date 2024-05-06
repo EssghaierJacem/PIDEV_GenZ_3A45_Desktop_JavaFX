@@ -3,10 +3,12 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -16,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="638.0" prefWidth="1013.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.Controllers.Tournee.TourneeFrontController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="641.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.Controllers.Guide.FrontStats">
     <top>
         <HBox alignment="CENTER_LEFT" prefHeight="74.0" prefWidth="950.0" styleClass="white-background" stylesheets="@../css/frontStyles.css" BorderPane.alignment="CENTER">
             <children>
@@ -235,27 +237,50 @@
     <center>
         <VBox prefHeight="200.0" prefWidth="100.0" spacing="7.5" BorderPane.alignment="CENTER">
             <children>
-                <Label prefHeight="39.0" prefWidth="274.0" text="Récemment ajouté">
+                <Label prefHeight="39.0" prefWidth="694.0" text="Guide Stats">
                     <font>
                         <Font name="Century Gothic Bold" size="15.0" />
                     </font>
                 </Label>
-                <TableView fx:id="TourneeTableView" prefHeight="366.0" prefWidth="704.0">
-                    <columns>
-                        <TableColumn fx:id="T_id" prefWidth="52.00001335144043" text="Id" />
-                        <TableColumn fx:id="T_destination" prefWidth="75.20001983642578" text="Destination" />
-                        <TableColumn fx:id="T_guide" prefWidth="78.39996337890625" text="Guide" />
-                        <TableColumn fx:id="T_nom" prefWidth="59.99993896484375" text="Nom" />
-                        <TableColumn fx:id="T_date" prefWidth="79.20001220703125" text="Date_Debut" />
-                        <TableColumn fx:id="T_duree" prefWidth="61.5999755859375" text="Duree" />
-                        <TableColumn fx:id="T_description" prefWidth="81.5999755859375" text="Description" />
-                  <TableColumn fx:id="T_tarif" prefWidth="62.399993896484375" text="Tarif" />
-                  <TableColumn fx:id="T_age" prefWidth="51.19989013671875" text="Age" />
-                  <TableColumn fx:id="T_monument" prefWidth="75.199951171875" text="Monuments" />
-                  <TableColumn fx:id="T_transport" prefWidth="87.2000610351563" text="Transport" />
-                    </columns>
-                </TableView>
-            <JFXButton fx:id="voirPlus" onAction="#handleVoirPlusButtonAction" prefHeight="30.0" prefWidth="126.0" styleClass="pane_1" stylesheets="@../css/JStyle.css" text="Voir Plus" />
+            <VBox prefHeight="479.0" prefWidth="704.0">
+               <children>
+                  <HBox prefHeight="402.0" prefWidth="704.0" spacing="10.0">
+                     <children>
+                        <VBox prefHeight="478.0" prefWidth="353.0">
+                           <children>
+                              <Label prefHeight="79.0" prefWidth="352.0" text="Some Stats" />
+                              <BarChart fx:id="barChart" prefHeight="407.0" prefWidth="346.0">
+                                <xAxis>
+                                  <CategoryAxis side="BOTTOM" />
+                                </xAxis>
+                                <yAxis>
+                                  <NumberAxis side="LEFT" />
+                                </yAxis>
+                              </BarChart>
+                           </children>
+                        </VBox>
+                        <VBox layoutX="10.0" layoutY="10.0" prefHeight="478.0" prefWidth="353.0">
+                           <children>
+                              <Label prefHeight="79.0" prefWidth="352.0" text="Some More Stats" />
+                              <LineChart fx:id="lineChart">
+                                <xAxis>
+                                  <CategoryAxis side="BOTTOM" />
+                                </xAxis>
+                                <yAxis>
+                                  <NumberAxis side="LEFT" />
+                                </yAxis>
+                              </LineChart>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <Label prefHeight="32.0" prefWidth="108.0" text="Le Tarif Moyen :" />
+                  <Label fx:id="moy_tarif" prefHeight="18.0" prefWidth="83.0" text="Label" />
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
+               </padding>
+            </VBox>
             </children>
             <padding>
                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />

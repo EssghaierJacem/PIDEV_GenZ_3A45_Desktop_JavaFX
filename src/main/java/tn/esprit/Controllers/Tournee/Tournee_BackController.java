@@ -1,6 +1,8 @@
 package tn.esprit.Controllers.Tournee;
 
 import com.jfoenix.controls.JFXButton;
+import com.twilio.rest.api.v2010.account.Message;
+import com.twilio.type.PhoneNumber;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,6 +20,7 @@ import javafx.stage.Stage;
 
 import tn.esprit.entites.SessionManager;
 import tn.esprit.entites.Tournee;
+import tn.esprit.entites.Guide;
 
 import tn.esprit.services.GuideServices;
 import tn.esprit.services.TourneeServices;

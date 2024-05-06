@@ -45,10 +45,12 @@ public class GuideFrontController implements Initializable {
     @FXML
     private TableColumn<Guide, Integer> Guide_Id;
 
+    @FXML
+    private JFXButton stats;
+    @FXML
+    void HandleStatsAction(ActionEvent event) {
 
-
-
-
+    }
 
     @FXML
     private TableView<Guide> guideTableView;
@@ -56,7 +58,6 @@ public class GuideFrontController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         addGuideShowListData();
-
     }
 
 
