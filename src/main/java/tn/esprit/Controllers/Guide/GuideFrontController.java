@@ -48,8 +48,38 @@ public class GuideFrontController implements Initializable {
     @FXML
     private JFXButton stats;
     @FXML
-    void HandleStatsAction(ActionEvent event) {
+    private JFXButton dashboardButton;
 
+    @FXML
+    void goToDashboard(javafx.event.ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Dashboard_J/FrontDashboard.fxml"));
+            Parent root = loader.load();
+
+            Stage currentStage = (Stage) dashboardButton.getScene().getWindow();
+            Scene newScene = new Scene(root);
+            currentStage.setScene(newScene);
+
+            currentStage.setTitle("User - Dashboard");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void HandleStatsAction(javafx.event.ActionEvent event){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Guide/GuideStats.fxml"));
+            Parent root = loader.load();
+
+            Stage currentStage = (Stage) stats.getScene().getWindow();
+            Scene newScene = new Scene(root);
+            currentStage.setScene(newScene);
+
+            currentStage.setTitle("Guide et tournées Stats");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -96,6 +126,5 @@ public class GuideFrontController implements Initializable {
             e.printStackTrace();
         }
     }*/
-
 
 }

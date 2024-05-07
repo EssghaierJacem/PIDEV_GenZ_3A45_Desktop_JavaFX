@@ -225,7 +225,7 @@
                                         <Image url="@../JImages/Home.png" />
                                     </image>
                                 </ImageView>
-                                <JFXButton prefHeight="38.0" prefWidth="132.0" text="Page d'acceuil">
+                                <JFXButton fx:id="dashboardButton" onAction="#goToDashboard" prefHeight="38.0" prefWidth="132.0" text="Page d'acceuil">
                                     <font>
                                         <Font name="Century Gothic" size="13.0" />
                                     </font>

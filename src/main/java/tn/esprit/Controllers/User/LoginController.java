@@ -28,7 +28,7 @@ public class LoginController implements Initializable {
     private TextField LoginEmail;
 
     @FXML
-    private TextField LoginPassword;
+    private PasswordField LoginPassword;
 
     @FXML
     private JFXButton Register;

@@ -81,6 +81,33 @@ public class VolByID_BackController implements Initializable {
     private Label tarif;
     @FXML
     private Label vol_id;
+    //Buttons
+
+
+    @FXML
+    private JFXButton commandeButton;
+
+    @FXML
+    private Label connectedUser_Username;
+
+    @FXML
+    private JFXButton dashboardButton;
+
+    @FXML
+    private JFXButton eventsButton;
+
+    @FXML
+    private JFXButton guideButton;
+
+    @FXML
+    private JFXButton participationButton;
+
+    @FXML
+    private JFXButton reservationButton;
+
+    @FXML
+    private JFXButton tourneeButton;
+
     private Vol currentVol;
 
     private SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
@@ -139,6 +166,31 @@ public class VolByID_BackController implements Initializable {
         });
     }
     @FXML
+    void exportToPDF(ActionEvent event) {
+        VolServices volServices = new VolServices();
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save PDF");
+        fileChooser.getExtensionFilters().addAll(
+                new ExtensionFilter("PDF Files", "*.pdf"),
+                new ExtensionFilter("All Files", "*.*")
+        );
+
+        File file = fileChooser.showSaveDialog(((JFXButton) event.getSource()).getScene().getWindow());
+
+        if (file != null) {
+            String filePath = file.getAbsolutePath();
+
+            volServices.exportToPDF(currentVol, filePath);
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("PDF Export");
+            alert.setHeaderText(null);
+            alert.setContentText("The PDF has been exported successfully!");
+            alert.showAndWait();
+        }
+    }
+    @FXML
     void Logout(ActionEvent event) {
         String currentSessionId = SessionManager.getCurrentSessionId();
 
@@ -163,7 +215,23 @@ public class VolByID_BackController implements Initializable {
     }
 
     @FXML
-    private void goToVol(ActionEvent event) {
+    void goToDestination(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Destination/ListDestination_Back.fxml"));
+            Parent root = loader.load();
+
+            Stage currentStage = (Stage) destinationButton.getScene().getWindow();
+            Scene newScene = new Scene(root);
+
+            currentStage.setScene(newScene);
+            currentStage.setTitle("List of Destinations");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void goToVol(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vol/ListVol_Back.fxml"));
             Parent root = loader.load();
@@ -173,52 +241,120 @@ public class VolByID_BackController implements Initializable {
             currentStage.setScene(newScene);
 
             currentStage.setTitle("List of Vols");
-
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
     @FXML
-    private void goToDestination(ActionEvent event) {
+    void goToCommande(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Destination/ListDestination_Back.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Commande/ListCommande_Back.fxml"));
             Parent root = loader.load();
 
-            Stage currentStage = (Stage) destinationButton.getScene().getWindow();
+            Stage currentStage = (Stage) commandeButton.getScene().getWindow();
             Scene newScene = new Scene(root);
-
             currentStage.setScene(newScene);
 
-            currentStage.setTitle("List of Destinations");
-
+            currentStage.setTitle("List des commandes");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
     @FXML
-    void exportToPDF(ActionEvent event) {
-        VolServices volServices = new VolServices();
+    void goToDashboard(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Dashboard_J/BackDashboard.fxml"));
+            Parent root = loader.load();
 
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Save PDF");
-        fileChooser.getExtensionFilters().addAll(
-                new ExtensionFilter("PDF Files", "*.pdf"),
-                new ExtensionFilter("All Files", "*.*")
-        );
+            Stage currentStage = (Stage) dashboardButton.getScene().getWindow();
+            Scene newScene = new Scene(root);
+            currentStage.setScene(newScene);
 
-        File file = fileChooser.showSaveDialog(((JFXButton) event.getSource()).getScene().getWindow());
+            currentStage.setTitle("ADMIN - Dashboard");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
-        if (file != null) {
-            String filePath = file.getAbsolutePath();
 
-            volServices.exportToPDF(currentVol, filePath);
+    @FXML
+    void goToEvents(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Event/ListEvent_Back.fxml"));
+            Parent root = loader.load();
 
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("PDF Export");
-            alert.setHeaderText(null);
-            alert.setContentText("The PDF has been exported successfully!");
-            alert.showAndWait();
+            Stage currentStage = (Stage) eventsButton.getScene().getWindow();
+            Scene newScene = new Scene(root);
+            currentStage.setScene(newScene);
+
+            currentStage.setTitle("List of Events");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void goToGuide(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Guide/Guide_Back.fxml"));
+            Parent root = loader.load();
+
+            Stage currentStage = (Stage) guideButton.getScene().getWindow();
+            Scene newScene = new Scene(root);
+            currentStage.setScene(newScene);
+
+            currentStage.setTitle("Liste des guides");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void goToParticipation(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Participation/ListParticipation_Back.fxml"));
+            Parent root = loader.load();
+
+            Stage currentStage = (Stage) participationButton.getScene().getWindow();
+            Scene newScene = new Scene(root);
+            currentStage.setScene(newScene);
+
+            currentStage.setTitle("Liste des participations");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void goToReservation(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Reservation/ListReservation_Back.fxml"));
+            Parent root = loader.load();
+
+            Stage currentStage = (Stage) reservationButton.getScene().getWindow();
+            Scene newScene = new Scene(root);
+            currentStage.setScene(newScene);
+
+            currentStage.setTitle("Liste des reservation");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void goToTournee(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Tournee/Tournee_Back.fxml"));
+            Parent root = loader.load();
+
+            Stage currentStage = (Stage) tourneeButton.getScene().getWindow();
+            Scene newScene = new Scene(root);
+            currentStage.setScene(newScene);
+
+            currentStage.setTitle("Liste des tourneés");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

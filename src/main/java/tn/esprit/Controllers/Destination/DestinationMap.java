@@ -41,6 +41,24 @@ public class DestinationMap implements Initializable {
 
     @FXML
     private JFXButton volButton;
+    @FXML
+    private JFXButton dashboardButton;
+
+    @FXML
+    void goToDashboard(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Dashboard_J/FrontDashboard.fxml"));
+            Parent root = loader.load();
+
+            Stage currentStage = (Stage) dashboardButton.getScene().getWindow();
+            Scene newScene = new Scene(root);
+            currentStage.setScene(newScene);
+
+            currentStage.setTitle("User - Dashboard");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @FXML
     void Logout(ActionEvent event) {
@@ -72,7 +90,7 @@ public class DestinationMap implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Destination/ListDestination_Front.fxml"));
             Parent root = loader.load();
 
-            Stage currentStage = (Stage) volButton.getScene().getWindow();
+            Stage currentStage = (Stage) destinationButton.getScene().getWindow();
             Scene newScene = new Scene(root);
             currentStage.setScene(newScene);
 

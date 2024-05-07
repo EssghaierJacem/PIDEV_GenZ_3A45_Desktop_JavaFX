@@ -117,7 +117,7 @@
                                         <Image url="@../JImages/icons8-guide-50.png" />
                                     </image>
                                 </ImageView>
-                                <JFXButton fx:id="guideButton" prefHeight="38.0" prefWidth="132.0" text="Guides">
+                                <JFXButton fx:id="guideButton" onAction="#goToGuide" prefHeight="38.0" prefWidth="132.0" text="Guides">
                                     <font>
                                         <Font name="Century Gothic" size="13.0" />
                                     </font>
@@ -134,7 +134,7 @@
                                         <Image url="@../JImages/icons8-tour-50.png" />
                                     </image>
                                 </ImageView>
-                                <JFXButton fx:id="tourneeButton" prefHeight="38.0" prefWidth="132.0" text="Tournée">
+                                <JFXButton fx:id="tourneeButton" onAction="#goToTournee" prefHeight="38.0" prefWidth="132.0" text="Tournée">
                                     <font>
                                         <Font name="Century Gothic" size="13.0" />
                                     </font>
@@ -181,7 +181,7 @@
                                         <Image url="@../JImages/icons8-events-64.png" />
                                     </image>
                                 </ImageView>
-                                <JFXButton fx:id="eventsButton" prefHeight="38.0" prefWidth="132.0" text="Evenemenets">
+                                <JFXButton fx:id="eventsButton" onAction="#goToEvent" prefHeight="38.0" prefWidth="132.0" text="Evenemenets">
                                     <font>
                                         <Font name="Century Gothic" size="13.0" />
                                     </font>
@@ -198,7 +198,7 @@
                                         <Image url="@../JImages/icons8-volunteering-50.png" />
                                     </image>
                                 </ImageView>
-                                <JFXButton fx:id="participationButton" prefHeight="38.0" prefWidth="132.0" text="Participations">
+                                <JFXButton fx:id="participationButton" onAction="#goToParticipation" prefHeight="38.0" prefWidth="132.0" text="Participations">
                                     <font>
                                         <Font name="Century Gothic" size="13.0" />
                                     </font>
@@ -215,7 +215,7 @@
                                         <Image url="@../JImages/icons8-command-50.png" />
                                     </image>
                                 </ImageView>
-                                <JFXButton fx:id="commandesButton" prefHeight="38.0" prefWidth="132.0" text="Commandes">
+                                <JFXButton fx:id="commandesButton" onAction="#goToCommande" prefHeight="38.0" prefWidth="132.0" text="Commandes">
                                     <font>
                                         <Font name="Century Gothic" size="13.0" />
                                     </font>
@@ -232,7 +232,7 @@
                               <Image url="@../JImages/icons8-reservation-50.png" />
                            </image>
                         </ImageView>
-                        <JFXButton fx:id="reservationButton" prefHeight="38.0" prefWidth="132.0" text="Reservations">
+                        <JFXButton fx:id="reservationButton" onAction="#goToReservation" prefHeight="38.0" prefWidth="132.0" text="Reservations">
                            <font>
                               <Font name="Century Gothic" size="13.0" />
                            </font>
