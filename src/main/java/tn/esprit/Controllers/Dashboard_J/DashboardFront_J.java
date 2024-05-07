@@ -7,6 +7,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.AreaChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -15,12 +17,14 @@ import tn.esprit.entites.SessionManager;
 import tn.esprit.entites.User;
 import tn.esprit.entites.Vol;
 import tn.esprit.services.CurrencyConversionService;
+import tn.esprit.services.TourneeServices;
 import tn.esprit.services.VolServices;
 
 import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class DashboardFront_J implements Initializable {
@@ -77,7 +81,14 @@ public class DashboardFront_J implements Initializable {
     private JFXButton volButton;
 
     @FXML
+    private AreaChart<String,Number> TourneeChart;
+
+    @FXML
     private Label currencyConversion;
+
+    private TourneeServices tourneeService;
+
+
 
     private CurrencyConversionService currencyService = new CurrencyConversionService();
     private VolServices volServices = new VolServices();
@@ -91,6 +102,10 @@ public class DashboardFront_J implements Initializable {
         } else {
             connectedUser_Username.setText("Not logged in");
         }
+        tourneeService = new TourneeServices();
+        chart();
+
+
 
         updateFlightNotification();
         currencies.getItems().addAll(
@@ -150,6 +165,23 @@ public class DashboardFront_J implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
             resultConversion.setText("Erreur dans la conversion de la devise.");
+        }
+    }
+
+    @FXML
+    private void chart(){
+        TourneeServices tourneeServices = new TourneeServices();
+        // Appeler la méthode du service
+        Map<String, Integer> toursPerDestination = tourneeService.getToursPerDestination();
+
+        // Utiliser les données récupérées pour mettre à jour le graphique, par exemple
+        for (Map.Entry<String, Integer> entry : toursPerDestination.entrySet()) {
+            String destination = entry.getKey();
+            Integer tourCount = entry.getValue();
+            XYChart.Data<String, Number> data = new XYChart.Data<>(destination, tourCount);
+            XYChart.Series<String, Number> series = new XYChart.Series<>();
+            series.getData().add(data);
+            TourneeChart.getData().add(series);
         }
     }
     // Navigation methods

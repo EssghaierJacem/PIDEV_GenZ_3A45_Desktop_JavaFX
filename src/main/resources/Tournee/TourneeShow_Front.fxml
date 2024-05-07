@@ -369,7 +369,7 @@
                               <Font name="Century Gothic Bold" size="16.0" />
                            </font>
                         </Label>
-                        <Label fx:id="weather" prefHeight="398.0" prefWidth="257.0" text="Label" textFill="#9e284d">
+                        <Label fx:id="weather" prefHeight="236.0" prefWidth="222.0" text="Label" textFill="#9e284d">
                            <font>
                               <Font name="Century Gothic" size="16.0" />
                            </font>

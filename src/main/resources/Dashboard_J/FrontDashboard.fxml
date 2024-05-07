@@ -387,7 +387,7 @@
             </HBox>
             <HBox prefHeight="271.0" prefWidth="779.0" styleClass="pane_maybe" stylesheets="@../css/JStyle.css">
                <children>
-                  <AreaChart prefHeight="266.0" prefWidth="781.0">
+                  <AreaChart fx:id="TourneeChart" prefHeight="266.0" prefWidth="781.0">
                     <xAxis>
                       <CategoryAxis side="BOTTOM" />
                     </xAxis>
