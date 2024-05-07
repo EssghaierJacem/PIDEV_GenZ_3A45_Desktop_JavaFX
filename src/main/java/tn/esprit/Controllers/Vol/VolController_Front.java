@@ -48,6 +48,9 @@ public class VolController_Front implements Initializable {
     private JFXButton dashboardButton;
 
     @FXML
+    private JFXButton mapButton;
+
+    @FXML
     void goToDashboard(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Dashboard_J/FrontDashboard.fxml"));
@@ -62,6 +65,7 @@ public class VolController_Front implements Initializable {
             e.printStackTrace();
         }
     }
+
 
     private List<Vol> originalVolList;
 
@@ -176,7 +180,7 @@ public class VolController_Front implements Initializable {
     }
 
     @FXML
-    private void goToDestination(ActionEvent event) {
+    void goToDestination(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Destination/ListDestination_Front.fxml"));
             Parent root = loader.load();
@@ -186,6 +190,21 @@ public class VolController_Front implements Initializable {
 
             currentStage.setScene(newScene);
             currentStage.setTitle("List of Destinations");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    void goToMap(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Destination/DestinationMap.fxml"));
+            Parent root = loader.load();
+
+            Stage currentStage = (Stage) mapButton.getScene().getWindow();
+            Scene newScene = new Scene(root);
+            currentStage.setScene(newScene);
+
+            currentStage.setTitle("Destinations - Map");
         } catch (IOException e) {
             e.printStackTrace();
         }

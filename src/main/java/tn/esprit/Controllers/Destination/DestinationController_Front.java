@@ -48,6 +48,9 @@ public class DestinationController_Front implements Initializable {
     @FXML
     private TextField keywordSearch;
 
+    @FXML
+    private JFXButton mapButton;
+
     private List<Destination> originalDestinationList;
 
     private Timer searchTimer = new Timer();
@@ -65,6 +68,21 @@ public class DestinationController_Front implements Initializable {
             currentStage.setScene(newScene);
 
             currentStage.setTitle("User - Dashboard");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    void goToMap(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Destination/DestinationMap.fxml"));
+            Parent root = loader.load();
+
+            Stage currentStage = (Stage) mapButton.getScene().getWindow();
+            Scene newScene = new Scene(root);
+            currentStage.setScene(newScene);
+
+            currentStage.setTitle("Destinations - Map");
         } catch (IOException e) {
             e.printStackTrace();
         }

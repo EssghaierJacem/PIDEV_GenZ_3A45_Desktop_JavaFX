@@ -81,7 +81,7 @@
                                         <Image url="@../JImages/stocks.png" />
                                     </image>
                                 </ImageView>
-                                <JFXButton prefHeight="38.0" prefWidth="132.0" text="Meilleurs choix">
+                                <JFXButton fx:id="destinationButton" onAction="#goToDestination" prefHeight="38.0" prefWidth="132.0" text="Meilleurs choix">
                                     <font>
                                         <Font name="Century Gothic" size="13.0" />
                                     </font>
@@ -98,7 +98,7 @@
                                         <Image url="@../JImages/flaticon_comfort.png" />
                                     </image>
                                 </ImageView>
-                                <JFXButton prefHeight="38.0" prefWidth="132.0" text="Navigation">
+                                <JFXButton fx:id="mapButton" onAction="#goToMap" prefHeight="38.0" prefWidth="132.0" text="Navigation">
                                     <font>
                                         <Font name="Century Gothic" size="13.0" />
                                     </font>
@@ -152,7 +152,7 @@
                                         <Image url="@../JImages/planeee.png" />
                                     </image>
                                 </ImageView>
-                                <JFXButton prefHeight="38.0" prefWidth="132.0" text="Meilleurs choix">
+                                <JFXButton fx:id="volButton" onAction="#goToVol" prefHeight="38.0" prefWidth="132.0" text="Meilleurs choix">
                                     <font>
                                         <Font name="Century Gothic" size="13.0" />
                                     </font>

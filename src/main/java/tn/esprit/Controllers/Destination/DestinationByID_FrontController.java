@@ -55,6 +55,13 @@ public class DestinationByID_FrontController implements Initializable {
 
     @FXML
     private Label destination_ville;
+    @FXML
+    private JFXButton mapButton;
+
+    @FXML
+    private JFXButton volButton;
+    @FXML
+    private JFXButton destinationButton;
 
     @FXML
     private HBox cardLayout;
@@ -119,6 +126,54 @@ public class DestinationByID_FrontController implements Initializable {
 
             currentStage.setTitle("Login");
 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void goToDestination(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Destination/ListDestination_Front.fxml"));
+            Parent root = loader.load();
+
+            Stage currentStage = (Stage) destinationButton.getScene().getWindow();
+            Scene newScene = new Scene(root);
+            currentStage.setScene(newScene);
+
+            currentStage.setTitle("Liste des destinations");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void goToMap(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Destination/DestinationMap.fxml"));
+            Parent root = loader.load();
+
+            Stage currentStage = (Stage) mapButton.getScene().getWindow();
+            Scene newScene = new Scene(root);
+            currentStage.setScene(newScene);
+
+            currentStage.setTitle("Destination - Map");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void goToVol(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vol/ListVol_Front.fxml"));
+            Parent root = loader.load();
+
+            Stage currentStage = (Stage) volButton.getScene().getWindow();
+            Scene newScene = new Scene(root);
+            currentStage.setScene(newScene);
+
+            currentStage.setTitle("Liste des vols");
         } catch (IOException e) {
             e.printStackTrace();
         }

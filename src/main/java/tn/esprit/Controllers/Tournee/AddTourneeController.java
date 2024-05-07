@@ -22,6 +22,7 @@ import tn.esprit.services.TourneeServices;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class AddTourneeController implements Initializable {
@@ -61,7 +62,9 @@ public class AddTourneeController implements Initializable {
 
     @FXML
     private TextField addTransport;
-    //Buttons
+
+    @FXML
+    private Label errorLabel;
 
     @FXML
     private JFXButton Logout;
@@ -74,7 +77,6 @@ public class AddTourneeController implements Initializable {
 
     @FXML
     private JFXButton destinationButton;
-
 
     @FXML
     private JFXButton dashboardButton;
@@ -96,11 +98,17 @@ public class AddTourneeController implements Initializable {
 
     @FXML
     private JFXButton volButton;
+
     private static final String ACCOUNT_SID = "ACde90f2a6ff59a35aa69aa9c5554ce829";
     private static final String AUTH_TOKEN = "6fd2a62e9757cb2ca55fce8bc1088524";
 
     @FXML
     void handleAddButtonAction(ActionEvent event) {
+        if (!validateTourneeInputs()) {
+            return;
+        }
+
+        // Create a new Tournee object
         Tournee newTournee = new Tournee();
         newTournee.setNom(addNom.getText());
         newTournee.setMonuments(addMonuments.getText());
@@ -118,15 +126,15 @@ public class AddTourneeController implements Initializable {
         tourneeServices.addTournee(newTournee, selectedDestination.getId(), selectedGuide.getId());
 
         String guidePhoneNumber = "+216" + selectedGuide.getNum_tel();
-        String messageBody = " Bonjour Mr " + selectedGuide.getNom() +" Vous etes affecté a la tournée: " + newTournee.getNom();
+        String messageBody = "Bonjour Mr " + selectedGuide.getNom() + ", vous êtes affecté à la tournée: " + newTournee.getNom();
         sendSMS(guidePhoneNumber, messageBody);
     }
 
     @FXML
     void handleClearButtonAction(ActionEvent event) {
         clearFields();
-
     }
+
     private void clearFields() {
         addNom.clear();
         addMonuments.clear();
@@ -145,6 +153,7 @@ public class AddTourneeController implements Initializable {
         Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
         loadDestinations();
         loadGuides();
+        errorLabel.setVisible(false);
     }
 
     private void loadDestinations() {
@@ -160,13 +169,14 @@ public class AddTourneeController implements Initializable {
     public static void sendMessageToGuide(Tournee tournee, String messageBody) {
         if (tournee != null && tournee.getGuide() != null) {
             Guide guide = tournee.getGuide();
-            String guidePhoneNumber = String.valueOf(guide.getNum_tel());
+            String guidePhoneNumber = "+216" + guide.getNum_tel();
 
             sendSMS(guidePhoneNumber, messageBody);
         } else {
             System.out.println("No guide or tour found. Cannot send SMS.");
         }
     }
+
     public static void sendSMS(String recipientPhoneNumber, String messageBody) {
         String twilioPhoneNumber = "+19513197180";
 
@@ -182,10 +192,102 @@ public class AddTourneeController implements Initializable {
             System.err.println("Failed to send SMS: " + e.getMessage());
         }
     }
+
+    private boolean validateTourneeInputs() {
+        StringBuilder errors = new StringBuilder();
+        if (!validateNomTournee()) {
+            errors.append("'Nom de la tournée' doit comporter entre 4 et 20 caractères.\n");
+        }
+
+        if (!validateDateDebut()) {
+            errors.append("Veuillez sélectionner une date valide pour la 'Date de début'.\n");
+        }
+
+        if (!validateDuree()) {
+            errors.append("'Durée' doit être spécifiée.\n");
+        }
+
+        if (!validateDescription()) {
+            errors.append("La 'Description' ne peut pas être vide.\n");
+        }
+
+        if (!validateTarif()) {
+            errors.append("'Tarif' doit être un nombre valide et ne doit pas dépasser 5000.0.\n");
+        }
+
+        if (!validateMonuments()) {
+            errors.append("Veuillez spécifier au moins un monument.\n");
+        }
+
+        if (!validateTrancheAge()) {
+            errors.append("Veuillez spécifier une tranche d'âge valide.\n");
+        }
+
+        if (!validateMoyenTransport()) {
+            errors.append("Veuillez spécifier un moyen de transport.\n");
+        }
+
+        if (errors.length() > 0) {
+            // Display the errors
+            errorLabel.setText(errors.toString());
+            errorLabel.setVisible(true);
+            return false;
+        }
+
+        return true;
+    }
+
+    private boolean validateNomTournee() {
+        String nomTournee = addNom.getText().trim();
+        return nomTournee != null && nomTournee.length() >= 4 && nomTournee.length() <= 20;
+    }
+
+    private boolean validateDateDebut() {
+        LocalDate dateDebut = addDate.getValue();
+        return dateDebut != null && !dateDebut.isBefore(LocalDate.now());
+    }
+
+    private boolean validateDuree() {
+        String duree = addDuree.getText().trim();
+        return duree != null && !duree.isEmpty();
+    }
+
+    private boolean validateDescription() {
+        String description = addDescription.getText().trim();
+        return description != null && !description.isEmpty();
+    }
+
+    private boolean validateTarif() {
+        String tarifStr = addTarif.getText().trim();
+        if (tarifStr.isEmpty()) {
+            return false;
+        }
+        try {
+            double tarif = Double.parseDouble(tarifStr);
+            return tarif >= 0 && tarif <= 5000.0;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    private boolean validateMonuments() {
+        String monuments = addMonuments.getText().trim();
+        return monuments != null && !monuments.isEmpty();
+    }
+
+    private boolean validateTrancheAge() {
+        String trancheAge = addAge.getText().trim();
+        return trancheAge != null && !trancheAge.isEmpty();
+    }
+
+    private boolean validateMoyenTransport() {
+        String moyenTransport = addTransport.getText().trim();
+        return moyenTransport != null && !moyenTransport.isEmpty();
+    }
+
     @FXML
     void Logout(ActionEvent event) {
         String currentSessionId = SessionManager.getCurrentSessionId();
-
         if (currentSessionId != null) {
             SessionManager.terminateSession(currentSessionId);
         }
@@ -195,12 +297,9 @@ public class AddTourneeController implements Initializable {
             Parent loginRoot = loader.load();
 
             Stage currentStage = (Stage) Logout.getScene().getWindow();
-
             Scene loginScene = new Scene(loginRoot);
             currentStage.setScene(loginScene);
-
             currentStage.setTitle("Login");
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -214,7 +313,6 @@ public class AddTourneeController implements Initializable {
 
             Stage currentStage = (Stage) destinationButton.getScene().getWindow();
             Scene newScene = new Scene(root);
-
             currentStage.setScene(newScene);
             currentStage.setTitle("List of Destinations");
         } catch (IOException e) {
@@ -231,12 +329,12 @@ public class AddTourneeController implements Initializable {
             Stage currentStage = (Stage) volButton.getScene().getWindow();
             Scene newScene = new Scene(root);
             currentStage.setScene(newScene);
-
             currentStage.setTitle("List of Vols");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
     @FXML
     void goToCommande(ActionEvent event) {
         try {
@@ -246,7 +344,6 @@ public class AddTourneeController implements Initializable {
             Stage currentStage = (Stage) commandeButton.getScene().getWindow();
             Scene newScene = new Scene(root);
             currentStage.setScene(newScene);
-
             currentStage.setTitle("List des commandes");
         } catch (IOException e) {
             e.printStackTrace();
@@ -262,13 +359,11 @@ public class AddTourneeController implements Initializable {
             Stage currentStage = (Stage) dashboardButton.getScene().getWindow();
             Scene newScene = new Scene(root);
             currentStage.setScene(newScene);
-
             currentStage.setTitle("ADMIN - Dashboard");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
 
     @FXML
     void goToEvents(ActionEvent event) {
@@ -279,7 +374,6 @@ public class AddTourneeController implements Initializable {
             Stage currentStage = (Stage) eventsButton.getScene().getWindow();
             Scene newScene = new Scene(root);
             currentStage.setScene(newScene);
-
             currentStage.setTitle("List of Events");
         } catch (IOException e) {
             e.printStackTrace();
@@ -295,7 +389,6 @@ public class AddTourneeController implements Initializable {
             Stage currentStage = (Stage) guideButton.getScene().getWindow();
             Scene newScene = new Scene(root);
             currentStage.setScene(newScene);
-
             currentStage.setTitle("Liste des guides");
         } catch (IOException e) {
             e.printStackTrace();
@@ -311,7 +404,6 @@ public class AddTourneeController implements Initializable {
             Stage currentStage = (Stage) participationButton.getScene().getWindow();
             Scene newScene = new Scene(root);
             currentStage.setScene(newScene);
-
             currentStage.setTitle("Liste des participations");
         } catch (IOException e) {
             e.printStackTrace();
@@ -327,8 +419,7 @@ public class AddTourneeController implements Initializable {
             Stage currentStage = (Stage) reservationButton.getScene().getWindow();
             Scene newScene = new Scene(root);
             currentStage.setScene(newScene);
-
-            currentStage.setTitle("Liste des reservation");
+            currentStage.setTitle("Liste des reservations");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -343,11 +434,9 @@ public class AddTourneeController implements Initializable {
             Stage currentStage = (Stage) tourneeButton.getScene().getWindow();
             Scene newScene = new Scene(root);
             currentStage.setScene(newScene);
-
-            currentStage.setTitle("Liste des tourneés");
+            currentStage.setTitle("Liste des tournees");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
 }
