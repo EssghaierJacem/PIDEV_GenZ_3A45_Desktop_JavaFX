@@ -7,6 +7,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 
 import java.io.IOException;
@@ -107,10 +109,37 @@ public class ShowGuideController implements Initializable {
     @FXML
     void handleDeleteButtonAction(ActionEvent event) {
 
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation");
+        alert.setHeaderText("Êtes-vous sûr que vous voulez supprimer?");
+        alert.setContentText("Cette action ne peut pas être annulée.");
+
+        alert.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                GuideServices guideServices = new GuideServices();
+                guideServices.removeGuide(currentGuide.getId());
+
+                Stage stage = (Stage) Delete.getScene().getWindow();
+                stage.close();
+            }
+        });
+
+
     }
 
     @FXML
-    void handleUpdateButtonAction(ActionEvent event) {
+    void handleUpdateButtonAction(ActionEvent event) throws IOException{
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Guide/GuideUpdate.fxml"));
+        Parent root = loader.load();
+
+        UpdateGuideController updateGuideController = loader.getController();
+        updateGuideController.populateFieldsWithData(currentGuide);
+
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
 
     }
     @FXML

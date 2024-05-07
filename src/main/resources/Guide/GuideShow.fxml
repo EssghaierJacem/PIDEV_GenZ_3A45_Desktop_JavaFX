@@ -282,7 +282,7 @@
                                 <Font size="1.0" />
                             </font>
                         </Button>
-                        <Label layoutX="14.0" layoutY="42.0" text="Gestion Vol :">
+                        <Label layoutX="14.0" layoutY="42.0" text="Gestion Guides :">
                             <font>
                                 <Font name="Century Gothic Bold" size="20.0" />
                             </font>
