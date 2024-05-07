@@ -197,7 +197,7 @@ public class VolByID_FrontController implements Initializable {
 
             currentStage.setScene(newScene);
 
-            currentStage.setTitle("List of Destinations");
+            currentStage.setTitle("Destination - Map");
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -232,7 +232,7 @@ public class VolByID_FrontController implements Initializable {
             Scene newScene = new Scene(root);
             currentStage.setScene(newScene);
 
-            currentStage.setTitle("List of Vols");
+            currentStage.setTitle("Liste des vols");
 
         } catch (IOException e) {
             e.printStackTrace();

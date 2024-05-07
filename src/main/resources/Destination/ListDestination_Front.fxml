@@ -119,7 +119,7 @@
                               <Image url="@../JImages/Map.png" />
                            </image>
                         </ImageView>
-                        <JFXButton prefHeight="38.0" prefWidth="132.0" text="Navigation">
+                        <JFXButton fx:id="mapButton" onAction="#goToMap" prefHeight="38.0" prefWidth="132.0" text="Navigation">
                            <font>
                               <Font name="Century Gothic" size="13.0" />
                            </font>
