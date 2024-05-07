@@ -5,6 +5,7 @@
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -167,18 +168,11 @@
                               <Insets left="20.0" top="10.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField fx:id="addPassword" layoutX="12.0" layoutY="391.0" prefHeight="31.0" prefWidth="359.0" stylesheets="@../css/frontStyles.css" text="********">
-                           <font>
-                              <Font name="Century Gothic" size="15.0" />
-                           </font>
-                           <styleClass>
-                              <String fx:value="transparent" />
-                              <String fx:value="selected" />
-                           </styleClass>
+                        <PasswordField fx:id="addPassword">
                            <VBox.margin>
                               <Insets left="20.0" right="20.0" top="10.0" />
                            </VBox.margin>
-                        </TextField>
+                        </PasswordField>
                         <Label layoutX="12.0" layoutY="479.0" prefHeight="20.0" prefWidth="259.0" stylesheets="@../css/frontStyles.css" text="Image ( Insérer un URL valide ) :" textFill="#225d85">
                            <font>
                               <Font name="Century Gothic Bold" size="16.0" />

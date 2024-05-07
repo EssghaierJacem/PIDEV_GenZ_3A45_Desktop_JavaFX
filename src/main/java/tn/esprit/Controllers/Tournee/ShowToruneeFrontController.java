@@ -3,12 +3,18 @@ package tn.esprit.Controllers.Tournee;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 import org.json.JSONObject;
 import tn.esprit.entites.Tournee;
 
 import javafx.application.Platform;
+
+import java.io.IOException;
 import java.net.URI;
 import java.net.URL;
 import java.net.http.HttpClient;
@@ -67,9 +73,28 @@ public class ShowToruneeFrontController implements Initializable {
 
     @FXML
     private Label weather;
+
     private static final String API_KEY = "83f90283ab134e65dc776b2264abb365";
     private HttpClient httpClient = HttpClient.newHttpClient();
     private Tournee currentTournee;
+    @FXML
+    private JFXButton dashboardButton;
+
+    @FXML
+    void goToDashboard(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Dashboard_J/FrontDashboard.fxml"));
+            Parent root = loader.load();
+
+            Stage currentStage = (Stage) dashboardButton.getScene().getWindow();
+            Scene newScene = new Scene(root);
+            currentStage.setScene(newScene);
+
+            currentStage.setTitle("User - Dashboard");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     private SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
     public void setTourneeData(Tournee tournee) {
