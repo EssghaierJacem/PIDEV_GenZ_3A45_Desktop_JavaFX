@@ -252,7 +252,7 @@
                   <TableColumn fx:id="Guide_Nationalite" prefWidth="116.800048828125" text="Nationalité" />
               </columns>
             </TableView>
-            <JFXButton fx:id="stats" prefHeight="47.0" prefWidth="170.0" styleClass="inner_pane" stylesheets="@../css/JStyle.css" text="Voir Stats" />
+            <JFXButton fx:id="stats" onAction="#HandleStatsAction" prefHeight="47.0" prefWidth="170.0" styleClass="inner_pane" stylesheets="@../css/JStyle.css" text="Voir Stats" />
             </children>
             <padding>
                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />

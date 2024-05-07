@@ -67,8 +67,19 @@ public class GuideFrontController implements Initializable {
     }
 
     @FXML
-    void HandleStatsAction(ActionEvent event) {
+    void HandleStatsAction(javafx.event.ActionEvent event){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Guide/GuideStats.fxml"));
+            Parent root = loader.load();
 
+            Stage currentStage = (Stage) stats.getScene().getWindow();
+            Scene newScene = new Scene(root);
+            currentStage.setScene(newScene);
+
+            currentStage.setTitle("Guide et tournées Stats");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
