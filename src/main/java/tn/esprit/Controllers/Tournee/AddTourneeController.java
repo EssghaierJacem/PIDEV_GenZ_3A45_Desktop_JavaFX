@@ -22,7 +22,14 @@ import tn.esprit.services.TourneeServices;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
 
 public class AddTourneeController implements Initializable {
 
@@ -62,6 +69,9 @@ public class AddTourneeController implements Initializable {
     @FXML
     private TextField addTransport;
     //Buttons
+
+    @FXML
+    private Label errorLabel;
 
     @FXML
     private JFXButton Logout;
@@ -145,6 +155,7 @@ public class AddTourneeController implements Initializable {
         Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
         loadDestinations();
         loadGuides();
+        errorLabel.setVisible(false);
     }
 
     private void loadDestinations() {
@@ -182,6 +193,114 @@ public class AddTourneeController implements Initializable {
             System.err.println("Failed to send SMS: " + e.getMessage());
         }
     }
+
+
+
+
+
+
+
+    private boolean validateTourneeInputs() {
+        StringBuilder errors = new StringBuilder();
+
+        if (!validateNomTournee(errors)) {
+            errors.append("'Nom de la tournée' doit comporter entre 4 et 20 caractères.\n");
+        }
+
+        if (!validateDateDebut(errors)) {
+            errors.append("Veuillez sélectionner une date valide pour la 'Date de début'.\n");
+        }
+
+        if (!validateDuree(errors)) {
+            errors.append("'Durée' doit être spécifiée.\n");
+        }
+
+        if (!validateDescription(errors)) {
+            errors.append("La 'Description' ne peut pas être vide.\n");
+        }
+
+        if (!validateTarif(errors)) {
+            errors.append("'Tarif' doit être un nombre valide et ne doit pas dépasser 5000.0.\n");
+        }
+
+        if (!validateMonuments(errors)) {
+            errors.append("Veuillez spécifier au moins un monument.\n");
+        }
+
+        if (!validateTrancheAge(errors)) {
+            errors.append("Veuillez spécifier une tranche d'âge valide.\n");
+        }
+
+        if (!validateMoyenTransport(errors)) {
+            errors.append("Veuillez spécifier un moyen de transport.\n");
+        }
+
+        if (errors.length() > 0) {
+            // Affichage des erreurs
+            errorLabel.setText(errors.toString());
+            errorLabel.setVisible(true);
+            return false;
+        }
+
+        return true;
+    }
+
+    private boolean validateNomTournee(StringBuilder errors) {
+        String nomTournee = addNom.getText().trim();
+        if (nomTournee == null || nomTournee.length() < 4 || nomTournee.length() > 20) {
+            return false;
+        }
+        return true;
+    }
+
+    private boolean validateDateDebut(StringBuilder errors) {
+        LocalDate dateDebut = addDate.getValue();
+        return dateDebut != null && !dateDebut.isBefore(LocalDate.now());
+    }
+
+    private boolean validateDuree(StringBuilder errors) {
+        String duree = addDuree.getText().trim();
+        return duree != null && !duree.isEmpty();
+    }
+
+    private boolean validateDescription(StringBuilder errors) {
+        String description = addDescription.getText().trim();
+        return description != null && !description.isEmpty();
+    }
+
+    private boolean validateTarif(StringBuilder errors) {
+        String tarifStr = addTarif.getText().trim();
+        if (tarifStr.isEmpty()) {
+            return false; // La valeur est vide, donc invalide
+        }
+        try {
+            double tarif = Double.parseDouble(tarifStr);
+            return tarif >= 0 && tarif <= 5000.0;
+        } catch (NumberFormatException e) {
+            return false; // Impossible de convertir en double, donc invalide
+        }
+    }
+
+    private boolean validateMonuments(StringBuilder errors) {
+        String monuments = addMonuments.getText().trim();
+        return monuments != null && !monuments.isEmpty();
+    }
+
+    private boolean validateTrancheAge(StringBuilder errors) {
+        String trancheAge = addAge.getText().trim();
+        // Ajoutez vos conditions de validation pour la tranche d'âge ici
+        return trancheAge != null && !trancheAge.isEmpty();
+    }
+
+    private boolean validateMoyenTransport(StringBuilder errors) {
+        String moyenTransport = addTransport.getText().trim();
+        return moyenTransport != null && !moyenTransport.isEmpty();
+    }
+
+
+
+
+
     @FXML
     void Logout(ActionEvent event) {
         String currentSessionId = SessionManager.getCurrentSessionId();

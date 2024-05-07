@@ -196,17 +196,17 @@ public class Tournee_BackController implements Initializable {
 
             alert.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
-                    GuideServices guideServices = new GuideServices();
-                    guideServices.removeGuide(selectedTournee.getId());
+                    TourneeServices tourneeServices = new TourneeServices();
+                    tourneeServices.removeTournee(selectedTournee.getId());
 
-                    TourneeTableView.getItems().remove(selectedTournee);
+                    tourneeList.remove(selectedTournee);
                 }
             });
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur");
-            alert.setHeaderText("Aucun guide sélectionné");
-            alert.setContentText("Veuillez choisir un uide à supprimer.");
+            alert.setHeaderText("Aucun Tournee sélectionné");
+            alert.setContentText("Veuillez choisir une Tournee à supprimer.");
             alert.showAndWait();
         }
     }

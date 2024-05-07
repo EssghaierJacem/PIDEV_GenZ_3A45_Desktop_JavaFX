@@ -126,7 +126,7 @@ public class ShowTourneeController implements Initializable {
     @FXML
     void handleUpdateButtonAction(ActionEvent event) throws IOException {
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Tournee/UpdateTournee.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Tournee/TourneeUpdate.fxml"));
         Parent root = loader.load();
 
         UpdateTourneeController updateTourneeController = loader.getController();
