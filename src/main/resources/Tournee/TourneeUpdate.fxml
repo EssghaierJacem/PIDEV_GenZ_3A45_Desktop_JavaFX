@@ -391,6 +391,7 @@
                                 <TextField fx:id="tarif" layoutX="83.0" layoutY="218.0" prefHeight="29.0" prefWidth="105.0" styleClass="progress" stylesheets="@../css/JStyle.css" />
                         <ComboBox fx:id="guide" layoutX="82.0" layoutY="113.0" prefHeight="32.0" prefWidth="105.0" styleClass="progress" stylesheets="@../css/JStyle.css" />
                         <TextField fx:id="duree" layoutX="281.0" layoutY="63.0" prefHeight="29.0" prefWidth="123.0" styleClass="progress" stylesheets="@../css/JStyle.css" />
+                        <Label fx:id="errorLabel" layoutX="33.0" layoutY="307.0" prefHeight="115.0" prefWidth="366.0" text="Label" textFill="RED" />
                             </children>
                         </Pane>
                     </children>
