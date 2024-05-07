@@ -49,6 +49,24 @@ public class ReservationController_Front implements Initializable {
     @FXML
     private TextField keywordSearch;
     private Timer searchTimer = new Timer();
+    @FXML
+    private JFXButton dashboardButton;
+
+    @FXML
+    void goToDashboard(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Dashboard_J/FrontDashboard.fxml"));
+            Parent root = loader.load();
+
+            Stage currentStage = (Stage) dashboardButton.getScene().getWindow();
+            Scene newScene = new Scene(root);
+            currentStage.setScene(newScene);
+
+            currentStage.setTitle("User - Dashboard");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @FXML
     void handleLogoutAction(ActionEvent event) {

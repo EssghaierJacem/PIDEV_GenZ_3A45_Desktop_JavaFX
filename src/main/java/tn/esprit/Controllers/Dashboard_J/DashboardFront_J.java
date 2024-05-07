@@ -29,16 +29,28 @@ public class DashboardFront_J implements Initializable {
     private JFXButton Logout;
 
     @FXML
+    private JFXButton calculer;
+
+    @FXML
     private JFXButton commandesButton;
 
     @FXML
     private Label connectedUser_Username;
 
     @FXML
+    private TextField conversionText;
+
+    @FXML
+    private ComboBox<String> currencies;
+
+    @FXML
     private JFXButton destinationButton;
 
     @FXML
     private JFXButton eventsButton;
+
+    @FXML
+    private Label flightNotification;
 
     @FXML
     private JFXButton guideButton;
@@ -53,6 +65,9 @@ public class DashboardFront_J implements Initializable {
     private JFXButton reservationButton;
 
     @FXML
+    private Label resultConversion;
+
+    @FXML
     private JFXButton tourneeButton;
 
     @FXML
@@ -62,18 +77,7 @@ public class DashboardFront_J implements Initializable {
     private JFXButton volButton;
 
     @FXML
-    private Label flightNotification;
-    @FXML
-    private JFXButton calculer;
-    @FXML
-    private ComboBox<String> currencies;
-    @FXML
-    private Label resultConversion;
-
-    @FXML
     private Label currencyConversion;
-    @FXML
-    private TextField conversionText;
 
     private CurrencyConversionService currencyService = new CurrencyConversionService();
     private VolServices volServices = new VolServices();
@@ -99,7 +103,6 @@ public class DashboardFront_J implements Initializable {
 
     @FXML
     private void updateFlightNotification() {
-
 
         List<Vol> closestFlights = volServices.getClosestFlights();
         if (closestFlights != null && !closestFlights.isEmpty()) {
@@ -182,7 +185,7 @@ public class DashboardFront_J implements Initializable {
             Stage currentStage = (Stage) destinationButton.getScene().getWindow();
             Scene newScene = new Scene(root);
             currentStage.setScene(newScene);
-            currentStage.setTitle("List of Destinations");
+            currentStage.setTitle("Liste des  Destinations");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -197,7 +200,92 @@ public class DashboardFront_J implements Initializable {
             Stage currentStage = (Stage) volButton.getScene().getWindow();
             Scene newScene = new Scene(root);
             currentStage.setScene(newScene);
-            currentStage.setTitle("List of Vols");
+            currentStage.setTitle("Liste des  Vols");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    void goToCommande(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Commande/ListCommande_Front.fxml"));
+            Parent root = loader.load();
+
+            Stage currentStage = (Stage) commandesButton.getScene().getWindow();
+            Scene newScene = new Scene(root);
+            currentStage.setScene(newScene);
+            currentStage.setTitle("Liste des commandes");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    void goToEvent(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Event/ListEvent_Front.fxml"));
+            Parent root = loader.load();
+
+            Stage currentStage = (Stage) eventsButton.getScene().getWindow();
+            Scene newScene = new Scene(root);
+            currentStage.setScene(newScene);
+            currentStage.setTitle("Liste des evenements");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    void goToGuide(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Guide/GuideFront.fxml"));
+            Parent root = loader.load();
+
+            Stage currentStage = (Stage) guideButton.getScene().getWindow();
+            Scene newScene = new Scene(root);
+            currentStage.setScene(newScene);
+            currentStage.setTitle("Liste des guides");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    void goToParticipation(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Participation/ListParticipation_Front.fxml"));
+            Parent root = loader.load();
+
+            Stage currentStage = (Stage) participationButton.getScene().getWindow();
+            Scene newScene = new Scene(root);
+            currentStage.setScene(newScene);
+            currentStage.setTitle("Liste des vols");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    void goToReservation(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Reservation/ListReservation_Front.fxml"));
+            Parent root = loader.load();
+
+            Stage currentStage = (Stage) reservationButton.getScene().getWindow();
+            Scene newScene = new Scene(root);
+            currentStage.setScene(newScene);
+            currentStage.setTitle("Liste des reservations");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void goToTournee(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Tournee/TourneeFront.fxml"));
+            Parent root = loader.load();
+
+            Stage currentStage = (Stage) tourneeButton.getScene().getWindow();
+            Scene newScene = new Scene(root);
+            currentStage.setScene(newScene);
+            currentStage.setTitle("Liste des tournees");
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -27,18 +27,30 @@ import java.util.ResourceBundle;
 public class EventController_Front implements Initializable {
     @FXML
     private HBox cardLayout;
-
     @FXML
     private JFXButton Logout;
-
-
-    @FXML
-    private Button rollBackButton;
-
     @FXML
     private Label connectedUser_Username;
     @FXML
     private GridPane eventContainer;
+    @FXML
+    private JFXButton dashboardButton;
+
+    @FXML
+    void goToDashboard(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Dashboard_J/FrontDashboard.fxml"));
+            Parent root = loader.load();
+
+            Stage currentStage = (Stage) dashboardButton.getScene().getWindow();
+            Scene newScene = new Scene(root);
+            currentStage.setScene(newScene);
+
+            currentStage.setTitle("User - Dashboard");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -112,29 +124,6 @@ public class EventController_Front implements Initializable {
 
             currentStage.setTitle("Login");
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void handleRollBackButtonAction(ActionEvent actionEvent) {
-        // Get the button that triggered the event
-        Button rollBackButton = (Button) actionEvent.getSource();
-
-        // Get the stage from the button's scene
-        Stage stage = (Stage) rollBackButton.getScene().getWindow();
-
-        try {
-            // Load the dashboard FXML file
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Dashboard_J/FrontDashboard.fxml"));
-            Parent root = loader.load();
-
-            // Create a new scene with the dashboard
-            Scene dashboardScene = new Scene(root);
-
-            // Set the scene in the stage and show it
-            stage.setScene(dashboardScene);
-            stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }

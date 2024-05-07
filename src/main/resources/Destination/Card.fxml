@@ -36,7 +36,7 @@
                   <Font name="Century Gothic Italic" size="12.0" />
                </font>
             </Label>
-            <JFXButton alignment="CENTER" prefHeight="17.0" prefWidth="70.0" styleClass="progress" stylesheets="@../css/JStyle.css" text="Voir plus" textAlignment="CENTER">
+            <JFXButton fx:id="voirPlusButton" alignment="CENTER" onAction="#onVoirPlusClick" prefHeight="17.0" prefWidth="70.0" styleClass="progress" stylesheets="@../css/JStyle.css" text="Voir plus" textAlignment="CENTER">
                <font>
                   <Font name="Century Gothic" size="12.0" />
                </font>
