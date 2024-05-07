@@ -362,7 +362,7 @@
                                 <Font name="Century Gothic" size="12.0" />
                             </font>
                         </JFXButton>
-                        <Label fx:id="errorLabel" layoutX="517.0" layoutY="-19.0" prefHeight="131.0" prefWidth="347.0" text="Label" textFill="RED">
+                        <Label fx:id="errorLabel" layoutX="517.0" layoutY="-19.0" prefHeight="131.0" prefWidth="347.0" textFill="RED">
                             <font>
                                 <Font name="Century Gothic" size="13.0" />
                             </font>
