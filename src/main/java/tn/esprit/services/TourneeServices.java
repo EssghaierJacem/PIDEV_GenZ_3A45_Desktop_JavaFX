@@ -17,6 +17,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -201,6 +202,28 @@ public class TourneeServices implements ITourneeService<Tournee> {
             System.out.println("Error creating PDF: " + e.getMessage());
         }
     }
+    public Map<String, Integer> getToursPerDestination() {
+        Map<String, Integer> destinationTourCount = new HashMap<>();
+        String query = "SELECT d.ville AS destination_name, d.pays AS destination_country, COUNT(*) AS tour_count " +
+                "FROM tournee t " +
+                "INNER JOIN destination d ON t.destination_id = d.id " +
+                "GROUP BY d.ville, d.pays";
+
+        try (PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(query);
+             ResultSet rs = pst.executeQuery()) {
+            while (rs.next()) {
+                String destinationName = rs.getString("destination_name");
+                String destinationCountry = rs.getString("destination_country");
+                int tourCount = rs.getInt("tour_count");
+                String destinationKey = destinationName + ", " + destinationCountry;
+                destinationTourCount.put(destinationKey, tourCount);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error fetching tours per destination: " + e.getMessage());
+        }
+        return destinationTourCount;
+    }
+
 
 
 
