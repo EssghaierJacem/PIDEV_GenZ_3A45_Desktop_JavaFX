@@ -19,7 +19,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="665.0" prefWidth="1025.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.Controllers.Dashboard_J.DashboardFront_J">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="711.0" prefWidth="1025.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.Controllers.Dashboard_J.DashboardFront_J">
     <top>
         <HBox alignment="CENTER_LEFT" prefHeight="74.0" prefWidth="950.0" styleClass="white-background" stylesheets="@../css/frontStyles.css" BorderPane.alignment="CENTER">
             <children>
@@ -385,16 +385,42 @@
                   </HBox>
                </children>
             </HBox>
-            <HBox prefHeight="271.0" prefWidth="779.0" styleClass="pane_maybe" stylesheets="@../css/JStyle.css">
+            <HBox prefHeight="337.0" prefWidth="779.0" styleClass="pane_maybe" stylesheets="@../css/JStyle.css">
                <children>
-                  <AreaChart prefHeight="266.0" prefWidth="781.0">
-                    <xAxis>
-                      <CategoryAxis side="BOTTOM" />
-                    </xAxis>
-                    <yAxis>
-                      <NumberAxis side="LEFT" />
-                    </yAxis>
-                  </AreaChart>
+                  <HBox prefHeight="313.0" prefWidth="775.0">
+                     <children>
+                        <VBox prefHeight="266.0" prefWidth="897.0">
+                           <children>
+                              <HBox prefHeight="38.0" prefWidth="775.0">
+                                 <children>
+                                    <Label prefHeight="36.0" prefWidth="548.0" text="Informations sur les tournées de nos destinations  !" textFill="#403e3e">
+                                       <padding>
+                                          <Insets left="50.0" top="10.0" />
+                                       </padding>
+                                       <font>
+                                          <Font name="Century Gothic Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Pane prefHeight="35.0" prefWidth="177.0" />
+                                    <ImageView fitHeight="46.0" fitWidth="44.0" pickOnBounds="true">
+                                       <image>
+                                          <Image url="@../JImages/guide.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </HBox>
+                              <AreaChart fx:id="TourneeChart" prefHeight="333.0" prefWidth="775.0">
+                                 <xAxis>
+                                    <CategoryAxis side="BOTTOM" />
+                                 </xAxis>
+                                 <yAxis>
+                                    <NumberAxis side="LEFT" />
+                                 </yAxis>
+                              </AreaChart>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
                </children></HBox>
          </children>
          <stylesheets>
