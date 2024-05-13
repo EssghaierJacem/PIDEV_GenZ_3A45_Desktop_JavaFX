@@ -17,6 +17,8 @@ import tn.esprit.entites.Commande;
 import tn.esprit.entites.Reservation;
 import tn.esprit.entites.SessionManager;
 import tn.esprit.services.ReservationServices;
+import tn.esprit.entites.User;
+
 
 import java.io.File;
 import java.io.IOException;
@@ -91,6 +93,13 @@ public class ReservationByID_BackController implements Initializable {
     private SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        String currentSessionId = SessionManager.getCurrentSessionId();
+        User connectedUser = SessionManager.getUserFromSession(currentSessionId);
+        if (connectedUser != null) {
+            connectedUser_Username.setText(connectedUser.getUsername());
+        } else {
+            connectedUser_Username.setText("Not logged in");
+        }
     }
 
     public void setReservationData(Reservation reservation) {

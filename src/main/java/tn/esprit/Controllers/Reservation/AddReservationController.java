@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import tn.esprit.entites.User;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -166,6 +167,14 @@ public class AddReservationController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        String currentSessionId = SessionManager.getCurrentSessionId();
+        User connectedUser = SessionManager.getUserFromSession(currentSessionId);
+        if (connectedUser != null) {
+            connectedUser_Username.setText(connectedUser.getUsername());
+        } else {
+            connectedUser_Username.setText("Not logged in");
+        }
+
         addNom_client.setPromptText("Enter client's last name");
         addPrenom_client.setPromptText("Enter client's first name");
         addNum_tel.setPromptText("Enter client's phone number");

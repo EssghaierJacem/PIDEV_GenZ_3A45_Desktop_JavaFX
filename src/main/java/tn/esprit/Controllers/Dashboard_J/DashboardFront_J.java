@@ -95,6 +95,7 @@ public class DashboardFront_J implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         String currentSessionId = SessionManager.getCurrentSessionId();
         User connectedUser = SessionManager.getUserFromSession(currentSessionId);
         if (connectedUser != null) {
@@ -102,6 +103,7 @@ public class DashboardFront_J implements Initializable {
         } else {
             connectedUser_Username.setText("Not logged in");
         }
+
         tourneeService = new TourneeServices();
         chart();
 

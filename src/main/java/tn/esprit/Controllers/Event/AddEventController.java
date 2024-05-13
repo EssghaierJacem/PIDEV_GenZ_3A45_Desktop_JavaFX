@@ -16,6 +16,8 @@ import tn.esprit.entites.Event;
 import tn.esprit.entites.SessionManager;
 import tn.esprit.services.EventServices;
 import javafx.scene.control.Label;
+import tn.esprit.entites.User;
+
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
@@ -186,6 +188,14 @@ public class AddEventController implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        String currentSessionId = SessionManager.getCurrentSessionId();
+        User connectedUser = SessionManager.getUserFromSession(currentSessionId);
+        if (connectedUser != null) {
+            connectedUser_Username.setText(connectedUser.getUsername());
+        } else {
+            connectedUser_Username.setText("Not logged in");
+        }
         addNom.setPromptText("Enter event's name");
         addDescription.setPromptText("Enter event's description");
         addOrganisateur.setPromptText("Enter event's organisator");

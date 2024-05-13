@@ -10,6 +10,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import tn.esprit.entites.User;
+
 
 import java.io.IOException;
 import java.net.URL;
@@ -90,7 +92,13 @@ public class ShowGuideController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        String currentSessionId = SessionManager.getCurrentSessionId();
+        User connectedUser = SessionManager.getUserFromSession(currentSessionId);
+        if (connectedUser != null) {
+            connectedUser_Username.setText(connectedUser.getUsername());
+        } else {
+            connectedUser_Username.setText("Not logged in");
+        }
     }
 
     public void setGuideData (Guide guide) {

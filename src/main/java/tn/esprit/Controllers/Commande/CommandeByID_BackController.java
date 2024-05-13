@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 import tn.esprit.entites.Commande;
 import tn.esprit.entites.SessionManager;
 import tn.esprit.services.CommandeServices;
+import tn.esprit.entites.User;
 import tn.esprit.services.DestinationServices;
 
 import java.io.File;
@@ -97,6 +98,13 @@ public class CommandeByID_BackController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        String currentSessionId = SessionManager.getCurrentSessionId();
+        User connectedUser = SessionManager.getUserFromSession(currentSessionId);
+        if (connectedUser != null) {
+            connectedUser_Username.setText(connectedUser.getUsername());
+        } else {
+            connectedUser_Username.setText("Not logged in");
+        }
     }
 
     public void setCommandeData(Commande commande) {

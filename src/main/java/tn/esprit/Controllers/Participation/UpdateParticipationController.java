@@ -13,6 +13,8 @@ import javafx.stage.Stage;
 import tn.esprit.entites.Participation;
 import tn.esprit.entites.SessionManager;
 import tn.esprit.services.ParticipationServices;
+import tn.esprit.entites.User;
+
 
 import java.io.IOException;
 import java.net.URL;
@@ -99,6 +101,14 @@ public class UpdateParticipationController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        String currentSessionId = SessionManager.getCurrentSessionId();
+        User connectedUser = SessionManager.getUserFromSession(currentSessionId);
+        if (connectedUser != null) {
+            connectedUser_Username.setText(connectedUser.getUsername());
+        } else {
+            connectedUser_Username.setText("Not logged in");
+        }
+
         participationServices = new ParticipationServices();
         fillParticipationTableView();
 

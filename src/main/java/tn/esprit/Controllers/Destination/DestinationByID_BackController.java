@@ -18,6 +18,7 @@ import tn.esprit.entites.SessionManager;
 import tn.esprit.services.DestinationServices;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
+import tn.esprit.entites.User;
 
 import java.io.File;
 import java.io.IOException;
@@ -106,6 +107,13 @@ public class DestinationByID_BackController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        String currentSessionId = SessionManager.getCurrentSessionId();
+        User connectedUser = SessionManager.getUserFromSession(currentSessionId);
+        if (connectedUser != null) {
+            connectedUser_Username.setText(connectedUser.getUsername());
+        } else {
+            connectedUser_Username.setText("Not logged in");
+        }
     }
 
     public void setDestinationData(Destination destination) {

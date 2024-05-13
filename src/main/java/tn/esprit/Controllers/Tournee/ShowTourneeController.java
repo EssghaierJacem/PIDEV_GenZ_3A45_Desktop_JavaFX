@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import tn.esprit.entites.SessionManager;
 import tn.esprit.entites.Tournee;
 import tn.esprit.services.TourneeServices;
+import tn.esprit.entites.User;
 
 import java.io.File;
 import java.io.IOException;
@@ -141,7 +142,13 @@ public class ShowTourneeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        String currentSessionId = SessionManager.getCurrentSessionId();
+        User connectedUser = SessionManager.getUserFromSession(currentSessionId);
+        if (connectedUser != null) {
+            connectedUser_Username.setText(connectedUser.getUsername());
+        } else {
+            connectedUser_Username.setText("Not logged in");
+        }
     }
     @FXML
     void exportToPDF(ActionEvent event) {

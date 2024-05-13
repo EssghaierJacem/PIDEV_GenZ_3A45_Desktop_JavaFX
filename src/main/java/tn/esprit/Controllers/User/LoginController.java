@@ -13,13 +13,15 @@ import tn.esprit.entites.Role;
 import tn.esprit.entites.SessionManager;
 import tn.esprit.entites.User;
 import tn.esprit.services.UserServices;
+import org.mindrot.jbcrypt.BCrypt;
+
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
-
+    @FXML
     public Button idForgotPassword;
     @FXML
     private JFXButton Connect;
@@ -48,7 +50,6 @@ public class LoginController implements Initializable {
     void handleConnectButtonAction(ActionEvent event) throws IOException {
         String email = LoginEmail.getText();
         String password = LoginPassword.getText();
-
         if (!validateEmailFormat(email)) {
             errorLabel.setText("Invalid email format. Email should follow the format 'y@x.sth'.");
             errorLabel.setVisible(true);
@@ -63,29 +64,34 @@ public class LoginController implements Initializable {
             String sessionId = SessionManager.createSession(authenticatedUser);
 
             if (authenticatedUser.getRole() == Role.ADMIN) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/User/UserBack.fxml"));
-                Parent adminDashboardRoot = loader.load();
-
-                Stage currentStage = (Stage) Connect.getScene().getWindow();
-                Scene adminDashboardScene = new Scene(adminDashboardRoot);
-                currentStage.setScene(adminDashboardScene);
-                currentStage.setTitle("Dashboard - Destination");
-
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/User/UserBack.fxml"));
+                    Parent adminRoot = loader.load();
+                    Stage currentStage = (Stage) Connect.getScene().getWindow();
+                    Scene adminScene = new Scene(adminRoot);
+                    currentStage.setScene(adminScene);
+                    currentStage.setTitle("Admin - Dashboard");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             } else if (authenticatedUser.getRole() == Role.USER) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Destination/ListDestination_Front.fxml"));
-                Parent userDashboardRoot = loader.load();
-
-                Stage currentStage = (Stage) Connect.getScene().getWindow();
-                Scene userDashboardScene = new Scene(userDashboardRoot);
-                currentStage.setScene(userDashboardScene);
-                currentStage.setTitle("Beyond Borders Travel - Destination");
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/Dashboard_J/FrontDashboard.fxml"));
+                    Parent userRoot = loader.load();
+                    Stage currentStage = (Stage) Connect.getScene().getWindow();
+                    Scene userScene = new Scene(userRoot);
+                    currentStage.setScene(userScene);
+                    currentStage.setTitle("User - Dashboard");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
-
         } else {
             errorLabel.setText("Invalid email or password. Please try again.");
             errorLabel.setVisible(true);
         }
     }
+
 
     @FXML
     void handleRegisterButtonAction(ActionEvent event) {

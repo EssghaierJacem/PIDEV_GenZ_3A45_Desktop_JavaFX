@@ -69,7 +69,7 @@
                               <Font name="Century Gothic Bold" size="16.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="LoginEmail" prefHeight="31.0" prefWidth="375.0" stylesheets="@../css/frontStyles.css" text="Example@domain.com">
+                        <TextField fx:id="LoginEmail" prefHeight="31.0" prefWidth="375.0" promptText="Example@domain.com" stylesheets="@../css/frontStyles.css">
                            <VBox.margin>
                               <Insets left="20.0" right="20.0" top="10.0" />
                            </VBox.margin>
@@ -89,7 +89,7 @@
                               <Insets left="20.0" top="10.0" />
                            </VBox.margin>
                         </Label>
-                        <PasswordField fx:id="LoginPassword" stylesheets="@../css/frontStyles.css">
+                        <PasswordField fx:id="LoginPassword" promptText="*****" stylesheets="@../css/frontStyles.css">
                            <VBox.margin>
                               <Insets left="20.0" right="20.0" top="10.0" />
                            </VBox.margin>
