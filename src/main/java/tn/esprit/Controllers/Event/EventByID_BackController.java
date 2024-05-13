@@ -17,6 +17,8 @@ import tn.esprit.entites.Event;
 import tn.esprit.entites.SessionManager;
 import tn.esprit.services.DestinationServices;
 import tn.esprit.services.EventServices;
+import tn.esprit.entites.User;
+
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -99,6 +101,13 @@ public class EventByID_BackController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        String currentSessionId = SessionManager.getCurrentSessionId();
+        User connectedUser = SessionManager.getUserFromSession(currentSessionId);
+        if (connectedUser != null) {
+            connectedUser_Username.setText(connectedUser.getUsername());
+        } else {
+            connectedUser_Username.setText("Not logged in");
+        }
     }
 
     public void setEventData(Event event) {

@@ -18,6 +18,8 @@ import tn.esprit.entites.Vol;
 import tn.esprit.services.VolServices;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
+import tn.esprit.entites.User;
+
 
 
 import java.io.File;
@@ -114,7 +116,13 @@ public class VolByID_BackController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        String currentSessionId = SessionManager.getCurrentSessionId();
+        User connectedUser = SessionManager.getUserFromSession(currentSessionId);
+        if (connectedUser != null) {
+            connectedUser_Username.setText(connectedUser.getUsername());
+        } else {
+            connectedUser_Username.setText("Not logged in");
+        }
     }
 
     public void setVolData(Vol vol) {

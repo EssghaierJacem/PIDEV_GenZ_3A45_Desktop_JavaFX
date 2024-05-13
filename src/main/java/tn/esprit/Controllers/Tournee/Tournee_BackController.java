@@ -16,7 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-
+import tn.esprit.entites.User;
 
 import tn.esprit.entites.SessionManager;
 import tn.esprit.entites.Tournee;
@@ -269,6 +269,13 @@ public class Tournee_BackController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        String currentSessionId = SessionManager.getCurrentSessionId();
+        User connectedUser = SessionManager.getUserFromSession(currentSessionId);
+        if (connectedUser != null) {
+            connectedUser_Username.setText(connectedUser.getUsername());
+        } else {
+            connectedUser_Username.setText("Not logged in");
+        }
         addTourneeShow();
         initializeSearchFunctionality();
 

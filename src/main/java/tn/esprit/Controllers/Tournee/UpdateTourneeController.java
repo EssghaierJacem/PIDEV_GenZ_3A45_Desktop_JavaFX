@@ -15,6 +15,8 @@ import tn.esprit.entites.Destination;
 import tn.esprit.entites.SessionManager;
 import tn.esprit.entites.Tournee;
 import tn.esprit.services.DestinationServices;
+import tn.esprit.entites.User;
+
 
 import tn.esprit.services.TourneeServices;
 
@@ -235,6 +237,14 @@ public class UpdateTourneeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        String currentSessionId = SessionManager.getCurrentSessionId();
+        User connectedUser = SessionManager.getUserFromSession(currentSessionId);
+        if (connectedUser != null) {
+            connectedUser_Username.setText(connectedUser.getUsername());
+        } else {
+            connectedUser_Username.setText("Not logged in");
+        }
+
         tourneeServices = new TourneeServices();
         fillTourneeTableView();
         loadDestinations();

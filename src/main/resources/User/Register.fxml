@@ -68,7 +68,7 @@
                                         <Font name="Century Gothic Bold" size="16.0" />
                                     </font>
                                 </Label>
-                                <TextField fx:id="addNom" prefHeight="31.0" prefWidth="375.0" stylesheets="@../css/frontStyles.css" text="John">
+                                <TextField fx:id="addNom" prefHeight="31.0" prefWidth="375.0" promptText="John" stylesheets="@../css/frontStyles.css">
                                     <VBox.margin>
                                         <Insets left="20.0" right="20.0" top="10.0" />
                                     </VBox.margin>
@@ -88,7 +88,7 @@
                                         <Insets left="20.0" top="10.0" />
                                     </VBox.margin>
                                 </Label>
-                                <TextField fx:id="addPrenom" layoutX="32.0" layoutY="217.0" prefHeight="31.0" prefWidth="359.0" stylesheets="@../css/frontStyles.css" text="Doe">
+                                <TextField fx:id="addPrenom" layoutX="32.0" layoutY="217.0" prefHeight="31.0" prefWidth="359.0" promptText="Doe" stylesheets="@../css/frontStyles.css">
                                     <font>
                                         <Font name="Century Gothic" size="15.0" />
                                     </font>
@@ -108,7 +108,7 @@
                               <Insets left="20.0" top="10.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField fx:id="addUsername" layoutX="32.0" layoutY="255.0" prefHeight="29.0" prefWidth="386.0" stylesheets="@../css/frontStyles.css" text="********">
+                        <TextField fx:id="addUsername" layoutX="32.0" layoutY="255.0" prefHeight="29.0" prefWidth="386.0" promptText="Johnny_Doe" stylesheets="@../css/frontStyles.css">
                            <font>
                               <Font name="Century Gothic" size="15.0" />
                            </font>
@@ -128,7 +128,7 @@
                               <Insets left="20.0" top="10.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField fx:id="addEmail" layoutX="12.0" layoutY="316.0" prefHeight="31.0" prefWidth="359.0" stylesheets="@../css/frontStyles.css" text="Example@domain.com">
+                        <TextField fx:id="addEmail" layoutX="12.0" layoutY="316.0" prefHeight="31.0" prefWidth="359.0" promptText="Example@domain.com" stylesheets="@../css/frontStyles.css">
                            <font>
                               <Font name="Century Gothic" size="15.0" />
                            </font>
@@ -148,7 +148,7 @@
                               <Insets left="20.0" top="10.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField fx:id="addCin" layoutX="12.0" layoutY="377.0" prefHeight="31.0" prefWidth="359.0" stylesheets="@../css/frontStyles.css" text="14687982">
+                        <TextField fx:id="addCin" layoutX="12.0" layoutY="377.0" prefHeight="31.0" prefWidth="359.0" promptText="14687982" stylesheets="@../css/frontStyles.css">
                            <font>
                               <Font name="Century Gothic" size="15.0" />
                            </font>
@@ -168,7 +168,7 @@
                               <Insets left="20.0" top="10.0" />
                            </VBox.margin>
                         </Label>
-                        <PasswordField fx:id="addPassword">
+                        <PasswordField fx:id="addPassword" promptText="*****">
                            <VBox.margin>
                               <Insets left="20.0" right="20.0" top="10.0" />
                            </VBox.margin>
@@ -181,7 +181,7 @@
                               <Insets left="20.0" top="10.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField fx:id="addPhoto" layoutX="12.0" layoutY="499.0" prefHeight="31.0" prefWidth="359.0" stylesheets="@../css/frontStyles.css" text="www.ImageLink.com">
+                        <TextField fx:id="addPhoto" layoutX="12.0" layoutY="499.0" prefHeight="31.0" prefWidth="359.0" promptText="www.ImageLink.com" stylesheets="@../css/frontStyles.css">
                            <font>
                               <Font name="Century Gothic" size="15.0" />
                            </font>

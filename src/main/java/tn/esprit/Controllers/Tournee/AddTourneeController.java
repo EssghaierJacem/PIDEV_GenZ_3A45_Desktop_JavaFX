@@ -2,6 +2,7 @@ package tn.esprit.Controllers.Tournee;
 
 import com.jfoenix.controls.JFXButton;
 import com.twilio.rest.api.v2010.account.Message;
+import tn.esprit.entites.User;
 import com.twilio.type.PhoneNumber;
 import com.twilio.Twilio;
 import javafx.event.ActionEvent;
@@ -150,6 +151,14 @@ public class AddTourneeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        String currentSessionId = SessionManager.getCurrentSessionId();
+        User connectedUser = SessionManager.getUserFromSession(currentSessionId);
+        if (connectedUser != null) {
+            connectedUser_Username.setText(connectedUser.getUsername());
+        } else {
+            connectedUser_Username.setText("Not logged in");
+        }
+
         Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
         loadDestinations();
         loadGuides();

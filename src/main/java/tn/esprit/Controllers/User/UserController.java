@@ -134,6 +134,13 @@ public class UserController  {
 
 
     public void initialize() {
+        String currentSessionId = SessionManager.getCurrentSessionId();
+        User connectedUser = SessionManager.getUserFromSession(currentSessionId);
+        if (connectedUser != null) {
+            connectedUser_Username.setText(connectedUser.getUsername());
+        } else {
+            connectedUser_Username.setText("Not logged in");
+        }
         idSearchWith.setItems(FXCollections.observableArrayList(attributsSearch));
         userServices = new UserServices();
         fillUserTableView();

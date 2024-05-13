@@ -11,6 +11,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.mindrot.jbcrypt.BCrypt;
+import tn.esprit.entites.SessionManager;
 import tn.esprit.entites.Role;
 import tn.esprit.entites.User;
 import tn.esprit.services.UserServices;
@@ -80,22 +82,24 @@ public class RegisterController implements Initializable {
         newUser.setPrenom(prenom);
         newUser.setUsername(username);
         newUser.setEmail(email);
-        newUser.setPassword(password);
+        String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+        newUser.setPassword(hashedPassword);
         newUser.setPhoto(photo);
         newUser.setCin(cin);
         newUser.setRole(Role.USER);
 
         userServices.addUser(newUser);
+        String sessionId = SessionManager.createSession(newUser);
 
         clearFields();
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Destination/ListDestination_Front.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Dashboard_J/FrontDashboard.fxml"));
             Parent listDestinationRoot = loader.load();
             Stage currentStage = (Stage) Register.getScene().getWindow();
             Scene listDestinationScene = new Scene(listDestinationRoot);
             currentStage.setScene(listDestinationScene);
-            currentStage.setTitle("List Destination");
+            currentStage.setTitle("User - Dashboard");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -114,6 +118,7 @@ public class RegisterController implements Initializable {
             e.printStackTrace();
         }
     }
+
     private boolean validateInputs(String nom, String prenom, String username, String email, String password, String photo, String cinText) {
         labelError.setText("");
         labelError.setVisible(false);
@@ -135,7 +140,6 @@ public class RegisterController implements Initializable {
 
         return true;
     }
-
 
     private void validateNomPrenom(String value, String fieldName, StringBuilder errors) {
         if (value.isEmpty() || value.length() < 3 || value.length() > 20) {

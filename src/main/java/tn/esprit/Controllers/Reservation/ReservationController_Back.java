@@ -18,6 +18,8 @@ import tn.esprit.entites.Reservation;
 import tn.esprit.entites.SessionManager;
 import tn.esprit.services.CommandeServices;
 import tn.esprit.services.ReservationServices;
+import tn.esprit.entites.User;
+
 
 import java.io.IOException;
 import java.net.URL;
@@ -97,6 +99,13 @@ public class ReservationController_Back implements Initializable {
 
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
+        String currentSessionId = SessionManager.getCurrentSessionId();
+        User connectedUser = SessionManager.getUserFromSession(currentSessionId);
+        if (connectedUser != null) {
+            connectedUser_Username.setText(connectedUser.getUsername());
+        } else {
+            connectedUser_Username.setText("Not logged in");
+        }
         keywordSearch.textProperty().addListener((observable, oldValue, newValue) -> {
             searchTimer.cancel();
             searchTimer = new Timer();

@@ -9,6 +9,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import com.jfoenix.controls.JFXButton;
+import tn.esprit.entites.User;
+
 
 import javafx.stage.Stage;
 import tn.esprit.entites.SessionManager;
@@ -109,6 +111,13 @@ public class EventController_Back implements Initializable {
 
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
+        String currentSessionId = SessionManager.getCurrentSessionId();
+        User connectedUser = SessionManager.getUserFromSession(currentSessionId);
+        if (connectedUser != null) {
+            connectedUser_Username.setText(connectedUser.getUsername());
+        } else {
+            connectedUser_Username.setText("Not logged in");
+        }
         addEventShowListData();
         keywordSearch.textProperty().addListener((observable, oldValue, newValue) -> {
             searchTimer.cancel();

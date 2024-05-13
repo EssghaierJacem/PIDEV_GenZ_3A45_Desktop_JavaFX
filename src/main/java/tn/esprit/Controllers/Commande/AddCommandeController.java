@@ -15,6 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import javafx.stage.Stage;
+import tn.esprit.entites.User;
 import tn.esprit.entites.Commande;
 import tn.esprit.entites.SessionManager;
 import tn.esprit.services.CommandeServices;
@@ -51,6 +52,7 @@ public class AddCommandeController implements Initializable {
 
     @FXML
     private TextField addType;
+
 
     //Buttons
 
@@ -159,6 +161,13 @@ public class AddCommandeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        String currentSessionId = SessionManager.getCurrentSessionId();
+        User connectedUser = SessionManager.getUserFromSession(currentSessionId);
+        if (connectedUser != null) {
+            connectedUser_Username.setText(connectedUser.getUsername());
+        } else {
+            connectedUser_Username.setText("Not logged in");
+        }
             addNum_commande.setPromptText("");
             addCode_promo.setPromptText("");
             addType.setPromptText("");

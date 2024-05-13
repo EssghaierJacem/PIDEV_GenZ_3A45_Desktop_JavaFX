@@ -364,7 +364,7 @@
                         </JFXButton>
                         <TextField fx:id="updateType" layoutX="203.0" layoutY="113.0" prefHeight="29.0" prefWidth="132.0" styleClass="progress" stylesheets="@../css/JStyle.css" />
                         <DatePicker fx:id="updateDateC" layoutX="18.0" layoutY="188.0" prefHeight="18.0" prefWidth="123.0" styleClass="progress" stylesheets="@../css/JStyle.css" />
-                        <Label fx:id="errorLabel" layoutX="27.0" layoutY="308.0" prefHeight="62.0" prefWidth="315.0" text="Label" textFill="#f40606">
+                        <Label fx:id="errorLabel" layoutX="27.0" layoutY="308.0" prefHeight="62.0" prefWidth="315.0" textFill="#f40606">
                            <font>
                               <Font name="Century Gothic" size="12.0" />
                            </font>
